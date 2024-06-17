@@ -1,12 +1,12 @@
 # Protos
 
-This repository contains protocol buffers definitions for [fishjam-dev organization](https://github.com/fishjam-dev) repositories.
+This repository contains protocol buffers definitions for [fishjam-cloud organization](https://github.com/membrane-cloud) repositories.
 
 ## How to add this repo as a git submodule in your own repository
 
 Use the command below:
 
-`git submodule add https://github.com/fishjam-dev/protos.git`
+`git submodule add https://github.com/membrane-cloud/protos.git`
 
 ## Copyright and License
 
