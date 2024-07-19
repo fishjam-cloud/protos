@@ -17,9 +17,16 @@ message PeerMessage {
     string data = 1;
   }
 
+  // PeerConnection stats sent by peer
+  // https://developer.mozilla.org/en-US/docs/Web/API/RTCStatsReport#the_statistic_types
+  message RTCStatsReport {
+    string data = 1;
+  }
+
   oneof content {
     Authenticated authenticated = 1;
     AuthRequest auth_request = 2;
     MediaEvent media_event = 3;
+    RTCStatsReport rtc_stats_report = 4;
   }
 }
