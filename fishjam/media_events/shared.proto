@@ -19,6 +19,6 @@ message MidToTrackId {
 
 // Contains information about an ICE candidate which will be sent to the client/server
 message Candidate {
- string candidate = 1;
- int32 sdp_m_line_index = 2;
+  string candidate = 1;
+  int32 sdp_m_line_index = 2;
 }

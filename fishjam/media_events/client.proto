@@ -10,7 +10,7 @@ message MediaEvent {
     media_events.shared.Encoding rid = 1;
     int32 bitrate = 2;
   }
-  
+
   // Client -> WebRTC Endpoint
 
   // Sent when a client wants to join WebRTC Endpoint. It contains only endpoint's metadata
@@ -19,13 +19,13 @@ message MediaEvent {
   }
 
   // Sent when client disconnects from WebRTC Endpoint. It contains no data
-  message Disconnect {};
+  message Disconnect {}
 
   // Contains new metadata of client's endpoint
   message UpdateEndpointMetadata {
     string metadata = 1;
   }
-  
+
   // Sent when client disables one of the track variants
   message DisableTrackEncoding {
     string track_id = 1;
@@ -48,7 +48,6 @@ message MediaEvent {
   message MuteTrack {
     string track_id = 1;
   }
-
 
   // Sent when a track is unmuted
   message UnmuteTrack {
@@ -98,7 +97,7 @@ message MediaEvent {
     repeated TrackIdToTrackBitrates trackIdToTrackBitrates = 3;
     repeated media_events.shared.MidToTrackId mid_to_track_id = 4;
   }
-  
+
   // Informs that a client wants to receive a specific track variant.
   // The track variant will be sent whenever it is available.
   // If choosen variant is unavailable, some other variant will be
@@ -107,7 +106,7 @@ message MediaEvent {
     string track_id = 1;
     media_events.shared.Encoding variant = 2; // TODO: should be encoding
   }
-  
+
   // Contains updated bitrates of variants of the track send by the client.
   // Needs to contain all of the variants.
   message TrackVariantBitrates {
