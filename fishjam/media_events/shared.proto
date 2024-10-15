@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package media_events.shared;
+
+enum Encoding {
+  LOW = 0;
+  MEDIUM = 1;
+  HIGH = 2;
+}
+
+message Metadata {
+  string json = 1;
+}
+
+message MidToTrackId {
+  string mid = 1;
+  string track_id = 2;
+}
+
+// Contains information about an ICE candidate which will be sent to the client/server
+message Candidate {
+ string candidate = 1;
+ int32 sdp_m_line_index = 2;
+}
