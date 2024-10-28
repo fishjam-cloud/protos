@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fishjam;
 
-// Defines any type of message passed between FJ and server client
+// Defines any type of message passed between FJ and server peer
 message ServerMessage {
   // Notification sent when a room crashes
   message RoomCrashed {
@@ -49,19 +49,19 @@ message ServerMessage {
   // Response sent by FJ, confirming successfull authentication
   message Authenticated {}
 
-  // Request sent by client, to authenticate to FJ server
+  // Request sent by peer, to authenticate to FJ server
   message AuthRequest {
     string token = 1;
   }
 
-  // Defines message groups for which client can subscribe
+  // Defines message groups for which peer can subscribe
   enum EventType {
     EVENT_TYPE_UNSPECIFIED = 0;
     EVENT_TYPE_SERVER_NOTIFICATION = 1;
     EVENT_TYPE_METRICS = 2;
   }
 
-  // Request sent by client to subsribe for certain message type
+  // Request sent by peer to subsribe for certain message type
   message SubscribeRequest {
     EventType event_type = 1;
   }

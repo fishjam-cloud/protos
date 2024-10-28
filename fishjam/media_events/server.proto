@@ -1,110 +1,79 @@
 syntax = "proto3";
 
-package webrtc;
+package media_events.server;
 
 import "fishjam/media_events/shared.proto";
 
-// Defines any type of message sent between FJ and a peer
+// Defines any type of media event message sent between Fishjam and a peer
 message MediaEvent {
-  // WebRTC Endpoint -> Client
-
-  // Contains all tracks that will be forwarded to client until the next `tracks_priority` message.
-  // This type of messages is sent only if DisplayManager is spawned
-  message TracksPriority {
-    repeated string tracks = 1;
+  message SimulcastConfig {
+    bool enabled = 1;
+    repeated media_events.shared.Encoding active_encodings = 2;
+    repeated media_events.shared.Encoding disabled_encodings = 3;
   }
+
+  message Track {
+    string track_id = 1;
+    media_events.shared.Metadata metadata = 2;
+    string simulcast_config = 3;
+  }
+
+  // WebRTC Endpoint -> Peer
 
   // Contains information about updated metadata of one of the endpoints
   message EndpointUpdated {
     string endpoint_id = 1;
-    string metadata = 2;
+    media_events.shared.Metadata metadata = 2;
   }
 
   // Contains information about new metadata of one of tracks
   message TrackUpdated {
     string endpoint_id = 1;
     string track_id = 2;
-    string metadata = 3;
+    media_events.shared.Metadata metadata = 3;
   }
 
-  //  Informs that one of the clients has added one or more tracks.
+  //  Informs that one of the peers has added one or more tracks.
   //  It contains:
-  //  - an id of endpoint associated with that client,
+  //  - an id of endpoint associated with that peer,
   //  - a map of all tracks with `track_id`'s as keys and objects with `track_metadata` and simulcast conifg as a value
-  //  - (Depracated field use tracks) a map of all tracks with `track_id`s as keys and `track_metadata` as value.
   message TracksAdded {
-    message Track {
-      message SimulcastConfig {
-        bool enabled = 1;
-        repeated string active_encodings = 2;
-        repeated string disabled_encodings = 3;
-      }
-
-      string track_id = 1;
-      string metadata = 2;
-      string simulcast_config = 3;
-    }
-
     string endpoint_id = 1;
     repeated Track tracks = 2;
   }
 
-  // Contains a list of tracks which have been removed by some client and id of that client's
+  // Contains a list of tracks which have been removed by some peer and id of that peer's
   message TracksRemoved {
     string endpoint_id = 1;
     repeated string track_ids = 2;
   }
 
-  // Sent when some track variant were disabled by an endpoint
-  message TrackEncodingDisabled {
-    string track_id = 1;
-    media_events.shared.Encoding encoding = 2;
-  }
-
-  // Sent when some track variant were enabled by an endpoint
-  message TrackEncodingEnabled {
-    string track_id = 1;
-    media_events.shared.Encoding encoding = 2;
-  }
-
-  // Message sent to all clients in the room after a new endpoint was added.
+  // Message sent to all peers in the room after a new endpoint was added.
   // It contains id and metadata of the new endpoint.
   message EndpointAdded {
-    string id = 1;
-    string metadata = 2;
+    string endpoint_id = 1;
+    media_events.shared.Metadata metadata = 2;
   }
 
-  // Message sent to the client after connecting to the WebRTC Endpoint.
-  // It contains the id of that client's endpoint and a list of information about endpoints in the Engine
+  // Message sent to the peer after connecting to the WebRTC Endpoint.
+  // It contains the id of that peer's endpoint and a list of information about endpoints in the Engine
   // (id, metadata, a `trackIdToMetadata` and tracks like seen in `tracksAdded`)
+  // TODO: SIMULCAST
   message Connected {
-    message SimulcastConfig {
-      bool enabled = 1;
-      repeated media_events.shared.Encoding active_encodings = 2;
-      repeated media_events.shared.Encoding disabled_encodings = 3;
-    }
-
-    message Track {
-      string id = 1;
-      media_events.shared.Metadata metadata = 2;
-      SimulcastConfig SimulcastConfig = 3;
-    }
-
     message Endpoint {
-      string id = 1;
-      string type = 2;
+      string endpoint_id = 1;
+      string endpoint_type = 2;
       media_events.shared.Metadata metadata = 3;
-      // deprecated field
-      // track_id_to_metadata
       repeated Track tracks = 4;
     }
-    string id = 1;
+
+    string endpoint_id = 1;
     repeated Endpoint endpoints = 2;
   }
 
-  // Sent to all remaining clients in the room after some endpoint was removed. It contains an id of the removed endpoint.
+  // Sent to all remaining peers in the room after some endpoint was removed. It contains an id of the removed endpoint.
   message EndpointRemoved {
-    string id = 1;
+    string endpoint_id = 1;
   }
 
   // Informs that an error occurred on the server providing a message to show
@@ -112,50 +81,23 @@ message MediaEvent {
     string message = 1;
   }
 
-  // WebRTC Enpoint -> Client
+  // WebRTC Enpoint -> Peer
 
   // Contains information about the number  of audio and video tracks that will be sent from the engine
-  // to the client and information regarding the integrated TURN server.
+  // to the peer and information regarding the integrated TURN server.
   message OfferData {
     message TrackTypes {
       int32 audio = 1;
       int32 video = 2;
     }
 
-    message IntegratedTurnServers {
-      string server_addr = 1;
-      int32 server_port = 2;
-      string transport = 3;
-      string password = 4;
-      string username = 5;
-    }
-
     TrackTypes tracks_types = 1;
-    repeated IntegratedTurnServers integrated_turn_servers = 2;
   }
 
   // Contains an SDP answer and mapping between `mid` and `track_id` for all tracks (active, inactive, inbound and outbound)
   message SdpAnswer {
     string sdp_answer = 1;
     repeated media_events.shared.MidToTrackId midToTrackId = 2;
-  }
-
-  // Informs that track with id `trackId` belonging to endpoint with id `endpointId` will be sent in encoding `encoding` now.
-  // The meaning is as follows:
-  // "low_bandwidth" - we no longer have enough bandwidth to maintain current track quality
-  // "encoding_inactive" - encoding became inactive
-  // "other" - it was hard to determine exact reason of encoding switch
-  message EncodingSwitched {
-    enum Reason {
-      LOW_BANDWIDTH = 0;
-      ENCODING_INACTIVE = 1;
-      OTHER = 2;
-    }
-
-    string endpoint_id = 1;
-    string track_id = 2;
-    media_events.shared.Encoding encoding = 3;
-    Reason reason = 4;
   }
 
   // Informs that the track denoted by `trackId` has changed their voice actiivty
@@ -171,31 +113,18 @@ message MediaEvent {
     Status status = 2;
   }
 
-  // Informs about client's available incoming bitrate (a.k.a. download) estimated by the server.
-  // It is measured in bits per second.
-  // For this notification to work, the server must be configured to use TWCC extension
-  // and the sender must support it.
-  message BandwidthEstimation {
-    int32 estimation = 1;
-  }
-
   oneof content {
-    TracksPriority tracks_priority = 1;
-    EndpointUpdated endpoint_updated = 2;
-    TrackUpdated track_updated = 3;
-    TracksAdded tracks_added = 4;
-    TracksRemoved tracks_removed = 5;
-    TrackEncodingDisabled track_encoding_disabled = 6;
-    TrackEncodingEnabled track_encoding_enabled = 7;
-    EndpointAdded endpoint_added = 8;
-    EndpointRemoved endpoint_removed = 9;
-    Connected connected = 10;
-    Error error = 11;
-    OfferData offer_data = 12;
-    media_events.shared.Candidate candidate = 13;
-    SdpAnswer sdp_answer = 14;
-    EncodingSwitched encoding_switched = 15;
-    VadNotification vad_notification = 16;
-    BandwidthEstimation bandwidth_estimation = 17;
+    EndpointUpdated endpoint_updated = 1;
+    TrackUpdated track_updated = 2;
+    TracksAdded tracks_added = 3;
+    TracksRemoved tracks_removed = 4;
+    EndpointAdded endpoint_added = 5;
+    EndpointRemoved endpoint_removed = 6;
+    Connected connected = 7;
+    Error error = 8;
+    OfferData offer_data = 9;
+    media_events.shared.Candidate candidate = 10;
+    SdpAnswer sdp_answer = 11;
+    VadNotification vad_notification = 12;
   }
 }
