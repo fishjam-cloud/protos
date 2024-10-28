@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package media_events.server;
+package fishjam.media_events.server;
 
 import "fishjam/media_events/shared.proto";
 
@@ -8,13 +8,13 @@ import "fishjam/media_events/shared.proto";
 message MediaEvent {
   message SimulcastConfig {
     bool enabled = 1;
-    repeated media_events.shared.Encoding active_encodings = 2;
-    repeated media_events.shared.Encoding disabled_encodings = 3;
+    repeated media_events.Encoding active_encodings = 2;
+    repeated media_events.Encoding disabled_encodings = 3;
   }
 
   message Track {
     string track_id = 1;
-    media_events.shared.Metadata metadata = 2;
+    media_events.Metadata metadata = 2;
     string simulcast_config = 3;
   }
 
@@ -23,14 +23,14 @@ message MediaEvent {
   // Contains information about updated metadata of one of the endpoints
   message EndpointUpdated {
     string endpoint_id = 1;
-    media_events.shared.Metadata metadata = 2;
+    media_events.Metadata metadata = 2;
   }
 
   // Contains information about new metadata of one of tracks
   message TrackUpdated {
     string endpoint_id = 1;
     string track_id = 2;
-    media_events.shared.Metadata metadata = 3;
+    media_events.Metadata metadata = 3;
   }
 
   //  Informs that one of the peers has added one or more tracks.
@@ -52,7 +52,7 @@ message MediaEvent {
   // It contains id and metadata of the new endpoint.
   message EndpointAdded {
     string endpoint_id = 1;
-    media_events.shared.Metadata metadata = 2;
+    media_events.Metadata metadata = 2;
   }
 
   // Message sent to the peer after connecting to the WebRTC Endpoint.
@@ -63,7 +63,7 @@ message MediaEvent {
     message Endpoint {
       string endpoint_id = 1;
       string endpoint_type = 2;
-      media_events.shared.Metadata metadata = 3;
+      media_events.Metadata metadata = 3;
       repeated Track tracks = 4;
     }
 
@@ -97,7 +97,7 @@ message MediaEvent {
   // Contains an SDP answer and mapping between `mid` and `track_id` for all tracks (active, inactive, inbound and outbound)
   message SdpAnswer {
     string sdp_answer = 1;
-    repeated media_events.shared.MidToTrackId midToTrackId = 2;
+    repeated media_events.MidToTrackId mid_to_track_id = 2;
   }
 
   // Informs that the track denoted by `trackId` has changed their voice actiivty
@@ -105,8 +105,9 @@ message MediaEvent {
   // and the sender must support it.
   message VadNotification {
     enum Status {
-      SILENCE = 0;
-      SPEECH = 1;
+      STATUS_UNSPECIFIED = 0;
+      STATUS_SILENCE = 1;
+      STATUS_SPEECH = 2;
     }
 
     string track_id = 1;
@@ -123,7 +124,7 @@ message MediaEvent {
     Connected connected = 7;
     Error error = 8;
     OfferData offer_data = 9;
-    media_events.shared.Candidate candidate = 10;
+    media_events.Candidate candidate = 10;
     SdpAnswer sdp_answer = 11;
     VadNotification vad_notification = 12;
   }

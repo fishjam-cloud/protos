@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package fishjam;
 
-import "fishjam/media_events/peer.proto";
-import "fishjam/media_events/server.proto";
+import "fishjam/media_events/peer/peer.proto";
+import "fishjam/media_events/server/server.proto";
 
 // Defines any type of message sent between FJ and a peer
 message PeerMessage {

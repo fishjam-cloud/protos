@@ -1,11 +1,12 @@
 syntax = "proto3";
 
-package media_events.shared;
+package fishjam.media_events;
 
 enum Encoding {
-  LOW = 0;
-  MEDIUM = 1;
-  HIGH = 2;
+  ENCODING_UNSPECIFIED = 0;
+  ENCODING_LOW = 1;
+  ENCODING_MEDIUM = 2;
+  ENCODING_HIGH = 3;
 }
 
 message Metadata {
