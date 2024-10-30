@@ -7,8 +7,8 @@ import "fishjam/media_events/shared.proto";
 // Defines any type of message sent from Peer to Membrane RTC Engine
 message MediaEvent {
   // SCHEMAS
-  message VariantBitrates {
-    media_events.Encoding rid = 1;
+  message VariantBitrate {
+    media_events.Variant variant = 1;
     int32 bitrate = 2;
   }
 
@@ -16,7 +16,7 @@ message MediaEvent {
   // Needs to contain all of the variants.
   message TrackVariantBitrates {
     string track_id = 1;
-    repeated VariantBitrates variant_bitrates = 2;
+    repeated VariantBitrate variant_bitrates = 2;
   }
 
   message TrackIdToMetadata {
@@ -57,6 +57,7 @@ message MediaEvent {
 
   // Sent as a response to `offerData` media event during renegotiation
   // Maps contain only information about current peer's `sendonly` tracks.
+  // The "mid" is an identifier used to associate an RTP packet with an MLine from the SDP offer/answer.
   message SdpOffer {
     string sdp_offer = 1;
     repeated TrackIdToMetadata track_id_to_metadata = 2;

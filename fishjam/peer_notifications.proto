@@ -13,6 +13,7 @@ message PeerMessage {
   // Request sent by peer, to authenticate to FJ server
   message AuthRequest {
     string token = 1;
+    string sdk_version = 2;
   }
 
   // PeerConnection stats sent by peer

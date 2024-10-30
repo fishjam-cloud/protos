@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package fishjam.media_events;
 
-enum Encoding {
-  ENCODING_UNSPECIFIED = 0;
-  ENCODING_LOW = 1;
-  ENCODING_MEDIUM = 2;
-  ENCODING_HIGH = 3;
+enum Variant {
+  VARIANT_UNSPECIFIED = 0;
+  VARIANT_LOW = 1;
+  VARIANT_MEDIUM = 2;
+  VARIANT_HIGH = 3;
 }
 
 message Metadata {
@@ -22,6 +22,6 @@ message MidToTrackId {
 message Candidate {
   string candidate = 1;
   int32 sdp_m_line_index = 2;
-  int32 sdp_mid = 3;
+  string sdp_mid = 3;
   string username_fragment = 4;
 }

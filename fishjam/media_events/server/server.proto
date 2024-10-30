@@ -9,8 +9,8 @@ message MediaEvent {
   // SCHEMAS
   message SimulcastConfig {
     bool enabled = 1;
-    repeated media_events.Encoding active_encodings = 2;
-    repeated media_events.Encoding disabled_encodings = 3;
+    repeated media_events.Variant active_variants = 2;
+    repeated media_events.Variant disabled_variants = 3;
   }
 
   message Track {
@@ -24,12 +24,6 @@ message MediaEvent {
     string endpoint_type = 2;
     media_events.Metadata metadata = 3;
     repeated Track tracks = 4;
-  }
-
-  enum Status {
-    STATUS_UNSPECIFIED = 0;
-    STATUS_SILENCE = 1;
-    STATUS_SPEECH = 2;
   }
 
   // MEDIA EVENTS
@@ -101,6 +95,12 @@ message MediaEvent {
   // For this notification to work, the server must be configured to use VAD extension
   // and the sender must support it.
   message VadNotification {
+    enum Status {
+      STATUS_UNSPECIFIED = 0;
+      STATUS_SILENCE = 1;
+      STATUS_SPEECH = 2;
+    }
+
     string track_id = 1;
     Status status = 2;
   }
