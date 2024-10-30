@@ -7,16 +7,9 @@ import "fishjam/media_events/shared.proto";
 // Defines any type of message sent from Membrane RTC Engine to Peer
 message MediaEvent {
   // SCHEMAS
-  message SimulcastConfig {
-    bool enabled = 1;
-    repeated media_events.Variant active_variants = 2;
-    repeated media_events.Variant disabled_variants = 3;
-  }
-
   message Track {
     string track_id = 1;
     media_events.Metadata metadata = 2;
-    SimulcastConfig simulcast_config = 3;
   }
 
   message Endpoint {
