@@ -4,77 +4,77 @@ package fishjam.media_events.peer;
 
 import "fishjam/media_events/shared.proto";
 
-// Defines any type of message sent between FJ and a peer
+// Defines any type of message sent from Peer to Membrane RTC Engine
 message MediaEvent {
+  // SCHEMAS
   message VariantBitrates {
     media_events.Encoding rid = 1;
     int32 bitrate = 2;
   }
 
-  // Peer -> WebRTC Endpoint
-
-  // Sent when a peer wants to join WebRTC Endpoint. It contains only endpoint's metadata
-  message Connect {
-    media_events.Metadata metadata = 1;
-  }
-
-  // Sent when peer disconnects from WebRTC Endpoint. It contains no data
-  message Disconnect {}
-
-  // Contains new metadata of peer's endpoint
-  message UpdateEndpointMetadata {
-    media_events.Metadata metadata = 1;
-  }
-
-  // Contains new metadata of some track and an id of this track
-  message UpdateTrackMetadata {
-    string track_id = 1;
-    media_events.Metadata metadata = 2;
-  }
-
-  // Informs that a peer wants to renegotiate connection due to adding a track or removing a track
-  message RenegotiateTracks {}
-
-  // Contains an SDP offer, a mapping between `track_id` and `track_metadata`, mapping between `track_id`
-  // and this track's bitrates (or all of its variants bitrates) and a mapping between `mid` and `track_id`.
-  //  Maps contain only information about current peer's `sendonly` tracks.
-  message SdpOffer {
-    message TrackIdToMetadata {
-      string track_id = 1;
-      media_events.Metadata metadata = 2;
-    }
-
-    message TrackIdToTrackBitrates {
-      oneof tracks {
-        TrackBitrate track_bitrate = 1;
-        TrackVariantBitrates track_variant_bitrates = 2;
-      }
-    }
-
-    string sdp_offer = 1;
-    repeated TrackIdToMetadata track_id_to_track_metadata = 2;
-    repeated TrackIdToTrackBitrates track_id_to_track_bitrates = 3;
-    repeated media_events.MidToTrackId mid_to_track_id = 4;
-  }
-
-  // Contains updated bitrate of the track send by the peer (no simulcast).
-  message TrackBitrate {
-    string track_id = 1;
-    int32 bitrate = 2;
-  }
-
-  // Contains updated bitrates of variants of the track send by the peer.
+  // Sent when peer wants to update the bitrates of a simulcast track.
   // Needs to contain all of the variants.
   message TrackVariantBitrates {
     string track_id = 1;
     repeated VariantBitrates variant_bitrates = 2;
   }
 
+  message TrackIdToMetadata {
+    string track_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  message TrackIdToBitrates {
+    oneof tracks {
+      TrackBitrate track_bitrate = 1;
+      TrackVariantBitrates track_variant_bitrates = 2;
+    }
+  }
+
+  // MEDIA EVENTS
+
+  // Sent when a peer wants to join WebRTC Endpoint.
+  message Connect {
+    media_events.Metadata metadata = 1;
+  }
+
+  // Sent when a peer disconnects from WebRTC Endpoint.
+  message Disconnect {}
+
+  // Sent when a peer wants to update its metadata
+  message UpdateEndpointMetadata {
+    media_events.Metadata metadata = 1;
+  }
+
+  // Sent when a peer wants to update its track's metadata
+  message UpdateTrackMetadata {
+    string track_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  // Sent when peer wants to renegatiate connection due to adding a track or removing a track
+  message RenegotiateTracks {}
+
+  // Sent as a response to `offerData` media event during renegotiation
+  // Maps contain only information about current peer's `sendonly` tracks.
+  message SdpOffer {
+    string sdp_offer = 1;
+    repeated TrackIdToMetadata track_id_to_metadata = 2;
+    repeated TrackIdToBitrates track_id_to_bitrates = 3;
+    repeated media_events.MidToTrackId mid_to_track_id = 4;
+  }
+
+  // Sent when Peer wants to update its track's bitrate
+  message TrackBitrate {
+    string track_id = 1;
+    int32 bitrate = 2;
+  }
+
   oneof content {
     Connect connect = 1;
     Disconnect disconnect = 2;
     UpdateEndpointMetadata update_endpoint_metadata = 3;
-    UpdateTrackMetadata udpate_track_metadtata = 4;
+    UpdateTrackMetadata update_track_metadata = 4;
     RenegotiateTracks renegotiate_tracks = 5;
     media_events.Candidate candidate = 6;
     SdpOffer sdp_offer = 7;

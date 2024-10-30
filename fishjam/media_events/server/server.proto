@@ -4,8 +4,9 @@ package fishjam.media_events.server;
 
 import "fishjam/media_events/shared.proto";
 
-// Defines any type of media event message sent between Fishjam and a peer
+// Defines any type of message sent from Membrane RTC Engine to Peer
 message MediaEvent {
+  // SCHEMAS
   message SimulcastConfig {
     bool enabled = 1;
     repeated media_events.Encoding active_encodings = 2;
@@ -15,76 +16,72 @@ message MediaEvent {
   message Track {
     string track_id = 1;
     media_events.Metadata metadata = 2;
-    string simulcast_config = 3;
+    SimulcastConfig simulcast_config = 3;
   }
 
-  // WebRTC Endpoint -> Peer
+  message Endpoint {
+    string endpoint_id = 1;
+    string endpoint_type = 2;
+    media_events.Metadata metadata = 3;
+    repeated Track tracks = 4;
+  }
 
-  // Contains information about updated metadata of one of the endpoints
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_SILENCE = 1;
+    STATUS_SPEECH = 2;
+  }
+
+  // MEDIA EVENTS
+
+  // Sent when metadata of one of the endpoints was updated
   message EndpointUpdated {
     string endpoint_id = 1;
     media_events.Metadata metadata = 2;
   }
 
-  // Contains information about new metadata of one of tracks
+  // Sent when metadata of one of the tracks was updated
   message TrackUpdated {
     string endpoint_id = 1;
     string track_id = 2;
     media_events.Metadata metadata = 3;
   }
 
-  //  Informs that one of the peers has added one or more tracks.
-  //  It contains:
-  //  - an id of endpoint associated with that peer,
-  //  - a map of all tracks with `track_id`'s as keys and objects with `track_metadata` and simulcast conifg as a value
+  //  Sent to informs that one of the peers has added one or more tracks.
   message TracksAdded {
     string endpoint_id = 1;
     repeated Track tracks = 2;
   }
 
-  // Contains a list of tracks which have been removed by some peer and id of that peer's
+  //  Sent to informs that one of the peers has removed one or more tracks.
   message TracksRemoved {
     string endpoint_id = 1;
     repeated string track_ids = 2;
   }
 
-  // Message sent to all peers in the room after a new endpoint was added.
-  // It contains id and metadata of the new endpoint.
+  // Sent to all peers in the room after a new endpoint was added.
   message EndpointAdded {
     string endpoint_id = 1;
     media_events.Metadata metadata = 2;
   }
 
-  // Message sent to the peer after connecting to the WebRTC Endpoint.
-  // It contains the id of that peer's endpoint and a list of information about endpoints in the Engine
-  // (id, metadata, a `trackIdToMetadata` and tracks like seen in `tracksAdded`)
-  // TODO: SIMULCAST
+  // Sent to the peer after connecting to the WebRTC Endpoint.
   message Connected {
-    message Endpoint {
-      string endpoint_id = 1;
-      string endpoint_type = 2;
-      media_events.Metadata metadata = 3;
-      repeated Track tracks = 4;
-    }
-
     string endpoint_id = 1;
     repeated Endpoint endpoints = 2;
   }
 
-  // Sent to all remaining peers in the room after some endpoint was removed. It contains an id of the removed endpoint.
+  // Sent to all remaining peers in the room after some endpoint was removed.
   message EndpointRemoved {
     string endpoint_id = 1;
   }
 
-  // Informs that an error occurred on the server providing a message to show
+  // Sent to inform that an error occurred on the server providing a message to show
   message Error {
     string message = 1;
   }
 
-  // WebRTC Enpoint -> Peer
-
-  // Contains information about the number  of audio and video tracks that will be sent from the engine
-  // to the peer and information regarding the integrated TURN server.
+  // Sent to inform about the number of audio and video tracks that will be sent from the engine to the peer
   message OfferData {
     message TrackTypes {
       int32 audio = 1;
@@ -94,22 +91,16 @@ message MediaEvent {
     TrackTypes tracks_types = 1;
   }
 
-  // Contains an SDP answer and mapping between `mid` and `track_id` for all tracks (active, inactive, inbound and outbound)
+  // Sent after receiving `SdpOffer` from Peer
   message SdpAnswer {
     string sdp_answer = 1;
     repeated media_events.MidToTrackId mid_to_track_id = 2;
   }
 
-  // Informs that the track denoted by `trackId` has changed their voice actiivty
+  // Sent to inform that the track denoted by `trackId` has changed their voice actiivty
   // For this notification to work, the server must be configured to use VAD extension
   // and the sender must support it.
   message VadNotification {
-    enum Status {
-      STATUS_UNSPECIFIED = 0;
-      STATUS_SILENCE = 1;
-      STATUS_SPEECH = 2;
-    }
-
     string track_id = 1;
     Status status = 2;
   }
