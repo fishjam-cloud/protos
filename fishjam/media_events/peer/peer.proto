@@ -12,13 +12,6 @@ message MediaEvent {
     int32 bitrate = 2;
   }
 
-  // Sent when peer wants to update the bitrates of a simulcast track.
-  // Needs to contain all of the variants.
-  message TrackVariantBitrates {
-    string track_id = 1;
-    repeated VariantBitrate variant_bitrates = 2;
-  }
-
   message TrackIdToMetadata {
     string track_id = 1;
     media_events.Metadata metadata = 2;
@@ -27,7 +20,6 @@ message MediaEvent {
   message TrackIdToBitrates {
     oneof tracks {
       TrackBitrate track_bitrate = 1;
-      TrackVariantBitrates track_variant_bitrates = 2;
     }
   }
 
