@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package fishjam.media_events.server;
+
+import "fishjam/media_events/shared.proto";
+
+// Defines any type of message sent from Membrane RTC Engine to Peer
+message MediaEvent {
+  // SCHEMAS
+  message Track {
+    string track_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  message Endpoint {
+    string endpoint_id = 1;
+    string endpoint_type = 2;
+    media_events.Metadata metadata = 3;
+    repeated Track tracks = 4;
+  }
+
+  // MEDIA EVENTS
+
+  // Sent when metadata of one of the endpoints was updated
+  message EndpointUpdated {
+    string endpoint_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  // Sent when metadata of one of the tracks was updated
+  message TrackUpdated {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Metadata metadata = 3;
+  }
+
+  //  Sent to informs that one of the peers has added one or more tracks.
+  message TracksAdded {
+    string endpoint_id = 1;
+    repeated Track tracks = 2;
+  }
+
+  //  Sent to informs that one of the peers has removed one or more tracks.
+  message TracksRemoved {
+    string endpoint_id = 1;
+    repeated string track_ids = 2;
+  }
+
+  // Sent to all peers in the room after a new endpoint was added.
+  message EndpointAdded {
+    string endpoint_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  // Sent to the peer after connecting to the WebRTC Endpoint.
+  message Connected {
+    string endpoint_id = 1;
+    repeated Endpoint endpoints = 2;
+  }
+
+  // Sent to all remaining peers in the room after some endpoint was removed.
+  message EndpointRemoved {
+    string endpoint_id = 1;
+  }
+
+  // Sent to inform that an error occurred on the server providing a message to show
+  message Error {
+    string message = 1;
+  }
+
+  // Sent to inform about the number of audio and video tracks that will be sent from the engine to the peer
+  message OfferData {
+    message TrackTypes {
+      int32 audio = 1;
+      int32 video = 2;
+    }
+
+    TrackTypes tracks_types = 1;
+  }
+
+  // Sent after receiving `SdpOffer` from Peer
+  message SdpAnswer {
+    string sdp_answer = 1;
+    repeated media_events.MidToTrackId mid_to_track_id = 2;
+  }
+
+  // Sent to inform that the track denoted by `trackId` has changed their voice actiivty
+  // For this notification to work, the server must be configured to use VAD extension
+  // and the sender must support it.
+  message VadNotification {
+    enum Status {
+      STATUS_UNSPECIFIED = 0;
+      STATUS_SILENCE = 1;
+      STATUS_SPEECH = 2;
+    }
+
+    string track_id = 1;
+    Status status = 2;
+  }
+
+  oneof content {
+    EndpointUpdated endpoint_updated = 1;
+    TrackUpdated track_updated = 2;
+    TracksAdded tracks_added = 3;
+    TracksRemoved tracks_removed = 4;
+    EndpointAdded endpoint_added = 5;
+    EndpointRemoved endpoint_removed = 6;
+    Connected connected = 7;
+    Error error = 8;
+    OfferData offer_data = 9;
+    media_events.Candidate candidate = 10;
+    SdpAnswer sdp_answer = 11;
+    VadNotification vad_notification = 12;
+  }
+}

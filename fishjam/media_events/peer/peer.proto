@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package fishjam.media_events.peer;
+
+import "fishjam/media_events/shared.proto";
+
+// Defines any type of message sent from Peer to Membrane RTC Engine
+message MediaEvent {
+  // SCHEMAS
+  message VariantBitrate {
+    media_events.Variant variant = 1;
+    int32 bitrate = 2;
+  }
+
+  message TrackIdToMetadata {
+    string track_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  message TrackIdToBitrates {
+    oneof tracks {
+      TrackBitrate track_bitrate = 1;
+    }
+  }
+
+  // MEDIA EVENTS
+
+  // Sent when a peer wants to join WebRTC Endpoint.
+  message Connect {
+    media_events.Metadata metadata = 1;
+  }
+
+  // Sent when a peer disconnects from WebRTC Endpoint.
+  message Disconnect {}
+
+  // Sent when a peer wants to update its metadata
+  message UpdateEndpointMetadata {
+    media_events.Metadata metadata = 1;
+  }
+
+  // Sent when a peer wants to update its track's metadata
+  message UpdateTrackMetadata {
+    string track_id = 1;
+    media_events.Metadata metadata = 2;
+  }
+
+  // Sent when peer wants to renegatiate connection due to adding a track or removing a track
+  message RenegotiateTracks {}
+
+  // Sent as a response to `offerData` media event during renegotiation
+  // Maps contain only information about current peer's `sendonly` tracks.
+  // The "mid" is an identifier used to associate an RTP packet with an MLine from the SDP offer/answer.
+  message SdpOffer {
+    string sdp_offer = 1;
+    repeated TrackIdToMetadata track_id_to_metadata = 2;
+    repeated TrackIdToBitrates track_id_to_bitrates = 3;
+    repeated media_events.MidToTrackId mid_to_track_id = 4;
+  }
+
+  // Sent when Peer wants to update its track's bitrate
+  message TrackBitrate {
+    string track_id = 1;
+    int32 bitrate = 2;
+  }
+
+  oneof content {
+    Connect connect = 1;
+    Disconnect disconnect = 2;
+    UpdateEndpointMetadata update_endpoint_metadata = 3;
+    UpdateTrackMetadata update_track_metadata = 4;
+    RenegotiateTracks renegotiate_tracks = 5;
+    media_events.Candidate candidate = 6;
+    SdpOffer sdp_offer = 7;
+    TrackBitrate track_bitrate = 8;
+  }
+}

@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package fishjam;
 
+import "fishjam/media_events/peer/peer.proto";
+import "fishjam/media_events/server/server.proto";
+
 // Defines any type of message sent between FJ and a peer
 message PeerMessage {
   // Response sent by FJ, confirming successfull authentication
@@ -10,11 +13,7 @@ message PeerMessage {
   // Request sent by peer, to authenticate to FJ server
   message AuthRequest {
     string token = 1;
-  }
-
-  // Any type of WebRTC messages passed betweend FJ and peer
-  message MediaEvent {
-    string data = 1;
+    string sdk_version = 2;
   }
 
   // PeerConnection stats sent by peer
@@ -26,7 +25,8 @@ message PeerMessage {
   oneof content {
     Authenticated authenticated = 1;
     AuthRequest auth_request = 2;
-    MediaEvent media_event = 3;
-    RTCStatsReport rtc_stats_report = 4;
+    media_events.peer.MediaEvent peer_media_event = 3;
+    media_events.server.MediaEvent server_media_event = 4;
+    RTCStatsReport rtc_stats_report = 5;
   }
 }
