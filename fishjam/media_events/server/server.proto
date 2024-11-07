@@ -106,7 +106,7 @@ message MediaEvent {
   }
 
   // Informs that track's encoding has been changed
-  message EncodingSwitched {
+  message TrackEncodingSwitched {
     string endpoint_id = 1;
     string track_id = 2;
     media_events.Variant encoding = 3;
@@ -125,5 +125,6 @@ message MediaEvent {
     media_events.Candidate candidate = 10;
     SdpAnswer sdp_answer = 11;
     VadNotification vad_notification = 12;
+    TrackEncodingSwitched track_encoding_switched = 13;
   }
 }
