@@ -34,16 +34,14 @@ jobs:
                 elixir-version: ${{matrix.elixir}}
             - name: Checkout the code
               uses: actions/checkout@v3
-              with:
-                path: fishjam_protos
             - name: Install dependencies
-              run: mix deps.get
               working-directory: fishjam_protos
+              run: mix deps.get
             - name: Compile without warnings
+              working-directory: fishjam_protos
               id: compile
               run: mix compile --warnings-as-errors
-              working-directory: fishjam_protos
             - name: Check formatting
+              working-directory: fishjam_protos
               if: ${{ !cancelled() && steps.compile.outcome == 'success' }}
               run: mix format --check-formatted
-              working-directory: fishjam_protos
