@@ -18,7 +18,8 @@ message MediaEvent {
   }
 
   message TrackIdToBitrates {
-    repeated TrackBitrate track_bitrates = 1;
+    string track_id = 1;
+    repeated VariantBitrate variant_bitrates = 2;
   }
 
   // MEDIA EVENTS
