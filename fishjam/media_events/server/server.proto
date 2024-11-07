@@ -105,11 +105,25 @@ message MediaEvent {
     Status status = 2;
   }
 
-  // Informs that track's encoding has been changed
-  message TrackEncodingSwitched {
+  // Informs that track's variant has been changed
+  message TrackVariantSwitched {
     string endpoint_id = 1;
     string track_id = 2;
-    media_events.Variant encoding = 3;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been disabled
+  message TrackVariantDisabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been enabled
+  message TrackVariantEnabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
   }
 
   oneof content {
@@ -125,6 +139,8 @@ message MediaEvent {
     media_events.Candidate candidate = 10;
     SdpAnswer sdp_answer = 11;
     VadNotification vad_notification = 12;
-    TrackEncodingSwitched track_encoding_switched = 13;
+    TrackVariantSwitched track_variant_switched = 13;
+    TrackVariantDisabled track_variant_disabled = 14;
+    TrackVariantEnabled track_variant_enabled = 15;
   }
 }
