@@ -105,7 +105,7 @@ message MediaEvent {
     Status status = 2;
   }
 
-  // Informs that track a track encoding has been changed
+  // Informs that track's encoding has been changed
   message EncodingSwitched {
     string endpoint_id = 1;
     string track_id = 2;
