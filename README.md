@@ -8,6 +8,20 @@ Use the command below:
 
 `git submodule add https://github.com/fishjam-cloud/protos.git`
 
+## Lint and formatting
+
+The files can be formatted using `buf`. 
+Check out [installation page](https://buf.build/docs/installation/) for `buf`.
+
+```
+buf format -w
+```
+
+and linted
+```
+buf lint
+```
+
 ## Copyright and License
 
 Copyright 2023, [Software Mansion](https://swmansion.com/?utm_source=git&utm_medium=readme&utm_campaign=fishjam-protos)
