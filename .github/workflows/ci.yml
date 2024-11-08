@@ -45,3 +45,40 @@ jobs:
               working-directory: fishjam_protos
               if: ${{ !cancelled() && steps.compile.outcome == 'success' }}
               run: mix format --check-formatted
+      
+    check-protobufs-update:
+        runs-on: ubuntu-latest
+        name: Fishjam protos update
+        strategy:
+          matrix:
+            otp: ['27']
+            elixir: ['1.17']
+        steps:
+            - name: Set up Elixir
+              uses: erlef/setup-beam@v1
+              with:
+                otp-version: ${{matrix.otp}}
+                elixir-version: ${{matrix.elixir}}
+            - name: Checkout code
+              uses: actions/checkout@v3
+        
+            - name: Install protobuf compiler (protoc) if needed
+              run: |
+                sudo apt update
+                sudo apt install -y protobuf-compiler
+                PATH=~/.mix/escripts:$PATH
+                mix deps.get
+                mix escript.install hex protobuf --force
+              working-directory: fishjam_protos
+        
+            - name: Run compile_proto.sh
+              run: bash compile_proto.sh
+              working-directory: fishjam_protos
+        
+            - name: Check for changes in protobuf files
+              run: |
+                if [[ -n $(git status --porcelain) ]]; then
+                    echo "Generated protobuf files are not up to date. Please regenerate them and commit the changes."
+                    git diff
+                    exit 1
+                fi
