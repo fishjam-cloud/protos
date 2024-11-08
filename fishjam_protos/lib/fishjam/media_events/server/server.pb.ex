@@ -3,9 +3,9 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status do
 
   use Protobuf, enum: true, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :STATUS_UNSPECIFIED, 0
-  field :STATUS_SILENCE, 1
-  field :STATUS_SPEECH, 2
+  field(:STATUS_UNSPECIFIED, 0)
+  field(:STATUS_SILENCE, 1)
+  field(:STATUS_SPEECH, 2)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig do
@@ -13,19 +13,21 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :enabled, 1, type: :bool
+  field(:enabled, 1, type: :bool)
 
-  field :active_variants, 2,
+  field(:active_variants, 2,
     repeated: true,
     type: Fishjam.MediaEvents.Variant,
     json_name: "activeVariants",
     enum: true
+  )
 
-  field :disabled_variants, 3,
+  field(:disabled_variants, 3,
     repeated: true,
     type: Fishjam.MediaEvents.Variant,
     json_name: "disabledVariants",
     enum: true
+  )
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Track do
@@ -33,12 +35,13 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Track do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :track_id, 1, type: :string, json_name: "trackId"
-  field :metadata, 2, type: Fishjam.MediaEvents.Metadata
+  field(:track_id, 1, type: :string, json_name: "trackId")
+  field(:metadata, 2, type: Fishjam.MediaEvents.Metadata)
 
-  field :simulcast_config, 3,
+  field(:simulcast_config, 3,
     type: Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig,
     json_name: "simulcastConfig"
+  )
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint do
@@ -46,10 +49,10 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :endpoint_type, 2, type: :string, json_name: "endpointType"
-  field :metadata, 3, type: Fishjam.MediaEvents.Metadata
-  field :tracks, 4, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Track
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:endpoint_type, 2, type: :string, json_name: "endpointType")
+  field(:metadata, 3, type: Fishjam.MediaEvents.Metadata)
+  field(:tracks, 4, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Track)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointUpdated do
@@ -57,8 +60,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointUpdated do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :metadata, 2, type: Fishjam.MediaEvents.Metadata
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:metadata, 2, type: Fishjam.MediaEvents.Metadata)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackUpdated do
@@ -66,9 +69,9 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackUpdated do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :track_id, 2, type: :string, json_name: "trackId"
-  field :metadata, 3, type: Fishjam.MediaEvents.Metadata
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:track_id, 2, type: :string, json_name: "trackId")
+  field(:metadata, 3, type: Fishjam.MediaEvents.Metadata)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksAdded do
@@ -76,8 +79,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksAdded do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :tracks, 2, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Track
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:tracks, 2, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Track)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksRemoved do
@@ -85,8 +88,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksRemoved do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :track_ids, 2, repeated: true, type: :string, json_name: "trackIds"
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:track_ids, 2, repeated: true, type: :string, json_name: "trackIds")
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointAdded do
@@ -94,8 +97,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointAdded do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :metadata, 2, type: Fishjam.MediaEvents.Metadata
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:metadata, 2, type: Fishjam.MediaEvents.Metadata)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Connected do
@@ -103,8 +106,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Connected do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :endpoints, 2, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Endpoint
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:endpoints, 2, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Endpoint)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointRemoved do
@@ -112,7 +115,7 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointRemoved do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Error do
@@ -120,7 +123,7 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Error do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :message, 1, type: :string
+  field(:message, 1, type: :string)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData.TrackTypes do
@@ -128,8 +131,8 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData.TrackTypes do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :audio, 1, type: :int32
-  field :video, 2, type: :int32
+  field(:audio, 1, type: :int32)
+  field(:video, 2, type: :int32)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData do
@@ -137,9 +140,10 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :tracks_types, 1,
+  field(:tracks_types, 1,
     type: Fishjam.MediaEvents.Server.MediaEvent.OfferData.TrackTypes,
     json_name: "tracksTypes"
+  )
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer do
@@ -147,12 +151,13 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :sdp_answer, 1, type: :string, json_name: "sdpAnswer"
+  field(:sdp_answer, 1, type: :string, json_name: "sdpAnswer")
 
-  field :mid_to_track_id, 2,
+  field(:mid_to_track_id, 2,
     repeated: true,
     type: Fishjam.MediaEvents.MidToTrackId,
     json_name: "midToTrackId"
+  )
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification do
@@ -160,8 +165,12 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :track_id, 1, type: :string, json_name: "trackId"
-  field :status, 2, type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status, enum: true
+  field(:track_id, 1, type: :string, json_name: "trackId")
+
+  field(:status, 2,
+    type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status,
+    enum: true
+  )
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched do
@@ -169,9 +178,9 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :track_id, 2, type: :string, json_name: "trackId"
-  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:track_id, 2, type: :string, json_name: "trackId")
+  field(:variant, 3, type: Fishjam.MediaEvents.Variant, enum: true)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled do
@@ -179,9 +188,9 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :track_id, 2, type: :string, json_name: "trackId"
-  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:track_id, 2, type: :string, json_name: "trackId")
+  field(:variant, 3, type: Fishjam.MediaEvents.Variant, enum: true)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled do
@@ -189,9 +198,9 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  field :endpoint_id, 1, type: :string, json_name: "endpointId"
-  field :track_id, 2, type: :string, json_name: "trackId"
-  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+  field(:endpoint_id, 1, type: :string, json_name: "endpointId")
+  field(:track_id, 2, type: :string, json_name: "trackId")
+  field(:variant, 3, type: Fishjam.MediaEvents.Variant, enum: true)
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent do
@@ -199,70 +208,82 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  oneof :content, 0
+  oneof(:content, 0)
 
-  field :endpoint_updated, 1,
+  field(:endpoint_updated, 1,
     type: Fishjam.MediaEvents.Server.MediaEvent.EndpointUpdated,
     json_name: "endpointUpdated",
     oneof: 0
+  )
 
-  field :track_updated, 2,
+  field(:track_updated, 2,
     type: Fishjam.MediaEvents.Server.MediaEvent.TrackUpdated,
     json_name: "trackUpdated",
     oneof: 0
+  )
 
-  field :tracks_added, 3,
+  field(:tracks_added, 3,
     type: Fishjam.MediaEvents.Server.MediaEvent.TracksAdded,
     json_name: "tracksAdded",
     oneof: 0
+  )
 
-  field :tracks_removed, 4,
+  field(:tracks_removed, 4,
     type: Fishjam.MediaEvents.Server.MediaEvent.TracksRemoved,
     json_name: "tracksRemoved",
     oneof: 0
+  )
 
-  field :endpoint_added, 5,
+  field(:endpoint_added, 5,
     type: Fishjam.MediaEvents.Server.MediaEvent.EndpointAdded,
     json_name: "endpointAdded",
     oneof: 0
+  )
 
-  field :endpoint_removed, 6,
+  field(:endpoint_removed, 6,
     type: Fishjam.MediaEvents.Server.MediaEvent.EndpointRemoved,
     json_name: "endpointRemoved",
     oneof: 0
+  )
 
-  field :connected, 7, type: Fishjam.MediaEvents.Server.MediaEvent.Connected, oneof: 0
-  field :error, 8, type: Fishjam.MediaEvents.Server.MediaEvent.Error, oneof: 0
+  field(:connected, 7, type: Fishjam.MediaEvents.Server.MediaEvent.Connected, oneof: 0)
+  field(:error, 8, type: Fishjam.MediaEvents.Server.MediaEvent.Error, oneof: 0)
 
-  field :offer_data, 9,
+  field(:offer_data, 9,
     type: Fishjam.MediaEvents.Server.MediaEvent.OfferData,
     json_name: "offerData",
     oneof: 0
+  )
 
-  field :candidate, 10, type: Fishjam.MediaEvents.Candidate, oneof: 0
+  field(:candidate, 10, type: Fishjam.MediaEvents.Candidate, oneof: 0)
 
-  field :sdp_answer, 11,
+  field(:sdp_answer, 11,
     type: Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer,
     json_name: "sdpAnswer",
     oneof: 0
+  )
 
-  field :vad_notification, 12,
+  field(:vad_notification, 12,
     type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification,
     json_name: "vadNotification",
     oneof: 0
+  )
 
-  field :track_variant_switched, 13,
+  field(:track_variant_switched, 13,
     type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched,
     json_name: "trackVariantSwitched",
     oneof: 0
+  )
 
-  field :track_variant_disabled, 14,
+  field(:track_variant_disabled, 14,
     type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled,
     json_name: "trackVariantDisabled",
     oneof: 0
+  )
 
-  field :track_variant_enabled, 15,
+  field(:track_variant_enabled, 15,
     type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled,
     json_name: "trackVariantEnabled",
     oneof: 0
+  )
 end
