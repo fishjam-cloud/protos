@@ -21,6 +21,14 @@ defmodule Fishjam.PeerMessage.RTCStatsReport do
   field(:data, 1, type: :string)
 end
 
+defmodule Fishjam.PeerMessage.MediaEvent do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field(:data, 1, type: :string)
+end
+
 defmodule Fishjam.PeerMessage do
   @moduledoc false
 
@@ -36,21 +44,23 @@ defmodule Fishjam.PeerMessage do
     oneof: 0
   )
 
-  field(:peer_media_event, 3,
+  field(:media_event, 3, type: Fishjam.PeerMessage.MediaEvent, json_name: "mediaEvent", oneof: 0)
+
+  field(:rtc_stats_report, 4,
+    type: Fishjam.PeerMessage.RTCStatsReport,
+    json_name: "rtcStatsReport",
+    oneof: 0
+  )
+
+  field(:peer_media_event, 5,
     type: Fishjam.MediaEvents.Peer.MediaEvent,
     json_name: "peerMediaEvent",
     oneof: 0
   )
 
-  field(:server_media_event, 4,
+  field(:server_media_event, 6,
     type: Fishjam.MediaEvents.Server.MediaEvent,
     json_name: "serverMediaEvent",
-    oneof: 0
-  )
-
-  field(:rtc_stats_report, 5,
-    type: Fishjam.PeerMessage.RTCStatsReport,
-    json_name: "rtcStatsReport",
     oneof: 0
   )
 end
