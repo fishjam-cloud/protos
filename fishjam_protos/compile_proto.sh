@@ -17,3 +17,6 @@ for file in $files; do
   printf "DONE\n"
   count=$(($count + 1))
 done
+
+cd fishjam_protos
+mix format "lib/**/*.ex"
