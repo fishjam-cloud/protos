@@ -21,7 +21,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackIdToBitrates do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
-  oneof :tracks, 0
+  oneof(:tracks, 0)
 
   field :track_bitrate, 1,
     type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate,
