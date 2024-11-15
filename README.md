@@ -2,6 +2,8 @@
 
 This repository contains protocol buffers definitions for [fishjam-cloud organization](https://github.com/fishjam-cloud) repositories.
 
+For detailed protobuf definitions and usage, please refer to the [documentation](./doc/docs.md).
+
 ## How to add this repo as a git submodule in your own repository
 
 Use the command below:
