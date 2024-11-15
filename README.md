@@ -2,11 +2,23 @@
 
 This repository contains protocol buffers definitions for [fishjam-cloud organization](https://github.com/fishjam-cloud) repositories.
 
+For detailed protobuf definitions and usage, please refer to the [documentation](./doc/docs.md).
+
 ## How to add this repo as a git submodule in your own repository
 
 Use the command below:
+```command
+git submodule add https://github.com/fishjam-cloud/protos.git`
+```
 
-`git submodule add https://github.com/fishjam-cloud/protos.git`
+## How to update docs
+
+Install [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) plugin.
+
+Use the command below:
+```command
+protoc --doc_out=./doc --doc_opt=markdown,docs.md fishjam/**/*.proto
+```
 
 ## Copyright and License
 
