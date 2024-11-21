@@ -2,22 +2,6 @@ syntax = "proto3";
 
 package fishjam.media_events;
 
-enum Variant {
-  VARIANT_UNSPECIFIED = 0;
-  VARIANT_LOW = 1;
-  VARIANT_MEDIUM = 2;
-  VARIANT_HIGH = 3;
-}
-
-message Metadata {
-  string json = 1;
-}
-
-message MidToTrackId {
-  string mid = 1;
-  string track_id = 2;
-}
-
 // Contains information about an ICE candidate which will be sent to the peer/server
 message Candidate {
   string candidate = 1;

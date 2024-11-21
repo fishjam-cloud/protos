@@ -7,7 +7,7 @@ build:
     - fishjam_protos
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   ignore_only:
     PACKAGE_VERSION_SUFFIX:
       - fishjam

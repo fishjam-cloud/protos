@@ -6,28 +6,11 @@ import "fishjam/media_events/shared.proto";
 
 // Defines any type of message sent from Peer to Membrane RTC Engine
 message MediaEvent {
-  // SCHEMAS
-  message VariantBitrate {
-    media_events.Variant variant = 1;
-    int32 bitrate = 2;
-  }
-
-  message TrackIdToMetadata {
-    string track_id = 1;
-    media_events.Metadata metadata = 2;
-  }
-
-  message TrackIdToBitrates {
-    oneof tracks {
-      TrackBitrate track_bitrate = 1;
-    }
-  }
-
   // MEDIA EVENTS
 
   // Sent when a peer wants to join WebRTC Endpoint.
   message Connect {
-    media_events.Metadata metadata = 1;
+    string metadata_json = 1;
   }
 
   // Sent when a peer disconnects from WebRTC Endpoint.
@@ -35,13 +18,13 @@ message MediaEvent {
 
   // Sent when a peer wants to update its metadata
   message UpdateEndpointMetadata {
-    media_events.Metadata metadata = 1;
+    string metadata_json = 1;
   }
 
   // Sent when a peer wants to update its track's metadata
   message UpdateTrackMetadata {
     string track_id = 1;
-    media_events.Metadata metadata = 2;
+    string metadata_json = 2;
   }
 
   // Sent when peer wants to renegatiate connection due to adding a track or removing a track
@@ -52,9 +35,9 @@ message MediaEvent {
   // The "mid" is an identifier used to associate an RTP packet with an MLine from the SDP offer/answer.
   message SdpOffer {
     string sdp_offer = 1;
-    repeated TrackIdToMetadata track_id_to_metadata = 2;
-    repeated TrackIdToBitrates track_id_to_bitrates = 3;
-    repeated media_events.MidToTrackId mid_to_track_id = 4;
+    map<string, string> track_id_to_metadata_json = 2;
+    map<string, TrackBitrate> track_id_to_bitrates = 3;
+    map<string, string> mid_to_track_id = 4;
   }
 
   // Sent when Peer wants to update its track's bitrate

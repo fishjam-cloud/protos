@@ -7,16 +7,11 @@ import "fishjam/media_events/shared.proto";
 // Defines any type of message sent from Membrane RTC Engine to Peer
 message MediaEvent {
   // SCHEMAS
-  message Track {
-    string track_id = 1;
-    media_events.Metadata metadata = 2;
-  }
 
   message Endpoint {
-    string endpoint_id = 1;
     string endpoint_type = 2;
-    media_events.Metadata metadata = 3;
-    repeated Track tracks = 4;
+    string metadata_json = 3;
+    map<string, string> track_id_to_metadata_json = 4;
   }
 
   message IceServer {
@@ -30,20 +25,20 @@ message MediaEvent {
   // Sent when metadata of one of the endpoints was updated
   message EndpointUpdated {
     string endpoint_id = 1;
-    media_events.Metadata metadata = 2;
+    string metadata_json = 2;
   }
 
   // Sent when metadata of one of the tracks was updated
   message TrackUpdated {
     string endpoint_id = 1;
     string track_id = 2;
-    media_events.Metadata metadata = 3;
+    string metadata_json = 3;
   }
 
   //  Sent to informs that one of the peers has added one or more tracks.
   message TracksAdded {
     string endpoint_id = 1;
-    repeated Track tracks = 2;
+    map<string, string> track_id_to_metadata_json = 2;
   }
 
   //  Sent to informs that one of the peers has removed one or more tracks.
@@ -55,13 +50,13 @@ message MediaEvent {
   // Sent to all peers in the room after a new endpoint was added.
   message EndpointAdded {
     string endpoint_id = 1;
-    media_events.Metadata metadata = 2;
+    string metadata_json = 2;
   }
 
   // Sent to the peer after connecting to the WebRTC Endpoint.
   message Connected {
     string endpoint_id = 1;
-    repeated Endpoint endpoints = 2;
+    map<string, Endpoint> endpoints_id_to_endpoint = 2;
     repeated IceServer ice_servers = 3;
   }
 
@@ -88,7 +83,7 @@ message MediaEvent {
   // Sent after receiving `SdpOffer` from Peer
   message SdpAnswer {
     string sdp_answer = 1;
-    repeated media_events.MidToTrackId mid_to_track_id = 2;
+    map<string, string> mid_to_track_id = 2;
   }
 
   // Sent to inform that the track denoted by `trackId` has changed their voice actiivty
