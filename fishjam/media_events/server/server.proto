@@ -19,6 +19,12 @@ message MediaEvent {
     repeated Track tracks = 4;
   }
 
+  message IceServer {
+    string credential = 1;
+    repeated string urls = 2;
+    string username = 3;
+  }
+
   // MEDIA EVENTS
 
   // Sent when metadata of one of the endpoints was updated
@@ -56,6 +62,7 @@ message MediaEvent {
   message Connected {
     string endpoint_id = 1;
     repeated Endpoint endpoints = 2;
+    repeated IceServer ice_servers = 3;
   }
 
   // Sent to all remaining peers in the room after some endpoint was removed.
