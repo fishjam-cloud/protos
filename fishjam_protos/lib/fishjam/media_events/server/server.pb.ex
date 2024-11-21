@@ -28,6 +28,16 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint do
   field :tracks, 4, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Track
 end
 
+defmodule Fishjam.MediaEvents.Server.MediaEvent.IceServer do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :credential, 1, type: :string
+  field :urls, 2, repeated: true, type: :string
+  field :username, 3, type: :string
+end
+
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointUpdated do
   @moduledoc false
 
@@ -81,6 +91,11 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Connected do
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :endpoints, 2, repeated: true, type: Fishjam.MediaEvents.Server.MediaEvent.Endpoint
+
+  field :ice_servers, 3,
+    repeated: true,
+    type: Fishjam.MediaEvents.Server.MediaEvent.IceServer,
+    json_name: "iceServers"
 end
 
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointRemoved do

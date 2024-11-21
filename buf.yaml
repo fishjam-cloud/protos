@@ -2,6 +2,9 @@ version: v1
 breaking:
   use:
     - FILE
+build:
+  excludes:
+    - fishjam_protos
 lint:
   use:
     - DEFAULT
