@@ -10,7 +10,7 @@ message MediaEvent {
   message Track {
     message SimulcastConfig {
       bool enabled = 1;
-      repeated media_events.Variant active_variants = 2;
+      repeated media_events.Variant enabled_variants = 2;
       repeated media_events.Variant disabled_variants = 3;
     }
 

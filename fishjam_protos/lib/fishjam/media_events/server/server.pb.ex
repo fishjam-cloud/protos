@@ -15,10 +15,10 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig do
 
   field :enabled, 1, type: :bool
 
-  field :active_variants, 2,
+  field :enabled_variants, 2,
     repeated: true,
     type: Fishjam.MediaEvents.Variant,
-    json_name: "activeVariants",
+    json_name: "enabledVariants",
     enum: true
 
   field :disabled_variants, 3,
