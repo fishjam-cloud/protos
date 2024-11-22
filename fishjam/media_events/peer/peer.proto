@@ -65,15 +65,6 @@ message MediaEvent {
     media_events.Variant variant = 2;
   }
 
-  // Informs that a client wants to receive a specific track variant.
-  // The track variant will be sent whenever it is available.
-  // If choosen variant is unavailable, an other variant will be
-  // sent until the choosen variant becomes active again.
-  message SetTargetTrackVariant {
-    string track_id = 1;
-    media_events.Variant variant = 2;
-  }
-
   oneof content {
     Connect connect = 1;
     Disconnect disconnect = 2;
@@ -85,6 +76,5 @@ message MediaEvent {
     TrackBitrate track_bitrate = 8;
     EnableTrackVariant enable_track_variant = 9;
     DisableTrackVariant disable_track_variant = 10;
-    SetTargetTrackVariant set_target_track_variant = 11;
   }
 }
