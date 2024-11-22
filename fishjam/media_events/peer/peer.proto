@@ -43,12 +43,12 @@ message MediaEvent {
   message SdpOffer {
     string sdp_offer = 1;
     map<string, string> track_id_to_metadata_json = 2;
-    map<string, TrackBitrate> track_id_to_bitrates = 3;
+    map<string, TrackBitrates> track_id_to_bitrates = 3;
     map<string, string> mid_to_track_id = 4;
   }
 
   // Sent when Peer wants to update its track's bitrate
-  message TrackBitrate {
+  message TrackBitrates {
     string track_id = 1;
     repeated VariantBitrate variant_bitrates = 2;
   }
@@ -73,7 +73,7 @@ message MediaEvent {
     RenegotiateTracks renegotiate_tracks = 5;
     media_events.Candidate candidate = 6;
     SdpOffer sdp_offer = 7;
-    TrackBitrate track_bitrate = 8;
+    TrackBitrates track_bitrates = 8;
     EnableTrackVariant enable_track_variant = 9;
     DisableTrackVariant disable_track_variant = 10;
   }

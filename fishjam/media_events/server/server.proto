@@ -14,15 +14,14 @@ message MediaEvent {
       repeated media_events.Variant disabled_variants = 3;
     }
 
-    string track_id = 1;
-    string metadata_json = 2;
-    SimulcastConfig simulcast_config = 3;
+    string metadata_json = 1;
+    SimulcastConfig simulcast_config = 2;
   }
 
   message Endpoint {
     string endpoint_type = 2;
     string metadata_json = 3;
-    map<string, string> track_id_to_metadata_json = 4;
+    map<string, Track> track_id_to_track = 4;
   }
 
   message IceServer {
@@ -49,7 +48,7 @@ message MediaEvent {
   //  Sent to informs that one of the peers has added one or more tracks.
   message TracksAdded {
     string endpoint_id = 1;
-    map<string, string> track_id_to_metadata_json = 2;
+    map<string, Track> track_id_to_track = 2;
   }
 
   //  Sent to informs that one of the peers has removed one or more tracks.
@@ -67,7 +66,7 @@ message MediaEvent {
   // Sent to the peer after connecting to the WebRTC Endpoint.
   message Connected {
     string endpoint_id = 1;
-    map<string, Endpoint> endpoints_id_to_endpoint = 2;
+    map<string, Endpoint> endpoint_id_to_endpoint = 2;
     repeated IceServer ice_servers = 3;
   }
 

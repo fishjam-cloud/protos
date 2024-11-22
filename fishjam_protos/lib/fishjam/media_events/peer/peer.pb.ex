@@ -59,7 +59,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry do
   use Protobuf, map: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
   field :key, 1, type: :string
-  field :value, 2, type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate
+  field :value, 2, type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.MidToTrackIdEntry do
@@ -97,7 +97,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
     map: true
 end
 
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate do
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
@@ -120,15 +120,6 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant do
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant do
-  @moduledoc false
-
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
-
-  field :track_id, 1, type: :string, json_name: "trackId"
-  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
-end
-
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
@@ -169,9 +160,9 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
     json_name: "sdpOffer",
     oneof: 0
 
-  field :track_bitrate, 8,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate,
-    json_name: "trackBitrate",
+  field :track_bitrates, 8,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates,
+    json_name: "trackBitrates",
     oneof: 0
 
   field :enable_track_variant, 9,
@@ -182,10 +173,5 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   field :disable_track_variant, 10,
     type: Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant,
     json_name: "disableTrackVariant",
-    oneof: 0
-
-  field :set_target_track_variant, 11,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant,
-    json_name: "setTargetTrackVariant",
     oneof: 0
 end
