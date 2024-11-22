@@ -1,40 +1,9 @@
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate do
-  @moduledoc false
-
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
-
-  field :variant, 1, type: Fishjam.MediaEvents.Variant, enum: true
-  field :bitrate, 2, type: :int32
-end
-
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackIdToMetadata do
-  @moduledoc false
-
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
-
-  field :track_id, 1, type: :string, json_name: "trackId"
-  field :metadata, 2, type: Fishjam.MediaEvents.Metadata
-end
-
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackIdToBitrates do
-  @moduledoc false
-
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
-
-  oneof :tracks, 0
-
-  field :track_bitrate, 1,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate,
-    json_name: "trackBitrate",
-    oneof: 0
-end
-
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.Connect do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
-  field :metadata, 1, type: Fishjam.MediaEvents.Metadata
+  field :metadata_json, 1, type: :string, json_name: "metadataJson"
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.Disconnect do
@@ -48,7 +17,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.UpdateEndpointMetadata do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
-  field :metadata, 1, type: Fishjam.MediaEvents.Metadata
+  field :metadata_json, 1, type: :string, json_name: "metadataJson"
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.UpdateTrackMetadata do
@@ -57,13 +26,40 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.UpdateTrackMetadata do
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
   field :track_id, 1, type: :string, json_name: "trackId"
-  field :metadata, 2, type: Fishjam.MediaEvents.Metadata
+  field :metadata_json, 2, type: :string, json_name: "metadataJson"
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.RenegotiateTracks do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry do
+  @moduledoc false
+
+  use Protobuf, map: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :key, 1, type: :string
+  field :value, 2, type: :string
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry do
+  @moduledoc false
+
+  use Protobuf, map: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :key, 1, type: :string
+  field :value, 2, type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.MidToTrackIdEntry do
+  @moduledoc false
+
+  use Protobuf, map: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :key, 1, type: :string
+  field :value, 2, type: :string
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
@@ -73,20 +69,23 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
 
   field :sdp_offer, 1, type: :string, json_name: "sdpOffer"
 
-  field :track_id_to_metadata, 2,
+  field :track_id_to_metadata_json, 2,
     repeated: true,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackIdToMetadata,
-    json_name: "trackIdToMetadata"
+    type: Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry,
+    json_name: "trackIdToMetadataJson",
+    map: true
 
   field :track_id_to_bitrates, 3,
     repeated: true,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackIdToBitrates,
-    json_name: "trackIdToBitrates"
+    type: Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry,
+    json_name: "trackIdToBitrates",
+    map: true
 
   field :mid_to_track_id, 4,
     repeated: true,
-    type: Fishjam.MediaEvents.MidToTrackId,
-    json_name: "midToTrackId"
+    type: Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.MidToTrackIdEntry,
+    json_name: "midToTrackId",
+    map: true
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate do

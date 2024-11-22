@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         name: Protobuf lint
         container:
-          image: bufbuild/buf:1.23.1
+          image: bufbuild/buf:1.45.0
         steps:
             - name: Checkout the code
               uses: actions/checkout@v3
