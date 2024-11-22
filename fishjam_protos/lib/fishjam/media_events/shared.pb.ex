@@ -1,3 +1,14 @@
+defmodule Fishjam.MediaEvents.Variant do
+  @moduledoc false
+
+  use Protobuf, enum: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :VARIANT_UNSPECIFIED, 0
+  field :VARIANT_LOW, 1
+  field :VARIANT_MEDIUM, 2
+  field :VARIANT_HIGH, 3
+end
+
 defmodule Fishjam.MediaEvents.Candidate do
   @moduledoc false
 

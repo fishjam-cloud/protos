@@ -6,6 +6,13 @@ import "fishjam/media_events/shared.proto";
 
 // Defines any type of message sent from Peer to Membrane RTC Engine
 message MediaEvent {
+  // SCHEMAS
+
+  message VariantBitrate {
+    media_events.Variant variant = 1;
+    int32 bitrate = 2;
+  }
+
   // MEDIA EVENTS
 
   // Sent when a peer wants to join WebRTC Endpoint.
@@ -43,7 +50,28 @@ message MediaEvent {
   // Sent when Peer wants to update its track's bitrate
   message TrackBitrate {
     string track_id = 1;
-    int32 bitrate = 2;
+    repeated VariantBitrate variant_bitrates = 2;
+  }
+
+  // Sent when client disables one of the track variants
+  message DisableTrackVariant {
+    string track_id = 1;
+    media_events.Variant variant = 2;
+  }
+
+  // Sent when client enables one of the track variants
+  message EnableTrackVariant {
+    string track_id = 1;
+    media_events.Variant variant = 2;
+  }
+
+  // Informs that a client wants to receive a specific track variant.
+  // The track variant will be sent whenever it is available.
+  // If choosen variant is unavailable, an other variant will be
+  // sent until the choosen variant becomes active again.
+  message SetTargetTrackVariant {
+    string track_id = 1;
+    media_events.Variant variant = 2;
   }
 
   oneof content {
@@ -55,5 +83,8 @@ message MediaEvent {
     media_events.Candidate candidate = 6;
     SdpOffer sdp_offer = 7;
     TrackBitrate track_bitrate = 8;
+    EnableTrackVariant enable_track_variant = 9;
+    DisableTrackVariant disable_track_variant = 10;
+    SetTargetTrackVariant set_target_track_variant = 11;
   }
 }

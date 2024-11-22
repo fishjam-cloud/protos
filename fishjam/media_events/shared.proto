@@ -9,3 +9,10 @@ message Candidate {
   string sdp_mid = 3;
   string username_fragment = 4;
 }
+
+enum Variant {
+  VARIANT_UNSPECIFIED = 0;
+  VARIANT_LOW = 1;
+  VARIANT_MEDIUM = 2;
+  VARIANT_HIGH = 3;
+}

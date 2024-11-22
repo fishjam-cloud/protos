@@ -7,6 +7,17 @@ import "fishjam/media_events/shared.proto";
 // Defines any type of message sent from Membrane RTC Engine to Peer
 message MediaEvent {
   // SCHEMAS
+  message Track {
+    message SimulcastConfig {
+      bool enabled = 1;
+      repeated media_events.Variant active_variants = 2;
+      repeated media_events.Variant disabled_variants = 3;
+    }
+
+    string track_id = 1;
+    string metadata_json = 2;
+    SimulcastConfig simulcast_config = 3;
+  }
 
   message Endpoint {
     string endpoint_type = 2;
@@ -100,6 +111,27 @@ message MediaEvent {
     Status status = 2;
   }
 
+  // Informs that track's variant has been changed
+  message TrackVariantSwitched {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been disabled
+  message TrackVariantDisabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been enabled
+  message TrackVariantEnabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
   oneof content {
     EndpointUpdated endpoint_updated = 1;
     TrackUpdated track_updated = 2;
@@ -113,5 +145,8 @@ message MediaEvent {
     media_events.Candidate candidate = 10;
     SdpAnswer sdp_answer = 11;
     VadNotification vad_notification = 12;
+    TrackVariantSwitched track_variant_switched = 13;
+    TrackVariantDisabled track_variant_disabled = 14;
+    TrackVariantEnabled track_variant_enabled = 15;
   }
 }

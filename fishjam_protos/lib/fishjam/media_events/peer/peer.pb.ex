@@ -1,3 +1,12 @@
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :variant, 1, type: Fishjam.MediaEvents.Variant, enum: true
+  field :bitrate, 2, type: :int32
+end
+
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.Connect do
   @moduledoc false
 
@@ -94,7 +103,38 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate do
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
   field :track_id, 1, type: :string, json_name: "trackId"
-  field :bitrate, 2, type: :int32
+
+  field :variant_bitrates, 2,
+    repeated: true,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate,
+    json_name: "variantBitrates"
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent do
@@ -132,5 +172,20 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   field :track_bitrate, 8,
     type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate,
     json_name: "trackBitrate",
+    oneof: 0
+
+  field :enable_track_variant, 9,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant,
+    json_name: "enableTrackVariant",
+    oneof: 0
+
+  field :disable_track_variant, 10,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant,
+    json_name: "disableTrackVariant",
+    oneof: 0
+
+  field :set_target_track_variant, 11,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant,
+    json_name: "setTargetTrackVariant",
     oneof: 0
 end

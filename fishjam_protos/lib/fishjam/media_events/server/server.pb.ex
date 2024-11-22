@@ -8,6 +8,39 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status do
   field :STATUS_SPEECH, 2
 end
 
+defmodule Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :enabled, 1, type: :bool
+
+  field :active_variants, 2,
+    repeated: true,
+    type: Fishjam.MediaEvents.Variant,
+    json_name: "activeVariants",
+    enum: true
+
+  field :disabled_variants, 3,
+    repeated: true,
+    type: Fishjam.MediaEvents.Variant,
+    json_name: "disabledVariants",
+    enum: true
+end
+
+defmodule Fishjam.MediaEvents.Server.MediaEvent.Track do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :metadata_json, 2, type: :string, json_name: "metadataJson"
+
+  field :simulcast_config, 3,
+    type: Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig,
+    json_name: "simulcastConfig"
+end
+
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint.TrackIdToMetadataJsonEntry do
   @moduledoc false
 
@@ -197,6 +230,36 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification do
   field :status, 2, type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status, enum: true
 end
 
+defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :endpoint_id, 1, type: :string, json_name: "endpointId"
+  field :track_id, 2, type: :string, json_name: "trackId"
+  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
+defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :endpoint_id, 1, type: :string, json_name: "endpointId"
+  field :track_id, 2, type: :string, json_name: "trackId"
+  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
+defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :endpoint_id, 1, type: :string, json_name: "endpointId"
+  field :track_id, 2, type: :string, json_name: "trackId"
+  field :variant, 3, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
 defmodule Fishjam.MediaEvents.Server.MediaEvent do
   @moduledoc false
 
@@ -252,5 +315,20 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent do
   field :vad_notification, 12,
     type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification,
     json_name: "vadNotification",
+    oneof: 0
+
+  field :track_variant_switched, 13,
+    type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched,
+    json_name: "trackVariantSwitched",
+    oneof: 0
+
+  field :track_variant_disabled, 14,
+    type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled,
+    json_name: "trackVariantDisabled",
+    oneof: 0
+
+  field :track_variant_enabled, 15,
+    type: Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled,
+    json_name: "trackVariantEnabled",
     oneof: 0
 end
