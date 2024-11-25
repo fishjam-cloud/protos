@@ -6,12 +6,15 @@
 - [fishjam/media_events/peer/peer.proto](#fishjam_media_events_peer_peer-proto)
     - [MediaEvent](#fishjam-media_events-peer-MediaEvent)
     - [MediaEvent.Connect](#fishjam-media_events-peer-MediaEvent-Connect)
+    - [MediaEvent.DisableTrackVariant](#fishjam-media_events-peer-MediaEvent-DisableTrackVariant)
     - [MediaEvent.Disconnect](#fishjam-media_events-peer-MediaEvent-Disconnect)
+    - [MediaEvent.EnableTrackVariant](#fishjam-media_events-peer-MediaEvent-EnableTrackVariant)
     - [MediaEvent.RenegotiateTracks](#fishjam-media_events-peer-MediaEvent-RenegotiateTracks)
     - [MediaEvent.SdpOffer](#fishjam-media_events-peer-MediaEvent-SdpOffer)
-    - [MediaEvent.TrackBitrate](#fishjam-media_events-peer-MediaEvent-TrackBitrate)
-    - [MediaEvent.TrackIdToBitrates](#fishjam-media_events-peer-MediaEvent-TrackIdToBitrates)
-    - [MediaEvent.TrackIdToMetadata](#fishjam-media_events-peer-MediaEvent-TrackIdToMetadata)
+    - [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry)
+    - [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry)
+    - [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry)
+    - [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates)
     - [MediaEvent.UpdateEndpointMetadata](#fishjam-media_events-peer-MediaEvent-UpdateEndpointMetadata)
     - [MediaEvent.UpdateTrackMetadata](#fishjam-media_events-peer-MediaEvent-UpdateTrackMetadata)
     - [MediaEvent.VariantBitrate](#fishjam-media_events-peer-MediaEvent-VariantBitrate)
@@ -19,17 +22,26 @@
 - [fishjam/media_events/server/server.proto](#fishjam_media_events_server_server-proto)
     - [MediaEvent](#fishjam-media_events-server-MediaEvent)
     - [MediaEvent.Connected](#fishjam-media_events-server-MediaEvent-Connected)
+    - [MediaEvent.Connected.EndpointIdToEndpointEntry](#fishjam-media_events-server-MediaEvent-Connected-EndpointIdToEndpointEntry)
     - [MediaEvent.Endpoint](#fishjam-media_events-server-MediaEvent-Endpoint)
+    - [MediaEvent.Endpoint.TrackIdToTrackEntry](#fishjam-media_events-server-MediaEvent-Endpoint-TrackIdToTrackEntry)
     - [MediaEvent.EndpointAdded](#fishjam-media_events-server-MediaEvent-EndpointAdded)
     - [MediaEvent.EndpointRemoved](#fishjam-media_events-server-MediaEvent-EndpointRemoved)
     - [MediaEvent.EndpointUpdated](#fishjam-media_events-server-MediaEvent-EndpointUpdated)
     - [MediaEvent.Error](#fishjam-media_events-server-MediaEvent-Error)
+    - [MediaEvent.IceServer](#fishjam-media_events-server-MediaEvent-IceServer)
     - [MediaEvent.OfferData](#fishjam-media_events-server-MediaEvent-OfferData)
     - [MediaEvent.OfferData.TrackTypes](#fishjam-media_events-server-MediaEvent-OfferData-TrackTypes)
     - [MediaEvent.SdpAnswer](#fishjam-media_events-server-MediaEvent-SdpAnswer)
+    - [MediaEvent.SdpAnswer.MidToTrackIdEntry](#fishjam-media_events-server-MediaEvent-SdpAnswer-MidToTrackIdEntry)
     - [MediaEvent.Track](#fishjam-media_events-server-MediaEvent-Track)
+    - [MediaEvent.Track.SimulcastConfig](#fishjam-media_events-server-MediaEvent-Track-SimulcastConfig)
     - [MediaEvent.TrackUpdated](#fishjam-media_events-server-MediaEvent-TrackUpdated)
+    - [MediaEvent.TrackVariantDisabled](#fishjam-media_events-server-MediaEvent-TrackVariantDisabled)
+    - [MediaEvent.TrackVariantEnabled](#fishjam-media_events-server-MediaEvent-TrackVariantEnabled)
+    - [MediaEvent.TrackVariantSwitched](#fishjam-media_events-server-MediaEvent-TrackVariantSwitched)
     - [MediaEvent.TracksAdded](#fishjam-media_events-server-MediaEvent-TracksAdded)
+    - [MediaEvent.TracksAdded.TrackIdToTrackEntry](#fishjam-media_events-server-MediaEvent-TracksAdded-TrackIdToTrackEntry)
     - [MediaEvent.TracksRemoved](#fishjam-media_events-server-MediaEvent-TracksRemoved)
     - [MediaEvent.VadNotification](#fishjam-media_events-server-MediaEvent-VadNotification)
   
@@ -37,8 +49,6 @@
   
 - [fishjam/media_events/shared.proto](#fishjam_media_events_shared-proto)
     - [Candidate](#fishjam-media_events-Candidate)
-    - [Metadata](#fishjam-media_events-Metadata)
-    - [MidToTrackId](#fishjam-media_events-MidToTrackId)
   
     - [Variant](#fishjam-media_events-Variant)
   
@@ -93,6 +103,8 @@
 ### MediaEvent
 Defines any type of message sent from Peer to Membrane RTC Engine
 
+SCHEMAS
+
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
@@ -103,7 +115,9 @@ Defines any type of message sent from Peer to Membrane RTC Engine
 | renegotiate_tracks | [MediaEvent.RenegotiateTracks](#fishjam-media_events-peer-MediaEvent-RenegotiateTracks) |  |  |
 | candidate | [fishjam.media_events.Candidate](#fishjam-media_events-Candidate) |  |  |
 | sdp_offer | [MediaEvent.SdpOffer](#fishjam-media_events-peer-MediaEvent-SdpOffer) |  |  |
-| track_bitrate | [MediaEvent.TrackBitrate](#fishjam-media_events-peer-MediaEvent-TrackBitrate) |  |  |
+| track_bitrates | [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates) |  |  |
+| enable_track_variant | [MediaEvent.EnableTrackVariant](#fishjam-media_events-peer-MediaEvent-EnableTrackVariant) |  |  |
+| disable_track_variant | [MediaEvent.DisableTrackVariant](#fishjam-media_events-peer-MediaEvent-DisableTrackVariant) |  |  |
 
 
 
@@ -118,7 +132,23 @@ Sent when a peer wants to join WebRTC Endpoint.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-DisableTrackVariant"></a>
+
+### MediaEvent.DisableTrackVariant
+Sent when client disables one of the track variants
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
 
 
 
@@ -129,6 +159,22 @@ Sent when a peer wants to join WebRTC Endpoint.
 
 ### MediaEvent.Disconnect
 Sent when a peer disconnects from WebRTC Endpoint.
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-EnableTrackVariant"></a>
+
+### MediaEvent.EnableTrackVariant
+Sent when client enables one of the track variants
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
 
 
 
@@ -156,56 +202,73 @@ The &#34;mid&#34; is an identifier used to associate an RTP packet with an MLine
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sdp_offer | [string](#string) |  |  |
-| track_id_to_metadata | [MediaEvent.TrackIdToMetadata](#fishjam-media_events-peer-MediaEvent-TrackIdToMetadata) | repeated |  |
-| track_id_to_bitrates | [MediaEvent.TrackIdToBitrates](#fishjam-media_events-peer-MediaEvent-TrackIdToBitrates) | repeated |  |
-| mid_to_track_id | [fishjam.media_events.MidToTrackId](#fishjam-media_events-MidToTrackId) | repeated |  |
+| track_id_to_metadata_json | [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry) | repeated |  |
+| track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited. |
+| mid_to_track_id | [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry) | repeated |  |
 
 
 
 
 
 
-<a name="fishjam-media_events-peer-MediaEvent-TrackBitrate"></a>
+<a name="fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry"></a>
 
-### MediaEvent.TrackBitrate
+### MediaEvent.SdpOffer.MidToTrackIdEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry"></a>
+
+### MediaEvent.SdpOffer.TrackIdToBitratesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry"></a>
+
+### MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-TrackBitrates"></a>
+
+### MediaEvent.TrackBitrates
 Sent when Peer wants to update its track&#39;s bitrate
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | track_id | [string](#string) |  |  |
-| bitrate | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="fishjam-media_events-peer-MediaEvent-TrackIdToBitrates"></a>
-
-### MediaEvent.TrackIdToBitrates
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| track_bitrate | [MediaEvent.TrackBitrate](#fishjam-media_events-peer-MediaEvent-TrackBitrate) |  |  |
-
-
-
-
-
-
-<a name="fishjam-media_events-peer-MediaEvent-TrackIdToMetadata"></a>
-
-### MediaEvent.TrackIdToMetadata
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| track_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| variant_bitrates | [MediaEvent.VariantBitrate](#fishjam-media_events-peer-MediaEvent-VariantBitrate) | repeated | Bitrate of each variant. For non-simulcast tracks use VARIANT_UNSPECIFIED. |
 
 
 
@@ -220,7 +283,7 @@ Sent when a peer wants to update its metadata
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
 
 
 
@@ -236,7 +299,7 @@ Sent when a peer wants to update its track&#39;s metadata
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | track_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
 
 
 
@@ -246,7 +309,7 @@ Sent when a peer wants to update its track&#39;s metadata
 <a name="fishjam-media_events-peer-MediaEvent-VariantBitrate"></a>
 
 ### MediaEvent.VariantBitrate
-SCHEMAS
+
 
 
 | Field | Type | Label | Description |
@@ -295,6 +358,9 @@ Defines any type of message sent from Membrane RTC Engine to Peer
 | candidate | [fishjam.media_events.Candidate](#fishjam-media_events-Candidate) |  |  |
 | sdp_answer | [MediaEvent.SdpAnswer](#fishjam-media_events-server-MediaEvent-SdpAnswer) |  |  |
 | vad_notification | [MediaEvent.VadNotification](#fishjam-media_events-server-MediaEvent-VadNotification) |  |  |
+| track_variant_switched | [MediaEvent.TrackVariantSwitched](#fishjam-media_events-server-MediaEvent-TrackVariantSwitched) |  |  |
+| track_variant_disabled | [MediaEvent.TrackVariantDisabled](#fishjam-media_events-server-MediaEvent-TrackVariantDisabled) |  |  |
+| track_variant_enabled | [MediaEvent.TrackVariantEnabled](#fishjam-media_events-server-MediaEvent-TrackVariantEnabled) |  |  |
 
 
 
@@ -310,7 +376,24 @@ Sent to the peer after connecting to the WebRTC Endpoint.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | endpoint_id | [string](#string) |  |  |
-| endpoints | [MediaEvent.Endpoint](#fishjam-media_events-server-MediaEvent-Endpoint) | repeated |  |
+| endpoint_id_to_endpoint | [MediaEvent.Connected.EndpointIdToEndpointEntry](#fishjam-media_events-server-MediaEvent-Connected-EndpointIdToEndpointEntry) | repeated |  |
+| ice_servers | [MediaEvent.IceServer](#fishjam-media_events-server-MediaEvent-IceServer) | repeated |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-Connected-EndpointIdToEndpointEntry"></a>
+
+### MediaEvent.Connected.EndpointIdToEndpointEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MediaEvent.Endpoint](#fishjam-media_events-server-MediaEvent-Endpoint) |  |  |
 
 
 
@@ -325,10 +408,25 @@ Sent to the peer after connecting to the WebRTC Endpoint.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| endpoint_id | [string](#string) |  |  |
 | endpoint_type | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
-| tracks | [MediaEvent.Track](#fishjam-media_events-server-MediaEvent-Track) | repeated |  |
+| metadata_json | [string](#string) |  |  |
+| track_id_to_track | [MediaEvent.Endpoint.TrackIdToTrackEntry](#fishjam-media_events-server-MediaEvent-Endpoint-TrackIdToTrackEntry) | repeated |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-Endpoint-TrackIdToTrackEntry"></a>
+
+### MediaEvent.Endpoint.TrackIdToTrackEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MediaEvent.Track](#fishjam-media_events-server-MediaEvent-Track) |  |  |
 
 
 
@@ -344,7 +442,7 @@ Sent to all peers in the room after a new endpoint was added.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | endpoint_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
 
 
 
@@ -375,7 +473,7 @@ Sent when metadata of one of the endpoints was updated
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | endpoint_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
 
 
 
@@ -391,6 +489,23 @@ Sent to inform that an error occurred on the server providing a message to show
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | message | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-IceServer"></a>
+
+### MediaEvent.IceServer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| credential | [string](#string) |  |  |
+| urls | [string](#string) | repeated |  |
+| username | [string](#string) |  |  |
 
 
 
@@ -437,7 +552,23 @@ Sent after receiving `SdpOffer` from Peer
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sdp_answer | [string](#string) |  |  |
-| mid_to_track_id | [fishjam.media_events.MidToTrackId](#fishjam-media_events-MidToTrackId) | repeated |  |
+| mid_to_track_id | [MediaEvent.SdpAnswer.MidToTrackIdEntry](#fishjam-media_events-server-MediaEvent-SdpAnswer-MidToTrackIdEntry) | repeated |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-SdpAnswer-MidToTrackIdEntry"></a>
+
+### MediaEvent.SdpAnswer.MidToTrackIdEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -452,8 +583,25 @@ SCHEMAS
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| track_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
+| simulcast_config | [MediaEvent.Track.SimulcastConfig](#fishjam-media_events-server-MediaEvent-Track-SimulcastConfig) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-Track-SimulcastConfig"></a>
+
+### MediaEvent.Track.SimulcastConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  |  |
+| enabled_variants | [fishjam.media_events.Variant](#fishjam-media_events-Variant) | repeated |  |
+| disabled_variants | [fishjam.media_events.Variant](#fishjam-media_events-Variant) | repeated |  |
 
 
 
@@ -470,7 +618,58 @@ Sent when metadata of one of the tracks was updated
 | ----- | ---- | ----- | ----------- |
 | endpoint_id | [string](#string) |  |  |
 | track_id | [string](#string) |  |  |
-| metadata | [fishjam.media_events.Metadata](#fishjam-media_events-Metadata) |  |  |
+| metadata_json | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-TrackVariantDisabled"></a>
+
+### MediaEvent.TrackVariantDisabled
+Sent when track&#39;s variant has been disabled
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| endpoint_id | [string](#string) |  |  |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-TrackVariantEnabled"></a>
+
+### MediaEvent.TrackVariantEnabled
+Sent when track&#39;s variant has been enabled
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| endpoint_id | [string](#string) |  |  |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-TrackVariantSwitched"></a>
+
+### MediaEvent.TrackVariantSwitched
+Informs that track&#39;s variant has been changed
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| endpoint_id | [string](#string) |  |  |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
 
 
 
@@ -486,7 +685,23 @@ Sent to informs that one of the peers has added one or more tracks.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | endpoint_id | [string](#string) |  |  |
-| tracks | [MediaEvent.Track](#fishjam-media_events-server-MediaEvent-Track) | repeated |  |
+| track_id_to_track | [MediaEvent.TracksAdded.TrackIdToTrackEntry](#fishjam-media_events-server-MediaEvent-TracksAdded-TrackIdToTrackEntry) | repeated |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-server-MediaEvent-TracksAdded-TrackIdToTrackEntry"></a>
+
+### MediaEvent.TracksAdded.TrackIdToTrackEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MediaEvent.Track](#fishjam-media_events-server-MediaEvent-Track) |  |  |
 
 
 
@@ -568,37 +783,6 @@ Contains information about an ICE candidate which will be sent to the peer/serve
 | sdp_m_line_index | [int32](#int32) |  |  |
 | sdp_mid | [string](#string) |  |  |
 | username_fragment | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="fishjam-media_events-Metadata"></a>
-
-### Metadata
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| json | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="fishjam-media_events-MidToTrackId"></a>
-
-### MidToTrackId
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| mid | [string](#string) |  |  |
-| track_id | [string](#string) |  |  |
 
 
 
