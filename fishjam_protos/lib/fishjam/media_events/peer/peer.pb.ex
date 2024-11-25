@@ -1,3 +1,12 @@
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :variant, 1, type: Fishjam.MediaEvents.Variant, enum: true
+  field :bitrate, 2, type: :int32
+end
+
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.Connect do
   @moduledoc false
 
@@ -50,7 +59,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry do
   use Protobuf, map: true, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
   field :key, 1, type: :string
-  field :value, 2, type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate
+  field :value, 2, type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.MidToTrackIdEntry do
@@ -88,13 +97,35 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
     map: true
 end
 
-defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate do
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
   field :track_id, 1, type: :string, json_name: "trackId"
-  field :bitrate, 2, type: :int32
+
+  field :variant_bitrates, 2,
+    repeated: true,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate,
+    json_name: "variantBitrates"
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
 end
 
 defmodule Fishjam.MediaEvents.Peer.MediaEvent do
@@ -129,8 +160,18 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
     json_name: "sdpOffer",
     oneof: 0
 
-  field :track_bitrate, 8,
-    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrate,
-    json_name: "trackBitrate",
+  field :track_bitrates, 8,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates,
+    json_name: "trackBitrates",
+    oneof: 0
+
+  field :enable_track_variant, 9,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant,
+    json_name: "enableTrackVariant",
+    oneof: 0
+
+  field :disable_track_variant, 10,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant,
+    json_name: "disableTrackVariant",
     oneof: 0
 end

@@ -7,11 +7,21 @@ import "fishjam/media_events/shared.proto";
 // Defines any type of message sent from Membrane RTC Engine to Peer
 message MediaEvent {
   // SCHEMAS
+  message Track {
+    message SimulcastConfig {
+      bool enabled = 1;
+      repeated media_events.Variant enabled_variants = 2;
+      repeated media_events.Variant disabled_variants = 3;
+    }
+
+    string metadata_json = 1;
+    SimulcastConfig simulcast_config = 2;
+  }
 
   message Endpoint {
     string endpoint_type = 2;
     string metadata_json = 3;
-    map<string, string> track_id_to_metadata_json = 4;
+    map<string, Track> track_id_to_track = 4;
   }
 
   message IceServer {
@@ -38,7 +48,7 @@ message MediaEvent {
   //  Sent to informs that one of the peers has added one or more tracks.
   message TracksAdded {
     string endpoint_id = 1;
-    map<string, string> track_id_to_metadata_json = 2;
+    map<string, Track> track_id_to_track = 2;
   }
 
   //  Sent to informs that one of the peers has removed one or more tracks.
@@ -56,7 +66,7 @@ message MediaEvent {
   // Sent to the peer after connecting to the WebRTC Endpoint.
   message Connected {
     string endpoint_id = 1;
-    map<string, Endpoint> endpoints_id_to_endpoint = 2;
+    map<string, Endpoint> endpoint_id_to_endpoint = 2;
     repeated IceServer ice_servers = 3;
   }
 
@@ -100,6 +110,27 @@ message MediaEvent {
     Status status = 2;
   }
 
+  // Informs that track's variant has been changed
+  message TrackVariantSwitched {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been disabled
+  message TrackVariantDisabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
+  // Sent when track's variant has been enabled
+  message TrackVariantEnabled {
+    string endpoint_id = 1;
+    string track_id = 2;
+    media_events.Variant variant = 3;
+  }
+
   oneof content {
     EndpointUpdated endpoint_updated = 1;
     TrackUpdated track_updated = 2;
@@ -113,5 +144,8 @@ message MediaEvent {
     media_events.Candidate candidate = 10;
     SdpAnswer sdp_answer = 11;
     VadNotification vad_notification = 12;
+    TrackVariantSwitched track_variant_switched = 13;
+    TrackVariantDisabled track_variant_disabled = 14;
+    TrackVariantEnabled track_variant_enabled = 15;
   }
 }
