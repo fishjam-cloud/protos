@@ -43,14 +43,14 @@ message MediaEvent {
   message SdpOffer {
     string sdp_offer = 1;
     map<string, string> track_id_to_metadata_json = 2;
-    map<string, TrackBitrates> track_id_to_bitrates = 3;
+    map<string, TrackBitrates> track_id_to_bitrates = 3; // Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited.
     map<string, string> mid_to_track_id = 4;
   }
 
   // Sent when Peer wants to update its track's bitrate
   message TrackBitrates {
     string track_id = 1;
-    repeated VariantBitrate variant_bitrates = 2;
+    repeated VariantBitrate variant_bitrates = 2; // Bitrate of each variant. For non-simulcast tracks use VARIANT_UNSPECIFIED.
   }
 
   // Sent when client disables one of the track variants
