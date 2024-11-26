@@ -211,7 +211,7 @@ defmodule Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
-  field :sdp_answer, 1, type: :string, json_name: "sdpAnswer"
+  field :answer_sdp, 1, type: :string, json_name: "answerSdp"
 
   field :mid_to_track_id, 2,
     repeated: true,
