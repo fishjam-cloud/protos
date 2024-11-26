@@ -201,7 +201,7 @@ The &#34;mid&#34; is an identifier used to associate an RTP packet with an MLine
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| offer_sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
+| sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
 | track_id_to_metadata_json | [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry) | repeated |  |
 | track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited. |
 | mid_to_track_id | [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry) | repeated |  |
@@ -551,7 +551,7 @@ Sent after receiving `SdpOffer` from Peer
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| answer_sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
+| sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
 | mid_to_track_id | [MediaEvent.SdpAnswer.MidToTrackIdEntry](#fishjam-media_events-server-MediaEvent-SdpAnswer-MidToTrackIdEntry) | repeated |  |
 
 

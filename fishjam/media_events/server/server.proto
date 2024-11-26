@@ -92,7 +92,7 @@ message MediaEvent {
 
   // Sent after receiving `SdpOffer` from Peer
   message SdpAnswer {
-    string answer_sdp = 1; // The value of the `sessionDescription.sdp`
+    string sdp = 1; // The value of the `sessionDescription.sdp`
     map<string, string> mid_to_track_id = 2;
   }
 
