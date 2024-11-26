@@ -41,7 +41,7 @@ message MediaEvent {
   // Maps contain only information about current peer's `sendonly` tracks.
   // The "mid" is an identifier used to associate an RTP packet with an MLine from the SDP offer/answer.
   message SdpOffer {
-    string sdp_offer = 1;
+    string sdp = 1; // The value of the `sessionDescription.sdp`
     map<string, string> track_id_to_metadata_json = 2;
     map<string, TrackBitrates> track_id_to_bitrates = 3; // Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited.
     map<string, string> mid_to_track_id = 4;

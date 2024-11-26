@@ -76,7 +76,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
 
-  field :sdp_offer, 1, type: :string, json_name: "sdpOffer"
+  field :sdp, 1, type: :string
 
   field :track_id_to_metadata_json, 2,
     repeated: true,
