@@ -89,6 +89,7 @@ jobs:
 
     check-protobufs-docs:
         runs-on: ubuntu-latest
+        name: Protobuf docs update
         steps:
             - name: Checkout code
               uses: actions/checkout@v3

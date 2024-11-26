@@ -14,6 +14,7 @@
     - [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry)
     - [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry)
     - [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry)
+    - [MediaEvent.SetTargetTrackVariant](#fishjam-media_events-peer-MediaEvent-SetTargetTrackVariant)
     - [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates)
     - [MediaEvent.UpdateEndpointMetadata](#fishjam-media_events-peer-MediaEvent-UpdateEndpointMetadata)
     - [MediaEvent.UpdateTrackMetadata](#fishjam-media_events-peer-MediaEvent-UpdateTrackMetadata)
@@ -118,6 +119,7 @@ SCHEMAS
 | track_bitrates | [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates) |  |  |
 | enable_track_variant | [MediaEvent.EnableTrackVariant](#fishjam-media_events-peer-MediaEvent-EnableTrackVariant) |  |  |
 | disable_track_variant | [MediaEvent.DisableTrackVariant](#fishjam-media_events-peer-MediaEvent-DisableTrackVariant) |  |  |
+| set_target_track_variant | [MediaEvent.SetTargetTrackVariant](#fishjam-media_events-peer-MediaEvent-SetTargetTrackVariant) |  |  |
 
 
 
@@ -253,6 +255,22 @@ The &#34;mid&#34; is an identifier used to associate an RTP packet with an MLine
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-SetTargetTrackVariant"></a>
+
+### MediaEvent.SetTargetTrackVariant
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| variant | [fishjam.media_events.Variant](#fishjam-media_events-Variant) |  |  |
 
 
 
