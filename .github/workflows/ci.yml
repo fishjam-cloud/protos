@@ -46,7 +46,7 @@ jobs:
               if: ${{ !cancelled() && steps.compile.outcome == 'success' }}
               run: mix format --check-formatted
       
-    check-protobufs-update:
+    check-fishjam-protos-update:
         runs-on: ubuntu-latest
         name: Fishjam protos update
         strategy:
@@ -62,7 +62,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
         
-            - name: Install protobuf compiler (protoc) if needed
+            - name: Install protobuf compiler (protoc)
               run: |
                 sudo apt update
                 sudo apt install -y protobuf-compiler
@@ -75,10 +75,45 @@ jobs:
               run: bash compile_proto.sh
               working-directory: fishjam_protos
         
-            - name: Check for changes in protobuf files
+            - name: Check for changes in fishjam_protos files
               run: |
                 if [[ -n $(git status --porcelain) ]]; then
                     echo "Generated protobuf files are not up to date. Please regenerate them and commit the changes."
+                    git diff
+                    exit 1
+                fi
+
+            - name: Generate docs
+              run: bash compile_proto.sh
+              working-directory: fishjam_protos
+
+    check-protobufs-docs:
+        runs-on: ubuntu-latest
+        name: Protobuf docs update
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Go
+              uses: actions/setup-go@v5
+
+            - name: Install protobuf compiler (protoc)
+              run: |
+                sudo apt update
+                sudo apt install -y protobuf-compiler
+
+            - name: Install protobuf docs generator
+              run: |
+                go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
+
+            - name: Generate docs
+              run: |
+                find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
+
+            - name: Check for changes in docs files
+              run: |
+                if [[ -n $(git status --porcelain) ]]; then
+                    echo "Generated docs files are not up to date. Please regenerate them and commit the changes."
                     git diff
                     exit 1
                 fi
