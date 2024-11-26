@@ -17,7 +17,7 @@ Install [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) plugin.
 
 Use the command below:
 ```command
-protoc --doc_out=./doc --doc_opt=markdown,docs.md fishjam/**/*.proto
+find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
 ```
 
 ## Lint and formatting

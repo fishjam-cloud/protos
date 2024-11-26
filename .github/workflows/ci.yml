@@ -108,7 +108,7 @@ jobs:
 
             - name: Generate docs
               run: |
-                protoc --doc_out=./doc --doc_opt=markdown,docs.md fishjam/**/*.proto
+                find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
 
             - name: Check for changes in docs files
               run: |
