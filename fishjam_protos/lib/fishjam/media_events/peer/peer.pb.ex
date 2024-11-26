@@ -128,6 +128,15 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant do
   field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
 end
 
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
+end
+
 defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   @moduledoc false
 
@@ -173,5 +182,10 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   field :disable_track_variant, 10,
     type: Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant,
     json_name: "disableTrackVariant",
+    oneof: 0
+
+  field :set_target_track_variant, 11,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant,
+    json_name: "setTargetTrackVariant",
     oneof: 0
 end
