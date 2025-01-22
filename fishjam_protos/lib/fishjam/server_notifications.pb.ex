@@ -281,7 +281,8 @@ defmodule Fishjam.ServerMessage do
   field :metrics_report, 12,
     type: Fishjam.ServerMessage.MetricsReport,
     json_name: "metricsReport",
-    oneof: 0
+    oneof: 0,
+    deprecated: true
 
   field :hls_playable, 13,
     type: Fishjam.ServerMessage.HlsPlayable,

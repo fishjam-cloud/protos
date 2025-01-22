@@ -165,7 +165,7 @@ message ServerMessage {
     SubscribeResponse subscribe_response = 9;
     RoomCreated room_created = 10;
     RoomDeleted room_deleted = 11;
-    MetricsReport metrics_report = 12;
+    MetricsReport metrics_report = 12 [deprecated = true];
     HlsPlayable hls_playable = 13;
     HlsUploaded hls_uploaded = 14;
     HlsUploadCrashed hls_upload_crashed = 15;
