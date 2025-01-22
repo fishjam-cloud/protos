@@ -20,7 +20,7 @@ defmodule FishjamProtos.MixProject do
 
   defp deps do
     [
-      {:protobuf, "~> 0.13.0"}
+      {:protobuf, "~> 0.14.0"}
     ]
   end
 end

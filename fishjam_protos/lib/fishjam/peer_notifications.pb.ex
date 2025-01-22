@@ -1,13 +1,13 @@
 defmodule Fishjam.PeerMessage.Authenticated do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 end
 
 defmodule Fishjam.PeerMessage.AuthRequest do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 
   field :token, 1, type: :string
   field :sdk_version, 2, type: :string, json_name: "sdkVersion"
@@ -16,7 +16,7 @@ end
 defmodule Fishjam.PeerMessage.RTCStatsReport do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 
   field :data, 1, type: :string
 end
@@ -24,7 +24,7 @@ end
 defmodule Fishjam.PeerMessage.MediaEvent do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 
   field :data, 1, type: :string
 end
@@ -32,7 +32,7 @@ end
 defmodule Fishjam.PeerMessage do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 
   oneof :content, 0
 
