@@ -131,7 +131,7 @@ end
 defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
   @moduledoc false
 
-  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.13.0"
+  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
   field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true

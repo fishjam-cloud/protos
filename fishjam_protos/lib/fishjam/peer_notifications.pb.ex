@@ -1,7 +1,18 @@
+defmodule Fishjam.PeerMessage.RoomType do
+  @moduledoc false
+
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+
+  field :FULL_FEATURE, 0
+  field :AUDIO_ONLY, 1
+end
+
 defmodule Fishjam.PeerMessage.Authenticated do
   @moduledoc false
 
   use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+
+  field :room_type, 1, type: Fishjam.PeerMessage.RoomType, json_name: "roomType", enum: true
 end
 
 defmodule Fishjam.PeerMessage.AuthRequest do

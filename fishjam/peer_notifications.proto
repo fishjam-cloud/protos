@@ -7,8 +7,16 @@ import "fishjam/media_events/server/server.proto";
 
 // Defines any type of message sent between FJ and a peer
 message PeerMessage {
-  // Response sent by FJ, confirming successfull authentication
-  message Authenticated {}
+  // Defines types of rooms peers may connect to
+  enum RoomType {
+    FULL_FEATURE = 0;
+    AUDIO_ONLY = 1;
+  }
+
+  // Response sent by FJ, confirming successful authentication
+  message Authenticated {
+    RoomType room_type = 1;
+  }
 
   // Request sent by peer, to authenticate to FJ server
   message AuthRequest {
