@@ -1,16 +1,16 @@
 defmodule Fishjam.PeerMessage.RoomType do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
-  field :FULL_FEATURE, 0
-  field :AUDIO_ONLY, 1
+  field :ROOM_TYPE_UNSPECIFIED, 0
+  field :ROOM_TYPE_AUDIO_ONLY, 1
 end
 
 defmodule Fishjam.PeerMessage.Authenticated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :room_type, 1, type: Fishjam.PeerMessage.RoomType, json_name: "roomType", enum: true
 end
@@ -18,7 +18,7 @@ end
 defmodule Fishjam.PeerMessage.AuthRequest do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :token, 1, type: :string
   field :sdk_version, 2, type: :string, json_name: "sdkVersion"
@@ -27,7 +27,7 @@ end
 defmodule Fishjam.PeerMessage.RTCStatsReport do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :data, 1, type: :string
 end
@@ -35,7 +35,7 @@ end
 defmodule Fishjam.PeerMessage.MediaEvent do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :data, 1, type: :string
 end
@@ -43,7 +43,7 @@ end
 defmodule Fishjam.PeerMessage do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   oneof :content, 0
 
