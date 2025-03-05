@@ -9,8 +9,8 @@ import "fishjam/media_events/server/server.proto";
 message PeerMessage {
   // Defines types of rooms peers may connect to
   enum RoomType {
-    FULL_FEATURE = 0;
-    AUDIO_ONLY = 1;
+    ROOM_TYPE_UNSPECIFIED = 0;
+    ROOM_TYPE_AUDIO_ONLY = 1;
   }
 
   // Response sent by FJ, confirming successful authentication
