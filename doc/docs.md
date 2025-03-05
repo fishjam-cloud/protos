@@ -930,8 +930,8 @@ Defines types of rooms peers may connect to
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| FULL_FEATURE | 0 |  |
-| AUDIO_ONLY | 1 |  |
+| ROOM_TYPE_UNSPECIFIED | 0 |  |
+| ROOM_TYPE_AUDIO_ONLY | 1 |  |
 
 
  
