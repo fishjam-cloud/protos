@@ -60,6 +60,8 @@
     - [PeerMessage.MediaEvent](#fishjam-PeerMessage-MediaEvent)
     - [PeerMessage.RTCStatsReport](#fishjam-PeerMessage-RTCStatsReport)
   
+    - [PeerMessage.RoomType](#fishjam-PeerMessage-RoomType)
+  
 - [fishjam/server_notifications.proto](#fishjam_server_notifications-proto)
     - [ServerMessage](#fishjam-ServerMessage)
     - [ServerMessage.AuthRequest](#fishjam-ServerMessage-AuthRequest)
@@ -876,7 +878,12 @@ Request sent by peer, to authenticate to FJ server
 <a name="fishjam-PeerMessage-Authenticated"></a>
 
 ### PeerMessage.Authenticated
-Response sent by FJ, confirming successfull authentication
+Response sent by FJ, confirming successful authentication
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_type | [PeerMessage.RoomType](#fishjam-PeerMessage-RoomType) |  |  |
 
 
 
@@ -915,6 +922,19 @@ https://developer.mozilla.org/en-US/docs/Web/API/RTCStatsReport#the_statistic_ty
 
  
 
+
+<a name="fishjam-PeerMessage-RoomType"></a>
+
+### PeerMessage.RoomType
+Defines types of rooms peers may connect to
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ROOM_TYPE_UNSPECIFIED | 0 |  |
+| ROOM_TYPE_FULL_FEATURE | 1 |  |
+| ROOM_TYPE_AUDIO_ONLY | 2 |  |
+
+
  
 
  
@@ -949,7 +969,7 @@ Defines any type of message passed between FJ and server peer
 | subscribe_response | [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse) |  |  |
 | room_created | [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated) |  |  |
 | room_deleted | [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted) |  |  |
-| metrics_report | [ServerMessage.MetricsReport](#fishjam-ServerMessage-MetricsReport) |  |  |
+| metrics_report | [ServerMessage.MetricsReport](#fishjam-ServerMessage-MetricsReport) |  | **Deprecated.**  |
 | hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  |  |
 | hls_uploaded | [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded) |  |  |
 | hls_upload_crashed | [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed) |  |  |

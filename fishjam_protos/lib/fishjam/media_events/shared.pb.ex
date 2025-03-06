@@ -1,7 +1,7 @@
 defmodule Fishjam.MediaEvents.Variant do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :VARIANT_UNSPECIFIED, 0
   field :VARIANT_LOW, 1
@@ -12,7 +12,7 @@ end
 defmodule Fishjam.MediaEvents.Candidate do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.0", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :candidate, 1, type: :string
   field :sdp_m_line_index, 2, type: :int32, json_name: "sdpMLineIndex"
