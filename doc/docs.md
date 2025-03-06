@@ -931,7 +931,8 @@ Defines types of rooms peers may connect to
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | ROOM_TYPE_UNSPECIFIED | 0 |  |
-| ROOM_TYPE_AUDIO_ONLY | 1 |  |
+| ROOM_TYPE_FULL_FEATURE | 1 |  |
+| ROOM_TYPE_AUDIO_ONLY | 2 |  |
 
 
  

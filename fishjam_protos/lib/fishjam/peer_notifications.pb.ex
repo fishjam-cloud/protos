@@ -4,7 +4,8 @@ defmodule Fishjam.PeerMessage.RoomType do
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
 
   field :ROOM_TYPE_UNSPECIFIED, 0
-  field :ROOM_TYPE_AUDIO_ONLY, 1
+  field :ROOM_TYPE_FULL_FEATURE, 1
+  field :ROOM_TYPE_AUDIO_ONLY, 2
 end
 
 defmodule Fishjam.PeerMessage.Authenticated do

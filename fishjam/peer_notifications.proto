@@ -10,7 +10,8 @@ message PeerMessage {
   // Defines types of rooms peers may connect to
   enum RoomType {
     ROOM_TYPE_UNSPECIFIED = 0;
-    ROOM_TYPE_AUDIO_ONLY = 1;
+    ROOM_TYPE_FULL_FEATURE = 1;
+    ROOM_TYPE_AUDIO_ONLY = 2;
   }
 
   // Response sent by FJ, confirming successful authentication
