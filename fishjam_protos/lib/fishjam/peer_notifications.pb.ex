@@ -6,6 +6,7 @@ defmodule Fishjam.PeerMessage.RoomType do
   field :ROOM_TYPE_UNSPECIFIED, 0
   field :ROOM_TYPE_FULL_FEATURE, 1
   field :ROOM_TYPE_AUDIO_ONLY, 2
+  field :ROOM_TYPE_BROADCASTER, 3
 end
 
 defmodule Fishjam.PeerMessage.Authenticated do
