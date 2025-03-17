@@ -7,9 +7,11 @@ defmodule FishjamProtos.MixProject do
       version: "0.1.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
+      elixirc_paths: ["lib"],
       deps: deps(),
       description: "Protobuf modules for Fishjam and Membrane RTC Engine",
-      package: package()
+      package: package(),
+      docs: [main: "readme", formatters: ["html"], extras: ["README.md", "LICENSE"]]
     ]
   end
 
@@ -32,7 +34,8 @@ defmodule FishjamProtos.MixProject do
 
   defp deps do
     [
-      {:protobuf, "~> 0.14.1"}
+      {:protobuf, "~> 0.14.1"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 end
