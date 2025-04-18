@@ -16,6 +16,7 @@
     - [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry)
     - [MediaEvent.SetTargetTrackVariant](#fishjam-media_events-peer-MediaEvent-SetTargetTrackVariant)
     - [MediaEvent.TrackBitrates](#fishjam-media_events-peer-MediaEvent-TrackBitrates)
+    - [MediaEvent.UnmuteTrack](#fishjam-media_events-peer-MediaEvent-UnmuteTrack)
     - [MediaEvent.UpdateEndpointMetadata](#fishjam-media_events-peer-MediaEvent-UpdateEndpointMetadata)
     - [MediaEvent.UpdateTrackMetadata](#fishjam-media_events-peer-MediaEvent-UpdateTrackMetadata)
     - [MediaEvent.VariantBitrate](#fishjam-media_events-peer-MediaEvent-VariantBitrate)
@@ -122,6 +123,7 @@ SCHEMAS
 | enable_track_variant | [MediaEvent.EnableTrackVariant](#fishjam-media_events-peer-MediaEvent-EnableTrackVariant) |  |  |
 | disable_track_variant | [MediaEvent.DisableTrackVariant](#fishjam-media_events-peer-MediaEvent-DisableTrackVariant) |  |  |
 | set_target_track_variant | [MediaEvent.SetTargetTrackVariant](#fishjam-media_events-peer-MediaEvent-SetTargetTrackVariant) |  |  |
+| unmute_track | [MediaEvent.UnmuteTrack](#fishjam-media_events-peer-MediaEvent-UnmuteTrack) |  |  |
 
 
 
@@ -289,6 +291,21 @@ Sent when Peer wants to update its track&#39;s bitrate
 | ----- | ---- | ----- | ----------- |
 | track_id | [string](#string) |  |  |
 | variant_bitrates | [MediaEvent.VariantBitrate](#fishjam-media_events-peer-MediaEvent-VariantBitrate) | repeated | Bitrate of each variant. For non-simulcast tracks use VARIANT_UNSPECIFIED. |
+
+
+
+
+
+
+<a name="fishjam-media_events-peer-MediaEvent-UnmuteTrack"></a>
+
+### MediaEvent.UnmuteTrack
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
 
 
 
