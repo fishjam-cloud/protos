@@ -137,6 +137,14 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
   field :variant, 2, type: Fishjam.MediaEvents.Variant, enum: true
 end
 
+defmodule Fishjam.MediaEvents.Peer.MediaEvent.UnmuteTrack do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+end
+
 defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   @moduledoc false
 
@@ -187,5 +195,10 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
   field :set_target_track_variant, 11,
     type: Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant,
     json_name: "setTargetTrackVariant",
+    oneof: 0
+
+  field :unmute_track, 12,
+    type: Fishjam.MediaEvents.Peer.MediaEvent.UnmuteTrack,
+    json_name: "unmuteTrack",
     oneof: 0
 end
