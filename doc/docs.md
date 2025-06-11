@@ -948,9 +948,9 @@ Defines types of rooms peers may connect to
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | ROOM_TYPE_UNSPECIFIED | 0 |  |
-| ROOM_TYPE_FULL_FEATURE | 1 |  |
+| ROOM_TYPE_CONFERENCE | 1 |  |
 | ROOM_TYPE_AUDIO_ONLY | 2 |  |
-| ROOM_TYPE_BROADCASTER | 3 |  |
+| ROOM_TYPE_LIVESTREAM | 3 |  |
 
 
  
