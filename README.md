@@ -7,6 +7,7 @@ For detailed protobuf definitions and usage, please refer to the [documentation]
 ## How to add this repo as a git submodule in your own repository
 
 Use the command below:
+
 ```command
 git submodule add https://github.com/fishjam-cloud/protos.git`
 ```
@@ -16,13 +17,14 @@ git submodule add https://github.com/fishjam-cloud/protos.git`
 Install [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) plugin.
 
 Use the command below:
+
 ```command
 find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
 ```
 
 ## Lint and formatting
 
-The files can be formatted using `buf`. 
+The files can be formatted using `buf`.
 Check out [installation page](https://buf.build/docs/installation/) for `buf`.
 
 ```
@@ -30,6 +32,7 @@ buf format -w
 ```
 
 and linted
+
 ```
 buf lint
 ```

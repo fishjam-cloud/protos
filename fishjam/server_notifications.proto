@@ -153,6 +153,28 @@ message ServerMessage {
     Track track = 4;
   }
 
+  // Notification sent when streamer successfully connects
+  message StreamConnected {
+    string stream_id = 1;
+  }
+
+  // Notification sent when streamer disconnects
+  message StreamDisconnected {
+    string stream_id = 1;
+  }
+
+  // Notification sent when viewer successfully connects
+  message ViewerConnected {
+    string stream_id = 1;
+    string viewer_id = 2;
+  }
+
+  // Notification sent when viewer disconnects
+  message ViewerDisconnected {
+    string stream_id = 1;
+    string viewer_id = 2;
+  }
+
   oneof content {
     RoomCrashed room_crashed = 1;
     PeerConnected peer_connected = 2;
@@ -175,5 +197,9 @@ message ServerMessage {
     TrackMetadataUpdated track_metadata_updated = 19;
     PeerAdded peer_added = 20;
     PeerDeleted peer_deleted = 21;
+    StreamConnected stream_connected = 22;
+    StreamDisconnected stream_disconnected = 23;
+    ViewerConnected viewer_connected = 24;
+    ViewerConnected viewer_disconnected = 25;
   }
 }
