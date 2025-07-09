@@ -200,6 +200,6 @@ message ServerMessage {
     StreamConnected stream_connected = 22;
     StreamDisconnected stream_disconnected = 23;
     ViewerConnected viewer_connected = 24;
-    ViewerConnected viewer_disconnected = 25;
+    ViewerDisconnected viewer_disconnected = 25;
   }
 }

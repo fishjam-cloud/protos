@@ -1004,7 +1004,7 @@ Defines any type of message passed between FJ and server peer
 | stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  |  |
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
-| viewer_disconnected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
+| viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 
 
 
