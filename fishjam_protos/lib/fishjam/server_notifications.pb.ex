@@ -376,7 +376,7 @@ defmodule Fishjam.ServerMessage do
     oneof: 0
 
   field :viewer_disconnected, 25,
-    type: Fishjam.ServerMessage.ViewerConnected,
+    type: Fishjam.ServerMessage.ViewerDisconnected,
     json_name: "viewerDisconnected",
     oneof: 0
 end
