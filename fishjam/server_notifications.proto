@@ -56,9 +56,9 @@ message ServerMessage {
 
   // Defines message groups for which peer can subscribe
   enum EventType {
+    reserved 2;
     EVENT_TYPE_UNSPECIFIED = 0;
     EVENT_TYPE_SERVER_NOTIFICATION = 1;
-    EVENT_TYPE_METRICS = 2 [deprecated = true];
   }
 
   // Request sent by peer to subsribe for certain message type
@@ -79,11 +79,6 @@ message ServerMessage {
   // Notification sent when a room is deleted
   message RoomDeleted {
     string room_id = 1;
-  }
-
-  // [deprecated] Message containing WebRTC metrics from FJ
-  message MetricsReport {
-    string metrics = 1;
   }
 
   // Notification sent when the HLS stream becomes available in a room
@@ -175,6 +170,8 @@ message ServerMessage {
     string viewer_id = 2;
   }
 
+  reserved 12;
+
   oneof content {
     RoomCrashed room_crashed = 1;
     PeerConnected peer_connected = 2;
@@ -187,7 +184,6 @@ message ServerMessage {
     SubscribeResponse subscribe_response = 9;
     RoomCreated room_created = 10;
     RoomDeleted room_deleted = 11;
-    MetricsReport metrics_report = 12 [deprecated = true];
     HlsPlayable hls_playable = 13;
     HlsUploaded hls_uploaded = 14;
     HlsUploadCrashed hls_upload_crashed = 15;

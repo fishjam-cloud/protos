@@ -5,7 +5,6 @@ defmodule Fishjam.ServerMessage.EventType do
 
   field :EVENT_TYPE_UNSPECIFIED, 0
   field :EVENT_TYPE_SERVER_NOTIFICATION, 1
-  field :EVENT_TYPE_METRICS, 2
 end
 
 defmodule Fishjam.ServerMessage.TrackType do
@@ -125,14 +124,6 @@ defmodule Fishjam.ServerMessage.RoomDeleted do
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
-end
-
-defmodule Fishjam.ServerMessage.MetricsReport do
-  @moduledoc false
-
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
-
-  field :metrics, 1, type: :string
 end
 
 defmodule Fishjam.ServerMessage.HlsPlayable do
@@ -311,12 +302,6 @@ defmodule Fishjam.ServerMessage do
     type: Fishjam.ServerMessage.RoomDeleted,
     json_name: "roomDeleted",
     oneof: 0
-
-  field :metrics_report, 12,
-    type: Fishjam.ServerMessage.MetricsReport,
-    json_name: "metricsReport",
-    oneof: 0,
-    deprecated: true
 
   field :hls_playable, 13,
     type: Fishjam.ServerMessage.HlsPlayable,
