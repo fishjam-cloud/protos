@@ -58,7 +58,7 @@ message ServerMessage {
   enum EventType {
     EVENT_TYPE_UNSPECIFIED = 0;
     EVENT_TYPE_SERVER_NOTIFICATION = 1;
-    EVENT_TYPE_METRICS = 2;
+    EVENT_TYPE_METRICS = 2 [deprecated = true];
   }
 
   // Request sent by peer to subsribe for certain message type
@@ -81,7 +81,7 @@ message ServerMessage {
     string room_id = 1;
   }
 
-  // Message containing WebRTC metrics from FJ
+  // [deprecated] Message containing WebRTC metrics from FJ
   message MetricsReport {
     string metrics = 1;
   }
