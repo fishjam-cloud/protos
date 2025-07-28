@@ -71,7 +71,6 @@
     - [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable)
     - [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed)
     - [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded)
-    - [ServerMessage.MetricsReport](#fishjam-ServerMessage-MetricsReport)
     - [ServerMessage.PeerAdded](#fishjam-ServerMessage-PeerAdded)
     - [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected)
     - [ServerMessage.PeerCrashed](#fishjam-ServerMessage-PeerCrashed)
@@ -991,7 +990,6 @@ Defines any type of message passed between FJ and server peer
 | subscribe_response | [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse) |  |  |
 | room_created | [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated) |  |  |
 | room_deleted | [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted) |  |  |
-| metrics_report | [ServerMessage.MetricsReport](#fishjam-ServerMessage-MetricsReport) |  | **Deprecated.**  |
 | hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  |  |
 | hls_uploaded | [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded) |  |  |
 | hls_upload_crashed | [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed) |  |  |
@@ -1092,21 +1090,6 @@ Notification sent when the HLS recording is successfully uploded to AWS S3
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="fishjam-ServerMessage-MetricsReport"></a>
-
-### ServerMessage.MetricsReport
-Message containing WebRTC metrics from FJ
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| metrics | [string](#string) |  |  |
 
 
 
@@ -1430,7 +1413,6 @@ Defines message groups for which peer can subscribe
 | ---- | ------ | ----------- |
 | EVENT_TYPE_UNSPECIFIED | 0 |  |
 | EVENT_TYPE_SERVER_NOTIFICATION | 1 |  |
-| EVENT_TYPE_METRICS | 2 |  |
 
 
 
