@@ -22,6 +22,12 @@ Use the command below:
 find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
 ```
 
+or 
+
+```command
+find fishjam -name "*.proto" | sort | xargs docker run --rm -v $(pwd)/doc:/out -v $(pwd):/protos pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
+```
+
 ## Lint and formatting
 
 The files can be formatted using `buf`.

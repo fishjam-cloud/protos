@@ -1,17 +1,16 @@
 defmodule Fishjam.ServerMessage.EventType do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :EVENT_TYPE_UNSPECIFIED, 0
   field :EVENT_TYPE_SERVER_NOTIFICATION, 1
-  field :EVENT_TYPE_METRICS, 2
 end
 
 defmodule Fishjam.ServerMessage.TrackType do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :TRACK_TYPE_UNSPECIFIED, 0
   field :TRACK_TYPE_VIDEO, 1
@@ -21,7 +20,7 @@ end
 defmodule Fishjam.ServerMessage.RoomCrashed do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
 end
@@ -29,7 +28,7 @@ end
 defmodule Fishjam.ServerMessage.PeerAdded do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -38,7 +37,7 @@ end
 defmodule Fishjam.ServerMessage.PeerDeleted do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -47,7 +46,7 @@ end
 defmodule Fishjam.ServerMessage.PeerConnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -56,7 +55,7 @@ end
 defmodule Fishjam.ServerMessage.PeerDisconnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -65,7 +64,7 @@ end
 defmodule Fishjam.ServerMessage.PeerCrashed do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -75,7 +74,7 @@ end
 defmodule Fishjam.ServerMessage.ComponentCrashed do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :component_id, 2, type: :string, json_name: "componentId"
@@ -84,13 +83,13 @@ end
 defmodule Fishjam.ServerMessage.Authenticated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 end
 
 defmodule Fishjam.ServerMessage.AuthRequest do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :token, 1, type: :string
 end
@@ -98,7 +97,7 @@ end
 defmodule Fishjam.ServerMessage.SubscribeRequest do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :event_type, 1, type: Fishjam.ServerMessage.EventType, json_name: "eventType", enum: true
 end
@@ -106,7 +105,7 @@ end
 defmodule Fishjam.ServerMessage.SubscribeResponse do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :event_type, 1, type: Fishjam.ServerMessage.EventType, json_name: "eventType", enum: true
 end
@@ -114,7 +113,7 @@ end
 defmodule Fishjam.ServerMessage.RoomCreated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
 end
@@ -122,23 +121,15 @@ end
 defmodule Fishjam.ServerMessage.RoomDeleted do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
-end
-
-defmodule Fishjam.ServerMessage.MetricsReport do
-  @moduledoc false
-
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
-
-  field :metrics, 1, type: :string
 end
 
 defmodule Fishjam.ServerMessage.HlsPlayable do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :component_id, 2, type: :string, json_name: "componentId"
@@ -147,7 +138,7 @@ end
 defmodule Fishjam.ServerMessage.HlsUploaded do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
 end
@@ -155,7 +146,7 @@ end
 defmodule Fishjam.ServerMessage.HlsUploadCrashed do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
 end
@@ -163,7 +154,7 @@ end
 defmodule Fishjam.ServerMessage.PeerMetadataUpdated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
@@ -173,7 +164,7 @@ end
 defmodule Fishjam.ServerMessage.Track do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :id, 1, type: :string
   field :type, 2, type: Fishjam.ServerMessage.TrackType, enum: true
@@ -183,7 +174,7 @@ end
 defmodule Fishjam.ServerMessage.TrackAdded do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   oneof :endpoint_info, 0
 
@@ -196,7 +187,7 @@ end
 defmodule Fishjam.ServerMessage.TrackRemoved do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   oneof :endpoint_info, 0
 
@@ -209,7 +200,7 @@ end
 defmodule Fishjam.ServerMessage.TrackMetadataUpdated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   oneof :endpoint_info, 0
 
@@ -222,7 +213,7 @@ end
 defmodule Fishjam.ServerMessage.StreamConnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :stream_id, 1, type: :string, json_name: "streamId"
 end
@@ -230,7 +221,7 @@ end
 defmodule Fishjam.ServerMessage.StreamDisconnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :stream_id, 1, type: :string, json_name: "streamId"
 end
@@ -238,7 +229,7 @@ end
 defmodule Fishjam.ServerMessage.ViewerConnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :stream_id, 1, type: :string, json_name: "streamId"
   field :viewer_id, 2, type: :string, json_name: "viewerId"
@@ -247,7 +238,7 @@ end
 defmodule Fishjam.ServerMessage.ViewerDisconnected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :stream_id, 1, type: :string, json_name: "streamId"
   field :viewer_id, 2, type: :string, json_name: "viewerId"
@@ -256,7 +247,7 @@ end
 defmodule Fishjam.ServerMessage do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   oneof :content, 0
 
@@ -311,12 +302,6 @@ defmodule Fishjam.ServerMessage do
     type: Fishjam.ServerMessage.RoomDeleted,
     json_name: "roomDeleted",
     oneof: 0
-
-  field :metrics_report, 12,
-    type: Fishjam.ServerMessage.MetricsReport,
-    json_name: "metricsReport",
-    oneof: 0,
-    deprecated: true
 
   field :hls_playable, 13,
     type: Fishjam.ServerMessage.HlsPlayable,
