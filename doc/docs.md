@@ -86,6 +86,7 @@
     - [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse)
     - [ServerMessage.Track](#fishjam-ServerMessage-Track)
     - [ServerMessage.TrackAdded](#fishjam-ServerMessage-TrackAdded)
+    - [ServerMessage.TrackData](#fishjam-ServerMessage-TrackData)
     - [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated)
     - [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved)
     - [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected)
@@ -1003,6 +1004,7 @@ Defines any type of message passed between FJ and server peer
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
+| track_data | [ServerMessage.TrackData](#fishjam-ServerMessage-TrackData) |  |  |
 
 
 
@@ -1328,6 +1330,24 @@ Notification sent when peer or component adds new track
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
 | track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-TrackData"></a>
+
+### ServerMessage.TrackData
+Notification containing a chunk of a track&#39;s data stream
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
+| data | [bytes](#bytes) |  |  |
 
 
 
