@@ -29,6 +29,11 @@ message AgentRequest {
     TrackConfig config = 2;
   }
 
+  // Removes the given track
+  message RemoveTrack {
+    string track_id = 1;
+  }
+
   // Notification containing a chunk of an agent's track's data stream
   message TrackData {
     string track_id = 1;

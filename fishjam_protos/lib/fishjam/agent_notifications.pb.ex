@@ -26,6 +26,14 @@ defmodule Fishjam.AgentRequest.AddTrack do
   field :config, 2, type: Fishjam.AgentRequest.AddTrack.TrackConfig
 end
 
+defmodule Fishjam.AgentRequest.RemoveTrack do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.14.1", syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+end
+
 defmodule Fishjam.AgentRequest.TrackData do
   @moduledoc false
 
