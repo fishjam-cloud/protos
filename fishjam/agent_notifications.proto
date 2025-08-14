@@ -50,10 +50,7 @@ message AgentRequest {
 // Defines any type of message passed from Fishjam to agent peer
 message AgentResponse {
   // Response confirming successful authentication
-  message Authenticated {
-    // The Peer ID assigned to the connected Agent
-    string peer_id = 1;
-  }
+  message Authenticated {}
 
   // Notification containing a chunk of a track's data stream
   message TrackData {

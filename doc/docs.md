@@ -239,11 +239,6 @@ Defines any type of message passed from Fishjam to agent peer
 Response confirming successful authentication
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| peer_id | [string](#string) |  | The Peer ID assigned to the connected Agent |
-
-
 
 
 
