@@ -6,7 +6,7 @@
 - [fishjam/agent_notifications.proto](#fishjam_agent_notifications-proto)
     - [AgentRequest](#fishjam-AgentRequest)
     - [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack)
-    - [AgentRequest.AddTrack.TrackConfig](#fishjam-AgentRequest-AddTrack-TrackConfig)
+    - [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters)
     - [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest)
     - [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack)
     - [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData)
@@ -147,16 +147,16 @@ Request to add a track of the specified type
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | track | [Track](#fishjam-Track) |  | Specification of the track to be added |
-| config | [AgentRequest.AddTrack.TrackConfig](#fishjam-AgentRequest-AddTrack-TrackConfig) |  | Configuration of the input data stream |
+| config | [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters) |  | Configuration of the input data stream |
 
 
 
 
 
 
-<a name="fishjam-AgentRequest-AddTrack-TrackConfig"></a>
+<a name="fishjam-AgentRequest-AddTrack-CodecParameters"></a>
 
-### AgentRequest.AddTrack.TrackConfig
+### AgentRequest.AddTrack.CodecParameters
 
 
 

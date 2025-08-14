@@ -7,7 +7,7 @@ defmodule Fishjam.AgentRequest.AuthRequest do
   field :room_id, 2, type: :string, json_name: "roomId"
 end
 
-defmodule Fishjam.AgentRequest.AddTrack.TrackConfig do
+defmodule Fishjam.AgentRequest.AddTrack.CodecParameters do
   @moduledoc false
 
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
@@ -23,7 +23,7 @@ defmodule Fishjam.AgentRequest.AddTrack do
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :track, 1, type: Fishjam.Track
-  field :config, 2, type: Fishjam.AgentRequest.AddTrack.TrackConfig
+  field :config, 2, type: Fishjam.AgentRequest.AddTrack.CodecParameters
 end
 
 defmodule Fishjam.AgentRequest.RemoveTrack do

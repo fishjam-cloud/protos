@@ -14,7 +14,7 @@ message AgentRequest {
 
   // Request to add a track of the specified type
   message AddTrack {
-    message TrackConfig {
+    message CodecParameters {
       // The format of the input stream, defaults to pcm16
       fishjam.TrackEncoding encoding = 1;
       // The sample rate of the input stream, may be omitted for opus
@@ -26,7 +26,7 @@ message AgentRequest {
     // Specification of the track to be added
     fishjam.Track track = 1;
     // Configuration of the input data stream
-    TrackConfig config = 2;
+    CodecParameters config = 2;
   }
 
   // Removes the given track
