@@ -23,7 +23,10 @@ defmodule Fishjam.AgentRequest.AddTrack do
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :track, 1, type: Fishjam.Track
-  field :config, 2, type: Fishjam.AgentRequest.AddTrack.CodecParameters
+
+  field :codec_params, 2,
+    type: Fishjam.AgentRequest.AddTrack.CodecParameters,
+    json_name: "codecParams"
 end
 
 defmodule Fishjam.AgentRequest.RemoveTrack do

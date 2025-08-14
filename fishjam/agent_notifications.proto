@@ -25,8 +25,8 @@ message AgentRequest {
 
     // Specification of the track to be added
     fishjam.Track track = 1;
-    // Configuration of the input data stream
-    CodecParameters config = 2;
+    // Parameters of the input data stream
+    CodecParameters codec_params = 2;
   }
 
   // Removes the given track

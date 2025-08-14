@@ -147,7 +147,7 @@ Request to add a track of the specified type
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | track | [Track](#fishjam-Track) |  | Specification of the track to be added |
-| config | [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters) |  | Configuration of the input data stream |
+| codec_params | [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters) |  | Parameters of the input data stream |
 
 
 
