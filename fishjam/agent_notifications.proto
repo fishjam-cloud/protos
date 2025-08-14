@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package fishjam;
+
+import "fishjam/shared_notifications.proto";
+
+// Defines any type of message passed from agent peer to Fishjam
+message AgentRequest {
+  // Request sent by agent, to authenticate to Fishjam server
+  message AuthRequest {
+    string token = 1;
+    string room_id = 2;
+  }
+
+  // Request to add a track of the specified type
+  message AddTrack {
+    message CodecParameters {
+      // The format of the input stream, defaults to pcm16
+      fishjam.TrackEncoding encoding = 1;
+      // The sample rate of the input stream, may be omitted for opus
+      uint32 sample_rate = 2;
+      // The number of channels. 1 means mono, 2 means stereo
+      uint32 channels = 3;
+    }
+
+    // Specification of the track to be added
+    fishjam.Track track = 1;
+    // Parameters of the input data stream
+    CodecParameters codec_params = 2;
+  }
+
+  // Removes the given track
+  message RemoveTrack {
+    string track_id = 1;
+  }
+
+  // Notification containing a chunk of an agent's track's data stream
+  message TrackData {
+    string track_id = 1;
+    bytes data = 2;
+  }
+
+  oneof content {
+    AuthRequest auth_request = 1;
+    AddTrack add_track = 2;
+    RemoveTrack remove_track = 3;
+    TrackData track_data = 4;
+  }
+}
+
+// Defines any type of message passed from Fishjam to agent peer
+message AgentResponse {
+  // Response confirming successful authentication
+  message Authenticated {
+    // The Peer ID assigned to the connected Agent
+    string peer_id = 1;
+  }
+
+  // Notification containing a chunk of a track's data stream
+  message TrackData {
+    string peer_id = 1;
+    fishjam.Track track = 2;
+    bytes data = 3;
+  }
+
+  oneof content {
+    Authenticated authenticated = 1;
+    TrackData track_data = 2;
+  }
+}

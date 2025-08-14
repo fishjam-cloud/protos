@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package fishjam;
+
+// Defines types of tracks being published by peers and component
+enum TrackType {
+  TRACK_TYPE_UNSPECIFIED = 0;
+  TRACK_TYPE_VIDEO = 1;
+  TRACK_TYPE_AUDIO = 2;
+}
+
+// Describes a media track
+message Track {
+  string id = 1;
+  TrackType type = 2;
+  string metadata = 3;
+}
+
+enum TrackEncoding {
+  TRACK_ENCODING_UNSPECIFIED = 0;
+  TRACK_ENCODING_PCM16 = 1;
+  TRACK_ENCODING_OPUS = 2;
+}
