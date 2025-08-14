@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package fishjam;
 
+import "fishjam/shared_notifications.proto";
+
 // Defines any type of message passed between FJ and server peer
 message ServerMessage {
   // Notification sent when a room crashes
@@ -104,20 +106,6 @@ message ServerMessage {
     string metadata = 3;
   }
 
-  // Defines types of tracks being published by peers and component
-  enum TrackType {
-    TRACK_TYPE_UNSPECIFIED = 0;
-    TRACK_TYPE_VIDEO = 1;
-    TRACK_TYPE_AUDIO = 2;
-  }
-
-  // Describes a media track
-  message Track {
-    string id = 1;
-    TrackType type = 2;
-    string metadata = 3;
-  }
-
   // Notification sent when peer or component adds new track
   message TrackAdded {
     string room_id = 1;
@@ -125,7 +113,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    Track track = 4;
+    fishjam.Track track = 4;
   }
 
   // Notification sent when a track is removed
@@ -135,7 +123,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    Track track = 4;
+    fishjam.Track track = 4;
   }
 
   // Notification sent when metadata of a multimedia track is updated
@@ -145,15 +133,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    Track track = 4;
-  }
-
-  // Notification containing a chunk of a track's data stream
-  message TrackData {
-    string room_id = 1;
-    string peer_id = 2;
-    Track track = 3;
-    bytes data = 4;
+    fishjam.Track track = 4;
   }
 
   // Notification sent when streamer successfully connects
@@ -205,6 +185,5 @@ message ServerMessage {
     StreamDisconnected stream_disconnected = 23;
     ViewerConnected viewer_connected = 24;
     ViewerDisconnected viewer_disconnected = 25;
-    TrackData track_data = 26;
   }
 }
