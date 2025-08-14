@@ -180,7 +180,6 @@ Request sent by agent, to authenticate to Fishjam server
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | token | [string](#string) |  |  |
-| room_id | [string](#string) |  |  |
 
 
 

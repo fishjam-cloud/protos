@@ -9,7 +9,6 @@ message AgentRequest {
   // Request sent by agent, to authenticate to Fishjam server
   message AuthRequest {
     string token = 1;
-    string room_id = 2;
   }
 
   // Request to add a track of the specified type
