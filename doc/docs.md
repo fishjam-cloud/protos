@@ -3,6 +3,17 @@
 
 ## Table of Contents
 
+- [fishjam/agent_notifications.proto](#fishjam_agent_notifications-proto)
+    - [AgentRequest](#fishjam-AgentRequest)
+    - [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack)
+    - [AgentRequest.AddTrack.TrackConfig](#fishjam-AgentRequest-AddTrack-TrackConfig)
+    - [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest)
+    - [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack)
+    - [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData)
+    - [AgentResponse](#fishjam-AgentResponse)
+    - [AgentResponse.Authenticated](#fishjam-AgentResponse-Authenticated)
+    - [AgentResponse.TrackData](#fishjam-AgentResponse-TrackData)
+  
 - [fishjam/media_events/peer/peer.proto](#fishjam_media_events_peer_peer-proto)
     - [MediaEvent](#fishjam-media_events-peer-MediaEvent)
     - [MediaEvent.Connect](#fishjam-media_events-peer-MediaEvent-Connect)
@@ -84,18 +95,182 @@
     - [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected)
     - [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest)
     - [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse)
-    - [ServerMessage.Track](#fishjam-ServerMessage-Track)
     - [ServerMessage.TrackAdded](#fishjam-ServerMessage-TrackAdded)
-    - [ServerMessage.TrackData](#fishjam-ServerMessage-TrackData)
     - [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated)
     - [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved)
     - [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected)
     - [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected)
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
-    - [ServerMessage.TrackType](#fishjam-ServerMessage-TrackType)
+  
+- [fishjam/shared_notifications.proto](#fishjam_shared_notifications-proto)
+    - [Track](#fishjam-Track)
+  
+    - [TrackEncoding](#fishjam-TrackEncoding)
+    - [TrackType](#fishjam-TrackType)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="fishjam_agent_notifications-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## fishjam/agent_notifications.proto
+
+
+
+<a name="fishjam-AgentRequest"></a>
+
+### AgentRequest
+Defines any type of message passed from agent peer to Fishjam
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auth_request | [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest) |  |  |
+| add_track | [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack) |  |  |
+| track_data | [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-AddTrack"></a>
+
+### AgentRequest.AddTrack
+Request to add a track of the specified type
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track | [Track](#fishjam-Track) |  | Specification of the track to be added |
+| config | [AgentRequest.AddTrack.TrackConfig](#fishjam-AgentRequest-AddTrack-TrackConfig) |  | Configuration of the input data stream |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-AddTrack-TrackConfig"></a>
+
+### AgentRequest.AddTrack.TrackConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| encoding | [TrackEncoding](#fishjam-TrackEncoding) |  | The format of the input stream, defaults to pcm16 |
+| sample_rate | [uint32](#uint32) |  | The sample rate of the input stream, may be omitted for opus |
+| channels | [uint32](#uint32) |  | The number of channels. 1 means mono, 2 means stereo |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-AuthRequest"></a>
+
+### AgentRequest.AuthRequest
+Request sent by agent, to authenticate to Fishjam server
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| token | [string](#string) |  |  |
+| room_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-RemoveTrack"></a>
+
+### AgentRequest.RemoveTrack
+Removes the given track
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-TrackData"></a>
+
+### AgentRequest.TrackData
+Notification containing a chunk of an agent&#39;s track&#39;s data stream
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| data | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentResponse"></a>
+
+### AgentResponse
+Defines any type of message passed from Fishjam to agent peer
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| authenticated | [AgentResponse.Authenticated](#fishjam-AgentResponse-Authenticated) |  |  |
+| track_data | [AgentResponse.TrackData](#fishjam-AgentResponse-TrackData) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentResponse-Authenticated"></a>
+
+### AgentResponse.Authenticated
+Response confirming successful authentication
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| peer_id | [string](#string) |  | The Peer ID assigned to the connected Agent |
+
+
+
+
+
+
+<a name="fishjam-AgentResponse-TrackData"></a>
+
+### AgentResponse.TrackData
+Notification containing a chunk of a track&#39;s data stream
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| peer_id | [string](#string) |  |  |
+| track | [Track](#fishjam-Track) |  |  |
+| data | [bytes](#bytes) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
 
 
 
@@ -1004,7 +1179,6 @@ Defines any type of message passed between FJ and server peer
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
-| track_data | [ServerMessage.TrackData](#fishjam-ServerMessage-TrackData) |  |  |
 
 
 
@@ -1301,23 +1475,6 @@ Response sent by FJ, confirming subscription for message type
 
 
 
-<a name="fishjam-ServerMessage-Track"></a>
-
-### ServerMessage.Track
-Describes a media track
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [ServerMessage.TrackType](#fishjam-ServerMessage-TrackType) |  |  |
-| metadata | [string](#string) |  |  |
-
-
-
-
-
-
 <a name="fishjam-ServerMessage-TrackAdded"></a>
 
 ### ServerMessage.TrackAdded
@@ -1329,25 +1486,7 @@ Notification sent when peer or component adds new track
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
-
-
-
-
-
-
-<a name="fishjam-ServerMessage-TrackData"></a>
-
-### ServerMessage.TrackData
-Notification containing a chunk of a track&#39;s data stream
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  |  |
-| peer_id | [string](#string) |  |  |
-| track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
-| data | [bytes](#bytes) |  |  |
+| track | [Track](#fishjam-Track) |  |  |
 
 
 
@@ -1365,7 +1504,7 @@ Notification sent when metadata of a multimedia track is updated
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
+| track | [Track](#fishjam-Track) |  |  |
 
 
 
@@ -1383,7 +1522,7 @@ Notification sent when a track is removed
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [ServerMessage.Track](#fishjam-ServerMessage-Track) |  |  |
+| track | [Track](#fishjam-Track) |  |  |
 
 
 
@@ -1435,10 +1574,56 @@ Defines message groups for which peer can subscribe
 | EVENT_TYPE_SERVER_NOTIFICATION | 1 |  |
 
 
+ 
 
-<a name="fishjam-ServerMessage-TrackType"></a>
+ 
 
-### ServerMessage.TrackType
+ 
+
+
+
+<a name="fishjam_shared_notifications-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## fishjam/shared_notifications.proto
+
+
+
+<a name="fishjam-Track"></a>
+
+### Track
+Describes a media track
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [TrackType](#fishjam-TrackType) |  |  |
+| metadata | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="fishjam-TrackEncoding"></a>
+
+### TrackEncoding
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TRACK_ENCODING_UNSPECIFIED | 0 |  |
+| TRACK_ENCODING_PCM16 | 1 |  |
+| TRACK_ENCODING_OPUS | 2 |  |
+
+
+
+<a name="fishjam-TrackType"></a>
+
+### TrackType
 Defines types of tracks being published by peers and component
 
 | Name | Number | Description |
