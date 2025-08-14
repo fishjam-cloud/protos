@@ -56,7 +56,13 @@ defmodule Fishjam.AgentRequest do
     oneof: 0
 
   field :add_track, 2, type: Fishjam.AgentRequest.AddTrack, json_name: "addTrack", oneof: 0
-  field :track_data, 3, type: Fishjam.AgentRequest.TrackData, json_name: "trackData", oneof: 0
+
+  field :remove_track, 3,
+    type: Fishjam.AgentRequest.RemoveTrack,
+    json_name: "removeTrack",
+    oneof: 0
+
+  field :track_data, 4, type: Fishjam.AgentRequest.TrackData, json_name: "trackData", oneof: 0
 end
 
 defmodule Fishjam.AgentResponse.Authenticated do

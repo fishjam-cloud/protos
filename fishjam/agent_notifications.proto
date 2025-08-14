@@ -43,7 +43,8 @@ message AgentRequest {
   oneof content {
     AuthRequest auth_request = 1;
     AddTrack add_track = 2;
-    TrackData track_data = 3;
+    RemoveTrack remove_track = 3;
+    TrackData track_data = 4;
   }
 }
 

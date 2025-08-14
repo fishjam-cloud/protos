@@ -130,6 +130,7 @@ Defines any type of message passed from agent peer to Fishjam
 | ----- | ---- | ----- | ----------- |
 | auth_request | [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest) |  |  |
 | add_track | [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack) |  |  |
+| remove_track | [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack) |  |  |
 | track_data | [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData) |  |  |
 
 
