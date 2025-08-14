@@ -4,7 +4,6 @@ defmodule Fishjam.AgentRequest.AuthRequest do
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :token, 1, type: :string
-  field :room_id, 2, type: :string, json_name: "roomId"
 end
 
 defmodule Fishjam.AgentRequest.AddTrack.CodecParameters do
@@ -72,8 +71,6 @@ defmodule Fishjam.AgentResponse.Authenticated do
   @moduledoc false
 
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
-
-  field :peer_id, 1, type: :string, json_name: "peerId"
 end
 
 defmodule Fishjam.AgentResponse.TrackData do

@@ -180,7 +180,6 @@ Request sent by agent, to authenticate to Fishjam server
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | token | [string](#string) |  |  |
-| room_id | [string](#string) |  |  |
 
 
 
@@ -238,11 +237,6 @@ Defines any type of message passed from Fishjam to agent peer
 
 ### AgentResponse.Authenticated
 Response confirming successful authentication
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| peer_id | [string](#string) |  | The Peer ID assigned to the connected Agent |
 
 
 
