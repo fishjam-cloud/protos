@@ -161,7 +161,7 @@ defmodule Fishjam.ServerMessage.TrackAdded do
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId", oneof: 0
   field :component_id, 3, type: :string, json_name: "componentId", oneof: 0
-  field :track, 4, type: Fishjam.Track
+  field :track, 4, type: Fishjam.Notifications.Track
 end
 
 defmodule Fishjam.ServerMessage.TrackRemoved do
@@ -174,7 +174,7 @@ defmodule Fishjam.ServerMessage.TrackRemoved do
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId", oneof: 0
   field :component_id, 3, type: :string, json_name: "componentId", oneof: 0
-  field :track, 4, type: Fishjam.Track
+  field :track, 4, type: Fishjam.Notifications.Track
 end
 
 defmodule Fishjam.ServerMessage.TrackMetadataUpdated do
@@ -187,7 +187,7 @@ defmodule Fishjam.ServerMessage.TrackMetadataUpdated do
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId", oneof: 0
   field :component_id, 3, type: :string, json_name: "componentId", oneof: 0
-  field :track, 4, type: Fishjam.Track
+  field :track, 4, type: Fishjam.Notifications.Track
 end
 
 defmodule Fishjam.ServerMessage.StreamConnected do

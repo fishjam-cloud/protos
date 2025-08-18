@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fishjam;
 
-import "fishjam/shared_notifications.proto";
+import "fishjam/notifications/shared.proto";
 
 // Defines any type of message passed between FJ and server peer
 message ServerMessage {
@@ -113,7 +113,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    fishjam.Track track = 4;
+    notifications.Track track = 4;
   }
 
   // Notification sent when a track is removed
@@ -123,7 +123,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    fishjam.Track track = 4;
+    notifications.Track track = 4;
   }
 
   // Notification sent when metadata of a multimedia track is updated
@@ -133,7 +133,7 @@ message ServerMessage {
       string peer_id = 2;
       string component_id = 3;
     }
-    fishjam.Track track = 4;
+    notifications.Track track = 4;
   }
 
   // Notification sent when streamer successfully connects
