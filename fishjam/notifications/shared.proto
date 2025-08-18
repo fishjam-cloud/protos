@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package fishjam;
+package fishjam.notifications;
 
 // Defines types of tracks being published by peers and component
 enum TrackType {

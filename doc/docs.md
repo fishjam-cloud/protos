@@ -65,6 +65,12 @@
   
     - [Variant](#fishjam-media_events-Variant)
   
+- [fishjam/notifications/shared.proto](#fishjam_notifications_shared-proto)
+    - [Track](#fishjam-notifications-Track)
+  
+    - [TrackEncoding](#fishjam-notifications-TrackEncoding)
+    - [TrackType](#fishjam-notifications-TrackType)
+  
 - [fishjam/peer_notifications.proto](#fishjam_peer_notifications-proto)
     - [PeerMessage](#fishjam-PeerMessage)
     - [PeerMessage.AuthRequest](#fishjam-PeerMessage-AuthRequest)
@@ -103,12 +109,6 @@
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
   
-- [fishjam/shared_notifications.proto](#fishjam_shared_notifications-proto)
-    - [Track](#fishjam-Track)
-  
-    - [TrackEncoding](#fishjam-TrackEncoding)
-    - [TrackType](#fishjam-TrackType)
-  
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -146,7 +146,7 @@ Request to add a track of the specified type
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| track | [Track](#fishjam-Track) |  | Specification of the track to be added |
+| track | [notifications.Track](#fishjam-notifications-Track) |  | Specification of the track to be added |
 | codec_params | [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters) |  | Parameters of the input data stream |
 
 
@@ -162,7 +162,7 @@ Request to add a track of the specified type
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| encoding | [TrackEncoding](#fishjam-TrackEncoding) |  | The format of the input stream, defaults to pcm16 |
+| encoding | [notifications.TrackEncoding](#fishjam-notifications-TrackEncoding) |  | The format of the input stream, defaults to pcm16 |
 | sample_rate | [uint32](#uint32) |  | The sample rate of the input stream, may be omitted for opus |
 | channels | [uint32](#uint32) |  | The number of channels. 1 means mono, 2 means stereo |
 
@@ -252,7 +252,7 @@ Notification containing a chunk of a track&#39;s data stream
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | peer_id | [string](#string) |  |  |
-| track | [Track](#fishjam-Track) |  |  |
+| track | [notifications.Track](#fishjam-notifications-Track) |  |  |
 | data | [bytes](#bytes) |  |  |
 
 
@@ -1023,6 +1023,65 @@ Contains information about an ICE candidate which will be sent to the peer/serve
 
 
 
+<a name="fishjam_notifications_shared-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## fishjam/notifications/shared.proto
+
+
+
+<a name="fishjam-notifications-Track"></a>
+
+### Track
+Describes a media track
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [TrackType](#fishjam-notifications-TrackType) |  |  |
+| metadata | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="fishjam-notifications-TrackEncoding"></a>
+
+### TrackEncoding
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TRACK_ENCODING_UNSPECIFIED | 0 |  |
+| TRACK_ENCODING_PCM16 | 1 |  |
+| TRACK_ENCODING_OPUS | 2 |  |
+
+
+
+<a name="fishjam-notifications-TrackType"></a>
+
+### TrackType
+Defines types of tracks being published by peers and component
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TRACK_TYPE_UNSPECIFIED | 0 |  |
+| TRACK_TYPE_VIDEO | 1 |  |
+| TRACK_TYPE_AUDIO | 2 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="fishjam_peer_notifications-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -1481,7 +1540,7 @@ Notification sent when peer or component adds new track
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [Track](#fishjam-Track) |  |  |
+| track | [notifications.Track](#fishjam-notifications-Track) |  |  |
 
 
 
@@ -1499,7 +1558,7 @@ Notification sent when metadata of a multimedia track is updated
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [Track](#fishjam-Track) |  |  |
+| track | [notifications.Track](#fishjam-notifications-Track) |  |  |
 
 
 
@@ -1517,7 +1576,7 @@ Notification sent when a track is removed
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
-| track | [Track](#fishjam-Track) |  |  |
+| track | [notifications.Track](#fishjam-notifications-Track) |  |  |
 
 
 
@@ -1567,65 +1626,6 @@ Defines message groups for which peer can subscribe
 | ---- | ------ | ----------- |
 | EVENT_TYPE_UNSPECIFIED | 0 |  |
 | EVENT_TYPE_SERVER_NOTIFICATION | 1 |  |
-
-
- 
-
- 
-
- 
-
-
-
-<a name="fishjam_shared_notifications-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## fishjam/shared_notifications.proto
-
-
-
-<a name="fishjam-Track"></a>
-
-### Track
-Describes a media track
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [TrackType](#fishjam-TrackType) |  |  |
-| metadata | [string](#string) |  |  |
-
-
-
-
-
- 
-
-
-<a name="fishjam-TrackEncoding"></a>
-
-### TrackEncoding
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TRACK_ENCODING_UNSPECIFIED | 0 |  |
-| TRACK_ENCODING_PCM16 | 1 |  |
-| TRACK_ENCODING_OPUS | 2 |  |
-
-
-
-<a name="fishjam-TrackType"></a>
-
-### TrackType
-Defines types of tracks being published by peers and component
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TRACK_TYPE_UNSPECIFIED | 0 |  |
-| TRACK_TYPE_VIDEO | 1 |  |
-| TRACK_TYPE_AUDIO | 2 |  |
 
 
  

@@ -11,7 +11,7 @@ defmodule Fishjam.AgentRequest.AddTrack.CodecParameters do
 
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
-  field :encoding, 1, type: Fishjam.TrackEncoding, enum: true
+  field :encoding, 1, type: Fishjam.Notifications.TrackEncoding, enum: true
   field :sample_rate, 2, type: :uint32, json_name: "sampleRate"
   field :channels, 3, type: :uint32
 end
@@ -21,7 +21,7 @@ defmodule Fishjam.AgentRequest.AddTrack do
 
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
-  field :track, 1, type: Fishjam.Track
+  field :track, 1, type: Fishjam.Notifications.Track
 
   field :codec_params, 2,
     type: Fishjam.AgentRequest.AddTrack.CodecParameters,
@@ -79,7 +79,7 @@ defmodule Fishjam.AgentResponse.TrackData do
   use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
 
   field :peer_id, 1, type: :string, json_name: "peerId"
-  field :track, 2, type: Fishjam.Track
+  field :track, 2, type: Fishjam.Notifications.Track
   field :data, 3, type: :bytes
 end
 

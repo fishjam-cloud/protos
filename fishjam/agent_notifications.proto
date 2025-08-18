@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fishjam;
 
-import "fishjam/shared_notifications.proto";
+import "fishjam/notifications/shared.proto";
 
 // Defines any type of message passed from agent peer to Fishjam
 message AgentRequest {
@@ -15,7 +15,7 @@ message AgentRequest {
   message AddTrack {
     message CodecParameters {
       // The format of the input stream, defaults to pcm16
-      fishjam.TrackEncoding encoding = 1;
+      notifications.TrackEncoding encoding = 1;
       // The sample rate of the input stream, may be omitted for opus
       uint32 sample_rate = 2;
       // The number of channels. 1 means mono, 2 means stereo
@@ -23,7 +23,7 @@ message AgentRequest {
     }
 
     // Specification of the track to be added
-    fishjam.Track track = 1;
+    notifications.Track track = 1;
     // Parameters of the input data stream
     CodecParameters codec_params = 2;
   }
@@ -55,7 +55,7 @@ message AgentResponse {
   // Notification containing a chunk of a track's data stream
   message TrackData {
     string peer_id = 1;
-    fishjam.Track track = 2;
+    notifications.Track track = 2;
     bytes data = 3;
   }
 
