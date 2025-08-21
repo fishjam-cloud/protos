@@ -1,3 +1,13 @@
+defmodule Fishjam.ServerMessage.PeerType do
+  @moduledoc false
+
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :PEER_TYPE_UNSPECIFIED, 0
+  field :PEER_TYPE_WEBRTC, 1
+  field :PEER_TYPE_AGENT, 2
+end
+
 defmodule Fishjam.ServerMessage.EventType do
   @moduledoc false
 
@@ -22,6 +32,7 @@ defmodule Fishjam.ServerMessage.PeerAdded do
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
+  field :peer_type, 3, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.PeerDeleted do
@@ -31,6 +42,7 @@ defmodule Fishjam.ServerMessage.PeerDeleted do
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
+  field :peer_type, 3, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.PeerConnected do
@@ -40,6 +52,7 @@ defmodule Fishjam.ServerMessage.PeerConnected do
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
+  field :peer_type, 3, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.PeerDisconnected do
@@ -49,6 +62,7 @@ defmodule Fishjam.ServerMessage.PeerDisconnected do
 
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
+  field :peer_type, 3, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.PeerCrashed do
@@ -59,6 +73,7 @@ defmodule Fishjam.ServerMessage.PeerCrashed do
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
   field :reason, 3, type: :string
+  field :peer_type, 4, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.ComponentCrashed do
