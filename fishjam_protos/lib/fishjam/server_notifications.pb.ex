@@ -164,6 +164,7 @@ defmodule Fishjam.ServerMessage.PeerMetadataUpdated do
   field :room_id, 1, type: :string, json_name: "roomId"
   field :peer_id, 2, type: :string, json_name: "peerId"
   field :metadata, 3, type: :string
+  field :peer_type, 4, type: Fishjam.ServerMessage.PeerType, json_name: "peerType", enum: true
 end
 
 defmodule Fishjam.ServerMessage.TrackAdded do
