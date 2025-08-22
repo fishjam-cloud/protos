@@ -11,28 +11,38 @@ message ServerMessage {
     string room_id = 1;
   }
 
+  enum PeerType {
+    PEER_TYPE_UNSPECIFIED = 0;
+    PEER_TYPE_WEBRTC = 1;
+    PEER_TYPE_AGENT = 2;
+  }
+
   // Notification sent when a peer is added
   message PeerAdded {
     string room_id = 1;
     string peer_id = 2;
+    PeerType peer_type = 3;
   }
 
   // Notification sent when a peer is removed
   message PeerDeleted {
     string room_id = 1;
     string peer_id = 2;
+    PeerType peer_type = 3;
   }
 
   // Notification sent when a peer connects
   message PeerConnected {
     string room_id = 1;
     string peer_id = 2;
+    PeerType peer_type = 3;
   }
 
   // Notification sent when a peer disconnects from FJ
   message PeerDisconnected {
     string room_id = 1;
     string peer_id = 2;
+    PeerType peer_type = 3;
   }
 
   // Notification sent when a peer crashes
@@ -40,6 +50,7 @@ message ServerMessage {
     string room_id = 1;
     string peer_id = 2;
     string reason = 3;
+    PeerType peer_type = 4;
   }
 
   // Notification sent when a component crashes

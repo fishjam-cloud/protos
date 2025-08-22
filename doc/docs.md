@@ -108,6 +108,7 @@
     - [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected)
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
+    - [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -1336,6 +1337,7 @@ Notification sent when a peer is added
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
@@ -1352,6 +1354,7 @@ Notification sent when a peer connects
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
@@ -1369,6 +1372,7 @@ Notification sent when a peer crashes
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | reason | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
@@ -1385,6 +1389,7 @@ Notification sent when a peer is removed
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
@@ -1401,6 +1406,7 @@ Notification sent when a peer disconnects from FJ
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
@@ -1626,6 +1632,19 @@ Defines message groups for which peer can subscribe
 | ---- | ------ | ----------- |
 | EVENT_TYPE_UNSPECIFIED | 0 |  |
 | EVENT_TYPE_SERVER_NOTIFICATION | 1 |  |
+
+
+
+<a name="fishjam-ServerMessage-PeerType"></a>
+
+### ServerMessage.PeerType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PEER_TYPE_UNSPECIFIED | 0 |  |
+| PEER_TYPE_WEBRTC | 1 |  |
+| PEER_TYPE_AGENT | 2 |  |
 
 
  
