@@ -115,6 +115,7 @@ message ServerMessage {
     string room_id = 1;
     string peer_id = 2;
     string metadata = 3;
+    PeerType peer_type = 4;
   }
 
   // Notification sent when peer or component adds new track

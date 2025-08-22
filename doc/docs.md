@@ -1424,6 +1424,7 @@ Notification sent when peer updates its metadata
 | room_id | [string](#string) |  |  |
 | peer_id | [string](#string) |  |  |
 | metadata | [string](#string) |  |  |
+| peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
 
 
 
