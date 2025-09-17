@@ -44,16 +44,12 @@ message AgentRequest {
     string track_id = 1;
   }
 
-  // Interrupts all of the agent's outgoing tracks, preventing already queued audio from being played
-  message InterruptAllTracks {}
-
   oneof content {
     AuthRequest auth_request = 1;
     AddTrack add_track = 2;
     RemoveTrack remove_track = 3;
     TrackData track_data = 4;
     InterruptTrack interrupt_track = 5;
-    InterruptAllTracks interrupt_all_tracks = 6;
   }
 }
 
