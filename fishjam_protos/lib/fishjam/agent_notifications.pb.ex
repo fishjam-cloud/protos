@@ -45,6 +45,20 @@ defmodule Fishjam.AgentRequest.TrackData do
   field :data, 2, type: :bytes
 end
 
+defmodule Fishjam.AgentRequest.InterruptTrack do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+end
+
+defmodule Fishjam.AgentRequest.InterruptAllTracks do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+end
+
 defmodule Fishjam.AgentRequest do
   @moduledoc false
 
@@ -65,6 +79,16 @@ defmodule Fishjam.AgentRequest do
     oneof: 0
 
   field :track_data, 4, type: Fishjam.AgentRequest.TrackData, json_name: "trackData", oneof: 0
+
+  field :interrupt_track, 5,
+    type: Fishjam.AgentRequest.InterruptTrack,
+    json_name: "interruptTrack",
+    oneof: 0
+
+  field :interrupt_all_tracks, 6,
+    type: Fishjam.AgentRequest.InterruptAllTracks,
+    json_name: "interruptAllTracks",
+    oneof: 0
 end
 
 defmodule Fishjam.AgentResponse.Authenticated do
