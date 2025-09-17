@@ -8,6 +8,8 @@
     - [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack)
     - [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters)
     - [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest)
+    - [AgentRequest.InterruptAllTracks](#fishjam-AgentRequest-InterruptAllTracks)
+    - [AgentRequest.InterruptTrack](#fishjam-AgentRequest-InterruptTrack)
     - [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack)
     - [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData)
     - [AgentResponse](#fishjam-AgentResponse)
@@ -133,6 +135,8 @@ Defines any type of message passed from agent peer to Fishjam
 | add_track | [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack) |  |  |
 | remove_track | [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack) |  |  |
 | track_data | [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData) |  |  |
+| interrupt_track | [AgentRequest.InterruptTrack](#fishjam-AgentRequest-InterruptTrack) |  |  |
+| interrupt_all_tracks | [AgentRequest.InterruptAllTracks](#fishjam-AgentRequest-InterruptAllTracks) |  |  |
 
 
 
@@ -181,6 +185,31 @@ Request sent by agent, to authenticate to Fishjam server
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | token | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-InterruptAllTracks"></a>
+
+### AgentRequest.InterruptAllTracks
+Interrupts all of the agent&#39;s outgoing tracks, preventing already queued audio from being played
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-InterruptTrack"></a>
+
+### AgentRequest.InterruptTrack
+Interrupts an agent&#39;s outgoing track, preventing already queued audio from being played
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
 
 
 
