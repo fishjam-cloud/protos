@@ -39,11 +39,17 @@ message AgentRequest {
     bytes data = 2;
   }
 
+  // Interrupts an agent's outgoing track, preventing already queued audio from being played
+  message InterruptTrack {
+    string track_id = 1;
+  }
+
   oneof content {
     AuthRequest auth_request = 1;
     AddTrack add_track = 2;
     RemoveTrack remove_track = 3;
     TrackData track_data = 4;
+    InterruptTrack interrupt_track = 5;
   }
 }
 
