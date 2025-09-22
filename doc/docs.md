@@ -98,8 +98,8 @@
     - [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed)
     - [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated)
     - [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted)
-    - [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected)
-    - [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected)
+    - [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected)
+    - [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected)
     - [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest)
     - [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse)
     - [ServerMessage.TrackAdded](#fishjam-ServerMessage-TrackAdded)
@@ -1247,10 +1247,10 @@ Defines any type of message passed between FJ and server peer
 | track_metadata_updated | [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated) |  |  |
 | peer_added | [ServerMessage.PeerAdded](#fishjam-ServerMessage-PeerAdded) |  |  |
 | peer_deleted | [ServerMessage.PeerDeleted](#fishjam-ServerMessage-PeerDeleted) |  |  |
-| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  |  |
-| stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
+| streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
+| streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
 
 
 
@@ -1493,30 +1493,32 @@ Notification sent when a room is deleted
 
 
 
-<a name="fishjam-ServerMessage-StreamConnected"></a>
+<a name="fishjam-ServerMessage-StreamerConnected"></a>
 
-### ServerMessage.StreamConnected
-Notification sent when streamer successfully connects
+### ServerMessage.StreamerConnected
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | stream_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="fishjam-ServerMessage-StreamDisconnected"></a>
+<a name="fishjam-ServerMessage-StreamerDisconnected"></a>
 
-### ServerMessage.StreamDisconnected
-Notification sent when streamer disconnects
+### ServerMessage.StreamerDisconnected
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | stream_id | [string](#string) |  |  |
+| streamer_id | [string](#string) |  |  |
 
 
 
