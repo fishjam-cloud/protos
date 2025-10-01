@@ -206,6 +206,22 @@ defmodule Fishjam.ServerMessage.TrackMetadataUpdated do
   field :track, 4, type: Fishjam.Notifications.Track
 end
 
+defmodule Fishjam.ServerMessage.StreamConnected do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :stream_id, 1, type: :string, json_name: "streamId"
+end
+
+defmodule Fishjam.ServerMessage.StreamDisconnected do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :stream_id, 1, type: :string, json_name: "streamId"
+end
+
 defmodule Fishjam.ServerMessage.ViewerConnected do
   @moduledoc false
 
@@ -342,6 +358,18 @@ defmodule Fishjam.ServerMessage do
     type: Fishjam.ServerMessage.PeerDeleted,
     json_name: "peerDeleted",
     oneof: 0
+
+  field :stream_connected, 22,
+    type: Fishjam.ServerMessage.StreamConnected,
+    json_name: "streamConnected",
+    oneof: 0,
+    deprecated: true
+
+  field :stream_disconnected, 23,
+    type: Fishjam.ServerMessage.StreamDisconnected,
+    json_name: "streamDisconnected",
+    oneof: 0,
+    deprecated: true
 
   field :viewer_connected, 24,
     type: Fishjam.ServerMessage.ViewerConnected,
