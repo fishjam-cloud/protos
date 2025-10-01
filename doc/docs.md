@@ -98,6 +98,8 @@
     - [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed)
     - [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated)
     - [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted)
+    - [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected)
+    - [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected)
     - [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected)
     - [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected)
     - [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest)
@@ -1247,6 +1249,8 @@ Defines any type of message passed between FJ and server peer
 | track_metadata_updated | [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated) |  |  |
 | peer_added | [ServerMessage.PeerAdded](#fishjam-ServerMessage-PeerAdded) |  |  |
 | peer_deleted | [ServerMessage.PeerDeleted](#fishjam-ServerMessage-PeerDeleted) |  |  |
+| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
+| stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
@@ -1487,6 +1491,36 @@ Notification sent when a room is deleted
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-StreamConnected"></a>
+
+### ServerMessage.StreamConnected
+Notification sent when streamer successfully connects
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| stream_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-StreamDisconnected"></a>
+
+### ServerMessage.StreamDisconnected
+Notification sent when streamer disconnects
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| stream_id | [string](#string) |  |  |
 
 
 
