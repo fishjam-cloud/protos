@@ -170,6 +170,16 @@ message ServerMessage {
     string viewer_id = 2;
   }
 
+  message StreamerConnected {
+    string stream_id = 1;
+    string streamer_id = 2;
+  }
+
+  message StreamerDisconnected {
+    string stream_id = 1;
+    string streamer_id = 2;
+  }
+
   reserved 12;
 
   oneof content {
@@ -193,9 +203,11 @@ message ServerMessage {
     TrackMetadataUpdated track_metadata_updated = 19;
     PeerAdded peer_added = 20;
     PeerDeleted peer_deleted = 21;
-    StreamConnected stream_connected = 22;
-    StreamDisconnected stream_disconnected = 23;
+    StreamConnected stream_connected = 22 [deprecated = true];
+    StreamDisconnected stream_disconnected = 23 [deprecated = true];
     ViewerConnected viewer_connected = 24;
     ViewerDisconnected viewer_disconnected = 25;
+    StreamerConnected streamer_connected = 26;
+    StreamerDisconnected streamer_disconnected = 27;
   }
 }

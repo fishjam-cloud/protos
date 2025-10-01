@@ -240,6 +240,24 @@ defmodule Fishjam.ServerMessage.ViewerDisconnected do
   field :viewer_id, 2, type: :string, json_name: "viewerId"
 end
 
+defmodule Fishjam.ServerMessage.StreamerConnected do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :stream_id, 1, type: :string, json_name: "streamId"
+  field :streamer_id, 2, type: :string, json_name: "streamerId"
+end
+
+defmodule Fishjam.ServerMessage.StreamerDisconnected do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :stream_id, 1, type: :string, json_name: "streamId"
+  field :streamer_id, 2, type: :string, json_name: "streamerId"
+end
+
 defmodule Fishjam.ServerMessage do
   @moduledoc false
 
@@ -344,12 +362,14 @@ defmodule Fishjam.ServerMessage do
   field :stream_connected, 22,
     type: Fishjam.ServerMessage.StreamConnected,
     json_name: "streamConnected",
-    oneof: 0
+    oneof: 0,
+    deprecated: true
 
   field :stream_disconnected, 23,
     type: Fishjam.ServerMessage.StreamDisconnected,
     json_name: "streamDisconnected",
-    oneof: 0
+    oneof: 0,
+    deprecated: true
 
   field :viewer_connected, 24,
     type: Fishjam.ServerMessage.ViewerConnected,
@@ -359,5 +379,15 @@ defmodule Fishjam.ServerMessage do
   field :viewer_disconnected, 25,
     type: Fishjam.ServerMessage.ViewerDisconnected,
     json_name: "viewerDisconnected",
+    oneof: 0
+
+  field :streamer_connected, 26,
+    type: Fishjam.ServerMessage.StreamerConnected,
+    json_name: "streamerConnected",
+    oneof: 0
+
+  field :streamer_disconnected, 27,
+    type: Fishjam.ServerMessage.StreamerDisconnected,
+    json_name: "streamerDisconnected",
     oneof: 0
 end
