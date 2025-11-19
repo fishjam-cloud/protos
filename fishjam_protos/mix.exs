@@ -4,6 +4,7 @@ defmodule FishjamProtos.MixProject do
   def project do
     [
       app: :fishjam_protos,
+      # project version - bump-version.sh
       version: "0.4.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
