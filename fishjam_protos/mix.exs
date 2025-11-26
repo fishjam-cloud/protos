@@ -1,11 +1,12 @@
 defmodule FishjamProtos.MixProject do
   use Mix.Project
 
+  @release_version "0.4.0"
+
   def project do
     [
       app: :fishjam_protos,
-      # project version - bump-version.sh
-      version: "0.4.0",
+      version: @release_version,
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: ["lib"],

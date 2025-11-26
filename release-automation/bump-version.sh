@@ -5,7 +5,6 @@ set -e
 VERSION="$1"
 MIX_EXS="mix.exs"
 README="README.md"
-MARKER_VERSION="# project version - bump-version.sh"
 
 if [ -z "$VERSION" ]; then
     echo "Usage: $0 <version>"
@@ -23,26 +22,22 @@ if [ ! -f "$MIX_EXS" ]; then
     exit 1
 fi
 
-# Update version in mix.exs (Version line follows MARKER_VERSION)
-# - The substitution uses a regex that matches a literal `version: "`, then
-#   three groups of digits separated by dots (e.g. `1.2.3`), and the closing
-#   `"`. We capture the prefix and suffix and replace only the numeric part
-#   with the value of the shell variable `$VERSION`, keeping the surrounding
-#   text intact.
-if grep -q "$MARKER_VERSION" "$MIX_EXS"; then
-    sed -i.bak -E "/$MARKER_VERSION/{n;s/version: \"[0-9]+\.[0-9]+\.[0-9]+\"/version: \"$VERSION\"/;}" "$MIX_EXS"
+# Search and replace `@release_version "<version>"` to new version
+if grep -q "@release_version" "$MIX_EXS"; then
+    sed -i.bak -E 's/(@release_version[[:space:]]*")[^"]*/\1'"$VERSION"'/' "$MIX_EXS"
     rm -f "$MIX_EXS.bak"
 else
-    echo "Error: Marker '$MARKER_VERSION' not found in $MIX_EXS. Please add it above the version line."
+    echo "Error: @release_version line not found in $MIX_EXS"
     exit 1
 fi
 
-# Confirm replacement
-if ! grep -q "version: \"$VERSION\"" "$MIX_EXS"; then
+# Confirm replacement: accept either a literal version string or the module attribute
+if grep -q "@release_version \"$VERSION\"" "$MIX_EXS"; then
+    echo "Updated $MIX_EXS to $VERSION"
+else
     echo "Error: Failed to update version in $MIX_EXS via regex"
     exit 1
 fi
-echo "Updated $MIX_EXS to $VERSION"
 
 # Update version in README.md if present
 if [ -f "$README" ]; then
