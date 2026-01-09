@@ -85,6 +85,8 @@
     - [ServerMessage](#fishjam-ServerMessage)
     - [ServerMessage.AuthRequest](#fishjam-ServerMessage-AuthRequest)
     - [ServerMessage.Authenticated](#fishjam-ServerMessage-Authenticated)
+    - [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded)
+    - [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved)
     - [ServerMessage.ComponentCrashed](#fishjam-ServerMessage-ComponentCrashed)
     - [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable)
     - [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed)
@@ -1255,6 +1257,8 @@ Defines any type of message passed between FJ and server peer
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
+| channel_added | [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded) |  |  |
+| channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
 
 
 
@@ -1280,6 +1284,42 @@ Request sent by peer, to authenticate to FJ server
 
 ### ServerMessage.Authenticated
 Response sent by FJ, confirming successfull authentication
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-ChannelAdded"></a>
+
+### ServerMessage.ChannelAdded
+Notification sent when a peer creates a channel
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| component_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-ChannelRemoved"></a>
+
+### ServerMessage.ChannelRemoved
+Notification sent when a peer deletes a channel
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| component_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
 
 
 

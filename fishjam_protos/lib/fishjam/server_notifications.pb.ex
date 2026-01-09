@@ -206,6 +206,32 @@ defmodule Fishjam.ServerMessage.TrackMetadataUpdated do
   field :track, 4, type: Fishjam.Notifications.Track
 end
 
+defmodule Fishjam.ServerMessage.ChannelAdded do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  oneof :endpoint_info, 0
+
+  field :room_id, 1, type: :string, json_name: "roomId"
+  field :peer_id, 2, type: :string, json_name: "peerId", oneof: 0
+  field :component_id, 3, type: :string, json_name: "componentId", oneof: 0
+  field :channel_id, 4, type: :string, json_name: "channelId"
+end
+
+defmodule Fishjam.ServerMessage.ChannelRemoved do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  oneof :endpoint_info, 0
+
+  field :room_id, 1, type: :string, json_name: "roomId"
+  field :peer_id, 2, type: :string, json_name: "peerId", oneof: 0
+  field :component_id, 3, type: :string, json_name: "componentId", oneof: 0
+  field :channel_id, 4, type: :string, json_name: "channelId"
+end
+
 defmodule Fishjam.ServerMessage.StreamConnected do
   @moduledoc false
 
@@ -389,5 +415,15 @@ defmodule Fishjam.ServerMessage do
   field :streamer_disconnected, 27,
     type: Fishjam.ServerMessage.StreamerDisconnected,
     json_name: "streamerDisconnected",
+    oneof: 0
+
+  field :channel_added, 28,
+    type: Fishjam.ServerMessage.ChannelAdded,
+    json_name: "channelAdded",
+    oneof: 0
+
+  field :channel_removed, 29,
+    type: Fishjam.ServerMessage.ChannelRemoved,
+    json_name: "channelRemoved",
     oneof: 0
 end

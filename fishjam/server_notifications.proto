@@ -148,6 +148,26 @@ message ServerMessage {
     notifications.Track track = 4;
   }
 
+  // Notification sent when a peer creates a channel
+  message ChannelAdded {
+    string room_id = 1;
+    oneof endpoint_info {
+      string peer_id = 2;
+      string component_id = 3;
+    }
+    string channel_id = 4;
+  }
+
+  // Notification sent when a peer deletes a channel
+  message ChannelRemoved {
+    string room_id = 1;
+    oneof endpoint_info {
+      string peer_id = 2;
+      string component_id = 3;
+    }
+    string channel_id = 4;
+  }
+
   // Notification sent when streamer successfully connects
   message StreamConnected {
     string stream_id = 1;
@@ -209,5 +229,7 @@ message ServerMessage {
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
+    ChannelAdded channel_added = 28;
+    ChannelRemoved channel_removed = 29;
   }
 }
