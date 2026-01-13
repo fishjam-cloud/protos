@@ -74,7 +74,7 @@ message ServerMessage {
     EVENT_TYPE_SERVER_NOTIFICATION = 1;
   }
 
-  // Request sent by peer to subsribe for certain message type
+  // Request sent by peer to subscribe for certain message type
   message SubscribeRequest {
     EventType event_type = 1;
   }
@@ -100,7 +100,7 @@ message ServerMessage {
     string component_id = 2;
   }
 
-  // Notification sent when the HLS recording is successfully uploded to AWS S3
+  // Notification sent when the HLS recording is successfully uploaded to AWS S3
   message HlsUploaded {
     string room_id = 1;
   }

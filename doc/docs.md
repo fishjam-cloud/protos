@@ -407,7 +407,7 @@ The &#34;mid&#34; is an identifier used to associate an RTP packet with an MLine
 | ----- | ---- | ----- | ----------- |
 | sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
 | track_id_to_metadata_json | [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry) | repeated |  |
-| track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited. |
+| track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be omitted. |
 | mid_to_track_id | [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry) | repeated |  |
 
 
@@ -962,7 +962,7 @@ Sent to informs that one of the peers has removed one or more tracks.
 <a name="fishjam-media_events-server-MediaEvent-VadNotification"></a>
 
 ### MediaEvent.VadNotification
-Sent to inform that the track denoted by `trackId` has changed their voice actiivty
+Sent to inform that the track denoted by `trackId` has changed their voice activity
 For this notification to work, the server must be configured to use VAD extension
 and the sender must support it.
 
@@ -1199,7 +1199,7 @@ Response sent by FJ, confirming successful authentication
 <a name="fishjam-PeerMessage-MediaEvent"></a>
 
 ### PeerMessage.MediaEvent
-Any type of WebRTC messages passed betweend FJ and peer
+Any type of WebRTC messages passed between FJ and peer
 
 
 | Field | Type | Label | Description |
@@ -1410,7 +1410,7 @@ Notification sent when the upload of HLS recording to AWS S3 fails
 <a name="fishjam-ServerMessage-HlsUploaded"></a>
 
 ### ServerMessage.HlsUploaded
-Notification sent when the HLS recording is successfully uploded to AWS S3
+Notification sent when the HLS recording is successfully uploaded to AWS S3
 
 
 | Field | Type | Label | Description |
@@ -1636,7 +1636,7 @@ Notification sent when streamer disconnects
 <a name="fishjam-ServerMessage-SubscribeRequest"></a>
 
 ### ServerMessage.SubscribeRequest
-Request sent by peer to subsribe for certain message type
+Request sent by peer to subscribe for certain message type
 
 
 | Field | Type | Label | Description |

@@ -32,7 +32,7 @@ message PeerMessage {
     string data = 1;
   }
 
-  // Any type of WebRTC messages passed betweend FJ and peer
+  // Any type of WebRTC messages passed between FJ and peer
   message MediaEvent {
     string data = 1;
   }
