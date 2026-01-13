@@ -34,7 +34,7 @@ message MediaEvent {
     string metadata_json = 2;
   }
 
-  // Sent when peer wants to renegatiate connection due to adding a track or removing a track
+  // Sent when peer wants to renegotiate connection due to adding a track or removing a track
   message RenegotiateTracks {}
 
   // Sent as a response to `offerData` media event during renegotiation

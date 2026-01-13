@@ -14,7 +14,7 @@ git submodule add https://github.com/fishjam-cloud/protos.git`
 
 ## Generating elixir protos
 
-To run the `fishjam_protos/compile_proto.sh` one need to install the proto plugin for elixir.
+To run the `fishjam_protos/compile_proto.sh` one needs to install the proto plugin for elixir.
 
 To install the plugin:
 

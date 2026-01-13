@@ -16,3 +16,16 @@ enum Variant {
   VARIANT_MEDIUM = 2;
   VARIANT_HIGH = 3;
 }
+
+message ChannelMessageBinaryPayload {
+  bytes data = 1;
+}
+
+message ChannelMessage {
+  string source = 1;
+  repeated string destinations = 2;
+
+  oneof payload {
+    ChannelMessageBinaryPayload binary = 3;
+  }
+}

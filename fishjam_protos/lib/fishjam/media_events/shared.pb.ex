@@ -19,3 +19,23 @@ defmodule Fishjam.MediaEvents.Candidate do
   field :sdp_mid, 3, type: :string, json_name: "sdpMid"
   field :username_fragment, 4, type: :string, json_name: "usernameFragment"
 end
+
+defmodule Fishjam.MediaEvents.ChannelMessageBinaryPayload do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  field :data, 1, type: :bytes
+end
+
+defmodule Fishjam.MediaEvents.ChannelMessage do
+  @moduledoc false
+
+  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+
+  oneof :payload, 0
+
+  field :source, 1, type: :string
+  field :destinations, 2, repeated: true, type: :string
+  field :binary, 3, type: Fishjam.MediaEvents.ChannelMessageBinaryPayload, oneof: 0
+end

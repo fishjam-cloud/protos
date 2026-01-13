@@ -63,6 +63,8 @@
   
 - [fishjam/media_events/shared.proto](#fishjam_media_events_shared-proto)
     - [Candidate](#fishjam-media_events-Candidate)
+    - [ChannelMessage](#fishjam-media_events-ChannelMessage)
+    - [ChannelMessageBinaryPayload](#fishjam-media_events-ChannelMessageBinaryPayload)
   
     - [Variant](#fishjam-media_events-Variant)
   
@@ -386,7 +388,7 @@ Sent when client enables one of the track variants
 <a name="fishjam-media_events-peer-MediaEvent-RenegotiateTracks"></a>
 
 ### MediaEvent.RenegotiateTracks
-Sent when peer wants to renegatiate connection due to adding a track or removing a track
+Sent when peer wants to renegotiate connection due to adding a track or removing a track
 
 
 
@@ -1016,6 +1018,38 @@ Contains information about an ICE candidate which will be sent to the peer/serve
 | sdp_m_line_index | [int32](#int32) |  |  |
 | sdp_mid | [string](#string) |  |  |
 | username_fragment | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-ChannelMessage"></a>
+
+### ChannelMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| source | [string](#string) |  |  |
+| destinations | [string](#string) | repeated |  |
+| binary | [ChannelMessageBinaryPayload](#fishjam-media_events-ChannelMessageBinaryPayload) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-ChannelMessageBinaryPayload"></a>
+
+### ChannelMessageBinaryPayload
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data | [bytes](#bytes) |  |  |
 
 
 
