@@ -1,7 +1,11 @@
 defmodule Fishjam.MediaEvents.Variant do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    enum: true,
+    full_name: "fishjam.media_events.Variant",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :VARIANT_UNSPECIFIED, 0
   field :VARIANT_LOW, 1
@@ -12,7 +16,10 @@ end
 defmodule Fishjam.MediaEvents.Candidate do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.Candidate",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :candidate, 1, type: :string
   field :sdp_m_line_index, 2, type: :int32, json_name: "sdpMLineIndex"
@@ -23,7 +30,10 @@ end
 defmodule Fishjam.MediaEvents.ChannelMessageBinaryPayload do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.ChannelMessageBinaryPayload",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :data, 1, type: :bytes
 end
@@ -31,7 +41,10 @@ end
 defmodule Fishjam.MediaEvents.ChannelMessage do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.ChannelMessage",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   oneof :payload, 0
 
