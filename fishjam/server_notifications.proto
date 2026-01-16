@@ -74,7 +74,7 @@ message ServerMessage {
     EVENT_TYPE_SERVER_NOTIFICATION = 1;
   }
 
-  // Request sent by peer to subsribe for certain message type
+  // Request sent by peer to subscribe for certain message type
   message SubscribeRequest {
     EventType event_type = 1;
   }
@@ -100,7 +100,7 @@ message ServerMessage {
     string component_id = 2;
   }
 
-  // Notification sent when the HLS recording is successfully uploded to AWS S3
+  // Notification sent when the HLS recording is successfully uploaded to AWS S3
   message HlsUploaded {
     string room_id = 1;
   }
@@ -146,6 +146,26 @@ message ServerMessage {
       string component_id = 3;
     }
     notifications.Track track = 4;
+  }
+
+  // Notification sent when a peer creates a channel
+  message ChannelAdded {
+    string room_id = 1;
+    oneof endpoint_info {
+      string peer_id = 2;
+      string component_id = 3;
+    }
+    string channel_id = 4;
+  }
+
+  // Notification sent when a peer deletes a channel
+  message ChannelRemoved {
+    string room_id = 1;
+    oneof endpoint_info {
+      string peer_id = 2;
+      string component_id = 3;
+    }
+    string channel_id = 4;
   }
 
   // Notification sent when streamer successfully connects
@@ -209,5 +229,7 @@ message ServerMessage {
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
+    ChannelAdded channel_added = 28;
+    ChannelRemoved channel_removed = 29;
   }
 }

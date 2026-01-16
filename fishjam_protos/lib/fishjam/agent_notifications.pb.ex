@@ -1,7 +1,10 @@
 defmodule Fishjam.AgentRequest.AuthRequest do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.AuthRequest",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :token, 1, type: :string
 end
@@ -9,7 +12,10 @@ end
 defmodule Fishjam.AgentRequest.AddTrack.CodecParameters do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.AddTrack.CodecParameters",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :encoding, 1, type: Fishjam.Notifications.TrackEncoding, enum: true
   field :sample_rate, 2, type: :uint32, json_name: "sampleRate"
@@ -19,7 +25,10 @@ end
 defmodule Fishjam.AgentRequest.AddTrack do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.AddTrack",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :track, 1, type: Fishjam.Notifications.Track
 
@@ -31,7 +40,10 @@ end
 defmodule Fishjam.AgentRequest.RemoveTrack do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.RemoveTrack",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
 end
@@ -39,7 +51,10 @@ end
 defmodule Fishjam.AgentRequest.TrackData do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.TrackData",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
   field :data, 2, type: :bytes
@@ -48,7 +63,10 @@ end
 defmodule Fishjam.AgentRequest.InterruptTrack do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.InterruptTrack",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
 end
@@ -56,7 +74,10 @@ end
 defmodule Fishjam.AgentRequest do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentRequest",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   oneof :content, 0
 
@@ -83,13 +104,19 @@ end
 defmodule Fishjam.AgentResponse.Authenticated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentResponse.Authenticated",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 end
 
 defmodule Fishjam.AgentResponse.TrackData do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentResponse.TrackData",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :peer_id, 1, type: :string, json_name: "peerId"
   field :track, 2, type: Fishjam.Notifications.Track
@@ -99,7 +126,10 @@ end
 defmodule Fishjam.AgentResponse do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.AgentResponse",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   oneof :content, 0
 

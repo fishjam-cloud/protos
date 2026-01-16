@@ -1,7 +1,11 @@
 defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status do
   @moduledoc false
 
-  use Protobuf, enum: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    enum: true,
+    full_name: "fishjam.media_events.server.MediaEvent.VadNotification.Status",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :STATUS_UNSPECIFIED, 0
   field :STATUS_SILENCE, 1
@@ -11,7 +15,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Track.SimulcastConfig do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Track.SimulcastConfig",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :enabled, 1, type: :bool
 
@@ -31,7 +38,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Track do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Track",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :metadata_json, 1, type: :string, json_name: "metadataJson"
 
@@ -43,7 +53,11 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint.TrackIdToTrackEntry do
   @moduledoc false
 
-  use Protobuf, map: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Endpoint.TrackIdToTrackEntry",
+    map: true,
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :key, 1, type: :string
   field :value, 2, type: Fishjam.MediaEvents.Server.MediaEvent.Track
@@ -52,7 +66,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Endpoint do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Endpoint",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_type, 2, type: :string, json_name: "endpointType"
   field :metadata_json, 3, type: :string, json_name: "metadataJson"
@@ -67,7 +84,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.IceServer do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.IceServer",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :credential, 1, type: :string
   field :urls, 2, repeated: true, type: :string
@@ -77,7 +97,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointUpdated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.EndpointUpdated",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :metadata_json, 2, type: :string, json_name: "metadataJson"
@@ -86,7 +109,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackUpdated do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TrackUpdated",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :track_id, 2, type: :string, json_name: "trackId"
@@ -96,7 +122,11 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksAdded.TrackIdToTrackEntry do
   @moduledoc false
 
-  use Protobuf, map: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TracksAdded.TrackIdToTrackEntry",
+    map: true,
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :key, 1, type: :string
   field :value, 2, type: Fishjam.MediaEvents.Server.MediaEvent.Track
@@ -105,7 +135,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksAdded do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TracksAdded",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
 
@@ -119,7 +152,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TracksRemoved do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TracksRemoved",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :track_ids, 2, repeated: true, type: :string, json_name: "trackIds"
@@ -128,7 +164,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointAdded do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.EndpointAdded",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :metadata_json, 2, type: :string, json_name: "metadataJson"
@@ -137,7 +176,11 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Connected.EndpointIdToEndpointEntry do
   @moduledoc false
 
-  use Protobuf, map: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Connected.EndpointIdToEndpointEntry",
+    map: true,
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :key, 1, type: :string
   field :value, 2, type: Fishjam.MediaEvents.Server.MediaEvent.Endpoint
@@ -146,7 +189,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Connected do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Connected",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
 
@@ -165,7 +211,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.EndpointRemoved do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.EndpointRemoved",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
 end
@@ -173,7 +222,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.Error do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.Error",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :message, 1, type: :string
 end
@@ -181,7 +233,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData.TrackTypes do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.OfferData.TrackTypes",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :audio, 1, type: :int32
   field :video, 2, type: :int32
@@ -190,7 +245,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.OfferData do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.OfferData",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :tracks_types, 1,
     type: Fishjam.MediaEvents.Server.MediaEvent.OfferData.TrackTypes,
@@ -200,7 +258,11 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer.MidToTrackIdEntry do
   @moduledoc false
 
-  use Protobuf, map: true, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.SdpAnswer.MidToTrackIdEntry",
+    map: true,
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :key, 1, type: :string
   field :value, 2, type: :string
@@ -209,7 +271,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.SdpAnswer do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.SdpAnswer",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :sdp, 1, type: :string
 
@@ -223,7 +288,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.VadNotification do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.VadNotification",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
   field :status, 2, type: Fishjam.MediaEvents.Server.MediaEvent.VadNotification.Status, enum: true
@@ -232,7 +300,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantSwitched do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TrackVariantSwitched",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :track_id, 2, type: :string, json_name: "trackId"
@@ -242,7 +313,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantDisabled do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TrackVariantDisabled",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :track_id, 2, type: :string, json_name: "trackId"
@@ -252,7 +326,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent.TrackVariantEnabled do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent.TrackVariantEnabled",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   field :endpoint_id, 1, type: :string, json_name: "endpointId"
   field :track_id, 2, type: :string, json_name: "trackId"
@@ -262,7 +339,10 @@ end
 defmodule Fishjam.MediaEvents.Server.MediaEvent do
   @moduledoc false
 
-  use Protobuf, protoc_gen_elixir_version: "0.15.0", syntax: :proto3
+  use Protobuf,
+    full_name: "fishjam.media_events.server.MediaEvent",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
 
   oneof :content, 0
 

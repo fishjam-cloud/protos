@@ -63,6 +63,8 @@
   
 - [fishjam/media_events/shared.proto](#fishjam_media_events_shared-proto)
     - [Candidate](#fishjam-media_events-Candidate)
+    - [ChannelMessage](#fishjam-media_events-ChannelMessage)
+    - [ChannelMessageBinaryPayload](#fishjam-media_events-ChannelMessageBinaryPayload)
   
     - [Variant](#fishjam-media_events-Variant)
   
@@ -85,6 +87,8 @@
     - [ServerMessage](#fishjam-ServerMessage)
     - [ServerMessage.AuthRequest](#fishjam-ServerMessage-AuthRequest)
     - [ServerMessage.Authenticated](#fishjam-ServerMessage-Authenticated)
+    - [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded)
+    - [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved)
     - [ServerMessage.ComponentCrashed](#fishjam-ServerMessage-ComponentCrashed)
     - [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable)
     - [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed)
@@ -384,7 +388,7 @@ Sent when client enables one of the track variants
 <a name="fishjam-media_events-peer-MediaEvent-RenegotiateTracks"></a>
 
 ### MediaEvent.RenegotiateTracks
-Sent when peer wants to renegatiate connection due to adding a track or removing a track
+Sent when peer wants to renegotiate connection due to adding a track or removing a track
 
 
 
@@ -403,7 +407,7 @@ The &#34;mid&#34; is an identifier used to associate an RTP packet with an MLine
 | ----- | ---- | ----- | ----------- |
 | sdp | [string](#string) |  | The value of the `sessionDescription.sdp` |
 | track_id_to_metadata_json | [MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToMetadataJsonEntry) | repeated |  |
-| track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited. |
+| track_id_to_bitrates | [MediaEvent.SdpOffer.TrackIdToBitratesEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-TrackIdToBitratesEntry) | repeated | Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be omitted. |
 | mid_to_track_id | [MediaEvent.SdpOffer.MidToTrackIdEntry](#fishjam-media_events-peer-MediaEvent-SdpOffer-MidToTrackIdEntry) | repeated |  |
 
 
@@ -958,7 +962,7 @@ Sent to informs that one of the peers has removed one or more tracks.
 <a name="fishjam-media_events-server-MediaEvent-VadNotification"></a>
 
 ### MediaEvent.VadNotification
-Sent to inform that the track denoted by `trackId` has changed their voice actiivty
+Sent to inform that the track denoted by `trackId` has changed their voice activity
 For this notification to work, the server must be configured to use VAD extension
 and the sender must support it.
 
@@ -1014,6 +1018,38 @@ Contains information about an ICE candidate which will be sent to the peer/serve
 | sdp_m_line_index | [int32](#int32) |  |  |
 | sdp_mid | [string](#string) |  |  |
 | username_fragment | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-ChannelMessage"></a>
+
+### ChannelMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| source | [string](#string) |  |  |
+| destinations | [string](#string) | repeated |  |
+| binary | [ChannelMessageBinaryPayload](#fishjam-media_events-ChannelMessageBinaryPayload) |  |  |
+
+
+
+
+
+
+<a name="fishjam-media_events-ChannelMessageBinaryPayload"></a>
+
+### ChannelMessageBinaryPayload
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data | [bytes](#bytes) |  |  |
 
 
 
@@ -1163,7 +1199,7 @@ Response sent by FJ, confirming successful authentication
 <a name="fishjam-PeerMessage-MediaEvent"></a>
 
 ### PeerMessage.MediaEvent
-Any type of WebRTC messages passed betweend FJ and peer
+Any type of WebRTC messages passed between FJ and peer
 
 
 | Field | Type | Label | Description |
@@ -1255,6 +1291,8 @@ Defines any type of message passed between FJ and server peer
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
+| channel_added | [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded) |  |  |
+| channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
 
 
 
@@ -1280,6 +1318,42 @@ Request sent by peer, to authenticate to FJ server
 
 ### ServerMessage.Authenticated
 Response sent by FJ, confirming successfull authentication
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-ChannelAdded"></a>
+
+### ServerMessage.ChannelAdded
+Notification sent when a peer creates a channel
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| component_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-ChannelRemoved"></a>
+
+### ServerMessage.ChannelRemoved
+Notification sent when a peer deletes a channel
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| component_id | [string](#string) |  |  |
+| channel_id | [string](#string) |  |  |
 
 
 
@@ -1336,7 +1410,7 @@ Notification sent when the upload of HLS recording to AWS S3 fails
 <a name="fishjam-ServerMessage-HlsUploaded"></a>
 
 ### ServerMessage.HlsUploaded
-Notification sent when the HLS recording is successfully uploded to AWS S3
+Notification sent when the HLS recording is successfully uploaded to AWS S3
 
 
 | Field | Type | Label | Description |
@@ -1562,7 +1636,7 @@ Notification sent when streamer disconnects
 <a name="fishjam-ServerMessage-SubscribeRequest"></a>
 
 ### ServerMessage.SubscribeRequest
-Request sent by peer to subsribe for certain message type
+Request sent by peer to subscribe for certain message type
 
 
 | Field | Type | Label | Description |

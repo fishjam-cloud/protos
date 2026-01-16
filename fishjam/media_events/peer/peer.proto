@@ -34,7 +34,7 @@ message MediaEvent {
     string metadata_json = 2;
   }
 
-  // Sent when peer wants to renegatiate connection due to adding a track or removing a track
+  // Sent when peer wants to renegotiate connection due to adding a track or removing a track
   message RenegotiateTracks {}
 
   // Sent as a response to `offerData` media event during renegotiation
@@ -43,7 +43,7 @@ message MediaEvent {
   message SdpOffer {
     string sdp = 1; // The value of the `sessionDescription.sdp`
     map<string, string> track_id_to_metadata_json = 2;
-    map<string, TrackBitrates> track_id_to_bitrates = 3; // Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be ommited.
+    map<string, TrackBitrates> track_id_to_bitrates = 3; // Maps track_id to its bitrate. The track_id in the TrackBitrates message is ignored (we use the map key), so it can be omitted.
     map<string, string> mid_to_track_id = 4;
   }
 

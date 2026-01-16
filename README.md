@@ -12,6 +12,16 @@ Use the command below:
 git submodule add https://github.com/fishjam-cloud/protos.git`
 ```
 
+## Generating elixir protos
+
+To run the `fishjam_protos/compile_proto.sh` one needs to install the proto plugin for elixir.
+
+To install the plugin:
+
+```bash
+mix escript.install hex protobuf 0.15.0 # or any other version
+```
+
 ## How to update docs
 
 Install [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) plugin.
@@ -22,7 +32,7 @@ Use the command below:
 find fishjam/ -name "*.proto" | sort | xargs protoc --doc_out=./doc --doc_opt=markdown,docs.md
 ```
 
-or 
+or
 
 ```command
 find fishjam -name "*.proto" | sort | xargs docker run --rm -v $(pwd)/doc:/out -v $(pwd):/protos pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
