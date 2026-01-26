@@ -22,10 +22,10 @@ defmodule Fishjam.PeerMessage.SdkDeprecation.Status do
     protoc_gen_elixir_version: "0.16.0",
     syntax: :proto3
 
-  field :UNSPECIFIED, 0
-  field :UP_TO_DATE, 1
-  field :DEPRECATED, 2
-  field :UNSUPPORTED, 3
+  field :STATUS_UNSPECIFIED, 0
+  field :STATUS_UP_TO_DATE, 1
+  field :STATUS_DEPRECATED, 2
+  field :STATUS_UNSUPPORTED, 3
 end
 
 defmodule Fishjam.PeerMessage.SdkDeprecation do

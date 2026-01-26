@@ -1269,10 +1269,10 @@ Defines types of rooms peers may connect to
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNSPECIFIED | 0 |  |
-| UP_TO_DATE | 1 |  |
-| DEPRECATED | 2 |  |
-| UNSUPPORTED | 3 |  |
+| STATUS_UNSPECIFIED | 0 |  |
+| STATUS_UP_TO_DATE | 1 |  |
+| STATUS_DEPRECATED | 2 |  |
+| STATUS_UNSUPPORTED | 3 |  |
 
 
  
