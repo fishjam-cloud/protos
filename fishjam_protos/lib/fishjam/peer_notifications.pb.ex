@@ -13,6 +13,33 @@ defmodule Fishjam.PeerMessage.RoomType do
   field :ROOM_TYPE_LIVESTREAM, 3
 end
 
+defmodule Fishjam.PeerMessage.SdkDeprecation.Status do
+  @moduledoc false
+
+  use Protobuf,
+    enum: true,
+    full_name: "fishjam.PeerMessage.SdkDeprecation.Status",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :UNSPECIFIED, 0
+  field :UP_TO_DATE, 1
+  field :DEPRECATED, 2
+  field :UNSUPPORTED, 3
+end
+
+defmodule Fishjam.PeerMessage.SdkDeprecation do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.PeerMessage.SdkDeprecation",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :status, 1, type: Fishjam.PeerMessage.SdkDeprecation.Status, enum: true
+  field :message, 2, type: :string
+end
+
 defmodule Fishjam.PeerMessage.Authenticated do
   @moduledoc false
 
@@ -22,7 +49,7 @@ defmodule Fishjam.PeerMessage.Authenticated do
     syntax: :proto3
 
   field :room_type, 1, type: Fishjam.PeerMessage.RoomType, json_name: "roomType", enum: true
-  field :sdk_deprecation_warning, 2, type: :string, json_name: "sdkDeprecationWarning"
+  field :sdk_deprecation, 2, type: Fishjam.PeerMessage.SdkDeprecation, json_name: "sdkDeprecation"
 end
 
 defmodule Fishjam.PeerMessage.AuthRequest do
