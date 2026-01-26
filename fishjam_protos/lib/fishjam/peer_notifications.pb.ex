@@ -22,6 +22,7 @@ defmodule Fishjam.PeerMessage.Authenticated do
     syntax: :proto3
 
   field :room_type, 1, type: Fishjam.PeerMessage.RoomType, json_name: "roomType", enum: true
+  field :sdk_deprecation_warning, 2, type: :string, json_name: "sdkDeprecationWarning"
 end
 
 defmodule Fishjam.PeerMessage.AuthRequest do

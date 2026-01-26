@@ -18,6 +18,7 @@ message PeerMessage {
   // Response sent by FJ, confirming successful authentication
   message Authenticated {
     RoomType room_type = 1;
+    string sdk_deprecation_warning = 2;
   }
 
   // Request sent by peer, to authenticate to FJ server

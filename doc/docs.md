@@ -1190,6 +1190,7 @@ Response sent by FJ, confirming successful authentication
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_type | [PeerMessage.RoomType](#fishjam-PeerMessage-RoomType) |  |  |
+| sdk_deprecation_warning | [string](#string) |  |  |
 
 
 
