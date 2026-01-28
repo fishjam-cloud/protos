@@ -15,9 +15,23 @@ message PeerMessage {
     ROOM_TYPE_LIVESTREAM = 3;
   }
 
+  // Deprecation status for SDK version
+  message SdkDeprecation {
+    enum Status {
+      STATUS_UNSPECIFIED = 0;
+      STATUS_UP_TO_DATE = 1;
+      STATUS_DEPRECATED = 2;
+      STATUS_UNSUPPORTED = 3;
+    }
+
+    Status status = 1;
+    string message = 2;
+  }
+
   // Response sent by FJ, confirming successful authentication
   message Authenticated {
     RoomType room_type = 1;
+    SdkDeprecation sdk_deprecation = 2;
   }
 
   // Request sent by peer, to authenticate to FJ server

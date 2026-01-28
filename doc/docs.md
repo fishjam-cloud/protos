@@ -80,8 +80,10 @@
     - [PeerMessage.Authenticated](#fishjam-PeerMessage-Authenticated)
     - [PeerMessage.MediaEvent](#fishjam-PeerMessage-MediaEvent)
     - [PeerMessage.RTCStatsReport](#fishjam-PeerMessage-RTCStatsReport)
+    - [PeerMessage.SdkDeprecation](#fishjam-PeerMessage-SdkDeprecation)
   
     - [PeerMessage.RoomType](#fishjam-PeerMessage-RoomType)
+    - [PeerMessage.SdkDeprecation.Status](#fishjam-PeerMessage-SdkDeprecation-Status)
   
 - [fishjam/server_notifications.proto](#fishjam_server_notifications-proto)
     - [ServerMessage](#fishjam-ServerMessage)
@@ -1190,6 +1192,7 @@ Response sent by FJ, confirming successful authentication
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_type | [PeerMessage.RoomType](#fishjam-PeerMessage-RoomType) |  |  |
+| sdk_deprecation | [PeerMessage.SdkDeprecation](#fishjam-PeerMessage-SdkDeprecation) |  |  |
 
 
 
@@ -1226,6 +1229,22 @@ https://developer.mozilla.org/en-US/docs/Web/API/RTCStatsReport#the_statistic_ty
 
 
 
+
+<a name="fishjam-PeerMessage-SdkDeprecation"></a>
+
+### PeerMessage.SdkDeprecation
+Deprecation status for SDK version
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [PeerMessage.SdkDeprecation.Status](#fishjam-PeerMessage-SdkDeprecation-Status) |  |  |
+| message | [string](#string) |  |  |
+
+
+
+
+
  
 
 
@@ -1240,6 +1259,20 @@ Defines types of rooms peers may connect to
 | ROOM_TYPE_CONFERENCE | 1 |  |
 | ROOM_TYPE_AUDIO_ONLY | 2 |  |
 | ROOM_TYPE_LIVESTREAM | 3 |  |
+
+
+
+<a name="fishjam-PeerMessage-SdkDeprecation-Status"></a>
+
+### PeerMessage.SdkDeprecation.Status
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| STATUS_UNSPECIFIED | 0 |  |
+| STATUS_UP_TO_DATE | 1 |  |
+| STATUS_DEPRECATED | 2 |  |
+| STATUS_UNSUPPORTED | 3 |  |
 
 
  
