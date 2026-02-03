@@ -71,6 +71,17 @@ defmodule Fishjam.AgentRequest.InterruptTrack do
   field :track_id, 1, type: :string, json_name: "trackId"
 end
 
+defmodule Fishjam.AgentRequest.CaptureImage do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.CaptureImage",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+end
+
 defmodule Fishjam.AgentRequest do
   @moduledoc false
 
@@ -98,6 +109,11 @@ defmodule Fishjam.AgentRequest do
   field :interrupt_track, 5,
     type: Fishjam.AgentRequest.InterruptTrack,
     json_name: "interruptTrack",
+    oneof: 0
+
+  field :capture_image, 6,
+    type: Fishjam.AgentRequest.CaptureImage,
+    json_name: "captureImage",
     oneof: 0
 end
 
