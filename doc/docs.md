@@ -8,12 +8,14 @@
     - [AgentRequest.AddTrack](#fishjam-AgentRequest-AddTrack)
     - [AgentRequest.AddTrack.CodecParameters](#fishjam-AgentRequest-AddTrack-CodecParameters)
     - [AgentRequest.AuthRequest](#fishjam-AgentRequest-AuthRequest)
+    - [AgentRequest.CaptureImage](#fishjam-AgentRequest-CaptureImage)
     - [AgentRequest.InterruptTrack](#fishjam-AgentRequest-InterruptTrack)
     - [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack)
     - [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData)
     - [AgentResponse](#fishjam-AgentResponse)
     - [AgentResponse.Authenticated](#fishjam-AgentResponse-Authenticated)
     - [AgentResponse.TrackData](#fishjam-AgentResponse-TrackData)
+    - [AgentResponse.TrackImage](#fishjam-AgentResponse-TrackImage)
   
 - [fishjam/media_events/peer/peer.proto](#fishjam_media_events_peer_peer-proto)
     - [MediaEvent](#fishjam-media_events-peer-MediaEvent)
@@ -143,6 +145,7 @@ Defines any type of message passed from agent peer to Fishjam
 | remove_track | [AgentRequest.RemoveTrack](#fishjam-AgentRequest-RemoveTrack) |  |  |
 | track_data | [AgentRequest.TrackData](#fishjam-AgentRequest-TrackData) |  |  |
 | interrupt_track | [AgentRequest.InterruptTrack](#fishjam-AgentRequest-InterruptTrack) |  |  |
+| capture_image | [AgentRequest.CaptureImage](#fishjam-AgentRequest-CaptureImage) |  |  |
 
 
 
@@ -191,6 +194,21 @@ Request sent by agent, to authenticate to Fishjam server
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | token | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentRequest-CaptureImage"></a>
+
+### AgentRequest.CaptureImage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
 
 
 
@@ -253,6 +271,7 @@ Defines any type of message passed from Fishjam to agent peer
 | ----- | ---- | ----- | ----------- |
 | authenticated | [AgentResponse.Authenticated](#fishjam-AgentResponse-Authenticated) |  |  |
 | track_data | [AgentResponse.TrackData](#fishjam-AgentResponse-TrackData) |  |  |
+| track_image | [AgentResponse.TrackImage](#fishjam-AgentResponse-TrackImage) |  |  |
 
 
 
@@ -279,6 +298,23 @@ Notification containing a chunk of a track&#39;s data stream
 | ----- | ---- | ----- | ----------- |
 | peer_id | [string](#string) |  |  |
 | track | [notifications.Track](#fishjam-notifications-Track) |  |  |
+| data | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="fishjam-AgentResponse-TrackImage"></a>
+
+### AgentResponse.TrackImage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| content_type | [string](#string) |  |  |
 | data | [bytes](#bytes) |  |  |
 
 

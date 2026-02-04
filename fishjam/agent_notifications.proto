@@ -44,12 +44,17 @@ message AgentRequest {
     string track_id = 1;
   }
 
+  message CaptureImage {
+    string track_id = 1;
+  }
+
   oneof content {
     AuthRequest auth_request = 1;
     AddTrack add_track = 2;
     RemoveTrack remove_track = 3;
     TrackData track_data = 4;
     InterruptTrack interrupt_track = 5;
+    CaptureImage capture_image = 6;
   }
 }
 
@@ -65,8 +70,15 @@ message AgentResponse {
     bytes data = 3;
   }
 
+  message TrackImage {
+    string track_id = 1;
+    string content_type = 2;
+    bytes data = 3;
+  }
+
   oneof content {
     Authenticated authenticated = 1;
     TrackData track_data = 2;
+    TrackImage track_image = 3;
   }
 }

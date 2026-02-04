@@ -71,6 +71,17 @@ defmodule Fishjam.AgentRequest.InterruptTrack do
   field :track_id, 1, type: :string, json_name: "trackId"
 end
 
+defmodule Fishjam.AgentRequest.CaptureImage do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.AgentRequest.CaptureImage",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+end
+
 defmodule Fishjam.AgentRequest do
   @moduledoc false
 
@@ -99,6 +110,11 @@ defmodule Fishjam.AgentRequest do
     type: Fishjam.AgentRequest.InterruptTrack,
     json_name: "interruptTrack",
     oneof: 0
+
+  field :capture_image, 6,
+    type: Fishjam.AgentRequest.CaptureImage,
+    json_name: "captureImage",
+    oneof: 0
 end
 
 defmodule Fishjam.AgentResponse.Authenticated do
@@ -123,6 +139,19 @@ defmodule Fishjam.AgentResponse.TrackData do
   field :data, 3, type: :bytes
 end
 
+defmodule Fishjam.AgentResponse.TrackImage do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.AgentResponse.TrackImage",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :track_id, 1, type: :string, json_name: "trackId"
+  field :content_type, 2, type: :string, json_name: "contentType"
+  field :data, 3, type: :bytes
+end
+
 defmodule Fishjam.AgentResponse do
   @moduledoc false
 
@@ -135,4 +164,5 @@ defmodule Fishjam.AgentResponse do
 
   field :authenticated, 1, type: Fishjam.AgentResponse.Authenticated, oneof: 0
   field :track_data, 2, type: Fishjam.AgentResponse.TrackData, json_name: "trackData", oneof: 0
+  field :track_image, 3, type: Fishjam.AgentResponse.TrackImage, json_name: "trackImage", oneof: 0
 end
