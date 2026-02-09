@@ -1,7 +1,7 @@
 defmodule FishjamProtos.MixProject do
   use Mix.Project
 
-  @release_version "0.4.0"
+  @release_version "0.25.0"
 
   def project do
     [
