@@ -168,6 +168,24 @@ message ServerMessage {
     string channel_id = 4;
   }
 
+  // Sent when there is an upsert to track forwardings from Fishjam to Foundry
+  message TrackForwarding {
+    string room_id = 1;
+    string peer_id = 2;
+    string composition_url = 3;
+    string input_id = 4;
+    optional notifications.Track audio_track = 5; // Track has id, type, and metadata
+    optional notifications.Track video_track = 6;
+  }
+
+  // Sent when track forwarding is removed
+  message TrackForwardingRemoved {
+    string room_id = 1;
+    string peer_id = 2;
+    string composition_url = 3;
+    string input_id = 4;
+  }
+
   // Notification sent when streamer successfully connects
   message StreamConnected {
     string stream_id = 1;
@@ -203,33 +221,44 @@ message ServerMessage {
   reserved 12;
 
   oneof content {
-    RoomCrashed room_crashed = 1;
-    PeerConnected peer_connected = 2;
-    PeerDisconnected peer_disconnected = 3;
-    PeerCrashed peer_crashed = 4;
-    ComponentCrashed component_crashed = 5;
+    // Auth
     Authenticated authenticated = 6;
     AuthRequest auth_request = 7;
     SubscribeRequest subscribe_request = 8;
     SubscribeResponse subscribe_response = 9;
+
+    // Common
     RoomCreated room_created = 10;
     RoomDeleted room_deleted = 11;
-    HlsPlayable hls_playable = 13;
-    HlsUploaded hls_uploaded = 14;
-    HlsUploadCrashed hls_upload_crashed = 15;
+    RoomCrashed room_crashed = 1;
+
+    // Conferencing
+    PeerConnected peer_connected = 2;
+    PeerDisconnected peer_disconnected = 3;
+    PeerCrashed peer_crashed = 4;
     PeerMetadataUpdated peer_metadata_updated = 16;
     TrackAdded track_added = 17;
     TrackRemoved track_removed = 18;
     TrackMetadataUpdated track_metadata_updated = 19;
     PeerAdded peer_added = 20;
     PeerDeleted peer_deleted = 21;
-    StreamConnected stream_connected = 22 [deprecated = true];
-    StreamDisconnected stream_disconnected = 23 [deprecated = true];
+    ChannelAdded channel_added = 28;
+    ChannelRemoved channel_removed = 29;
+    TrackForwarding track_forwarding = 30;
+    TrackForwardingRemoved track_forwarding_removed = 31;
+
+    // Streaming
     ViewerConnected viewer_connected = 24;
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
-    ChannelAdded channel_added = 28;
-    ChannelRemoved channel_removed = 29;
+
+    // Deprecated
+    StreamConnected stream_connected = 22 [deprecated = true];
+    StreamDisconnected stream_disconnected = 23 [deprecated = true];
+    HlsPlayable hls_playable = 13 [deprecated = true];
+    HlsUploaded hls_uploaded = 14 [deprecated = true];
+    HlsUploadCrashed hls_upload_crashed = 15 [deprecated = true];
+    ComponentCrashed component_crashed = 5 [deprecated = true];
   }
 }

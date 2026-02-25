@@ -19,7 +19,7 @@ To run the `fishjam_protos/compile_proto.sh` one needs to install the proto plug
 To install the plugin:
 
 ```bash
-mix escript.install hex protobuf 0.15.0 # or any other version
+mix escript.install hex protobuf 0.16.0 # or any other version
 ```
 
 ## How to update docs

@@ -306,6 +306,44 @@ defmodule Fishjam.ServerMessage.ChannelRemoved do
   field :channel_id, 4, type: :string, json_name: "channelId"
 end
 
+defmodule Fishjam.ServerMessage.TrackForwarding do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.ServerMessage.TrackForwarding",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :room_id, 1, type: :string, json_name: "roomId"
+  field :peer_id, 2, type: :string, json_name: "peerId"
+  field :composition_url, 3, type: :string, json_name: "compositionUrl"
+  field :input_id, 4, type: :string, json_name: "inputId"
+
+  field :audio_track, 5,
+    proto3_optional: true,
+    type: Fishjam.Notifications.Track,
+    json_name: "audioTrack"
+
+  field :video_track, 6,
+    proto3_optional: true,
+    type: Fishjam.Notifications.Track,
+    json_name: "videoTrack"
+end
+
+defmodule Fishjam.ServerMessage.TrackForwardingRemoved do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.ServerMessage.TrackForwardingRemoved",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :room_id, 1, type: :string, json_name: "roomId"
+  field :peer_id, 2, type: :string, json_name: "peerId"
+  field :composition_url, 3, type: :string, json_name: "compositionUrl"
+  field :input_id, 4, type: :string, json_name: "inputId"
+end
+
 defmodule Fishjam.ServerMessage.StreamConnected do
   @moduledoc false
 
@@ -386,31 +424,6 @@ defmodule Fishjam.ServerMessage do
 
   oneof :content, 0
 
-  field :room_crashed, 1,
-    type: Fishjam.ServerMessage.RoomCrashed,
-    json_name: "roomCrashed",
-    oneof: 0
-
-  field :peer_connected, 2,
-    type: Fishjam.ServerMessage.PeerConnected,
-    json_name: "peerConnected",
-    oneof: 0
-
-  field :peer_disconnected, 3,
-    type: Fishjam.ServerMessage.PeerDisconnected,
-    json_name: "peerDisconnected",
-    oneof: 0
-
-  field :peer_crashed, 4,
-    type: Fishjam.ServerMessage.PeerCrashed,
-    json_name: "peerCrashed",
-    oneof: 0
-
-  field :component_crashed, 5,
-    type: Fishjam.ServerMessage.ComponentCrashed,
-    json_name: "componentCrashed",
-    oneof: 0
-
   field :authenticated, 6, type: Fishjam.ServerMessage.Authenticated, oneof: 0
 
   field :auth_request, 7,
@@ -438,19 +451,24 @@ defmodule Fishjam.ServerMessage do
     json_name: "roomDeleted",
     oneof: 0
 
-  field :hls_playable, 13,
-    type: Fishjam.ServerMessage.HlsPlayable,
-    json_name: "hlsPlayable",
+  field :room_crashed, 1,
+    type: Fishjam.ServerMessage.RoomCrashed,
+    json_name: "roomCrashed",
     oneof: 0
 
-  field :hls_uploaded, 14,
-    type: Fishjam.ServerMessage.HlsUploaded,
-    json_name: "hlsUploaded",
+  field :peer_connected, 2,
+    type: Fishjam.ServerMessage.PeerConnected,
+    json_name: "peerConnected",
     oneof: 0
 
-  field :hls_upload_crashed, 15,
-    type: Fishjam.ServerMessage.HlsUploadCrashed,
-    json_name: "hlsUploadCrashed",
+  field :peer_disconnected, 3,
+    type: Fishjam.ServerMessage.PeerDisconnected,
+    json_name: "peerDisconnected",
+    oneof: 0
+
+  field :peer_crashed, 4,
+    type: Fishjam.ServerMessage.PeerCrashed,
+    json_name: "peerCrashed",
     oneof: 0
 
   field :peer_metadata_updated, 16,
@@ -480,17 +498,25 @@ defmodule Fishjam.ServerMessage do
     json_name: "peerDeleted",
     oneof: 0
 
-  field :stream_connected, 22,
-    type: Fishjam.ServerMessage.StreamConnected,
-    json_name: "streamConnected",
-    oneof: 0,
-    deprecated: true
+  field :channel_added, 28,
+    type: Fishjam.ServerMessage.ChannelAdded,
+    json_name: "channelAdded",
+    oneof: 0
 
-  field :stream_disconnected, 23,
-    type: Fishjam.ServerMessage.StreamDisconnected,
-    json_name: "streamDisconnected",
-    oneof: 0,
-    deprecated: true
+  field :channel_removed, 29,
+    type: Fishjam.ServerMessage.ChannelRemoved,
+    json_name: "channelRemoved",
+    oneof: 0
+
+  field :track_forwarding, 30,
+    type: Fishjam.ServerMessage.TrackForwarding,
+    json_name: "trackForwarding",
+    oneof: 0
+
+  field :track_forwarding_removed, 31,
+    type: Fishjam.ServerMessage.TrackForwardingRemoved,
+    json_name: "trackForwardingRemoved",
+    oneof: 0
 
   field :viewer_connected, 24,
     type: Fishjam.ServerMessage.ViewerConnected,
@@ -512,13 +538,39 @@ defmodule Fishjam.ServerMessage do
     json_name: "streamerDisconnected",
     oneof: 0
 
-  field :channel_added, 28,
-    type: Fishjam.ServerMessage.ChannelAdded,
-    json_name: "channelAdded",
-    oneof: 0
+  field :stream_connected, 22,
+    type: Fishjam.ServerMessage.StreamConnected,
+    json_name: "streamConnected",
+    oneof: 0,
+    deprecated: true
 
-  field :channel_removed, 29,
-    type: Fishjam.ServerMessage.ChannelRemoved,
-    json_name: "channelRemoved",
-    oneof: 0
+  field :stream_disconnected, 23,
+    type: Fishjam.ServerMessage.StreamDisconnected,
+    json_name: "streamDisconnected",
+    oneof: 0,
+    deprecated: true
+
+  field :hls_playable, 13,
+    type: Fishjam.ServerMessage.HlsPlayable,
+    json_name: "hlsPlayable",
+    oneof: 0,
+    deprecated: true
+
+  field :hls_uploaded, 14,
+    type: Fishjam.ServerMessage.HlsUploaded,
+    json_name: "hlsUploaded",
+    oneof: 0,
+    deprecated: true
+
+  field :hls_upload_crashed, 15,
+    type: Fishjam.ServerMessage.HlsUploadCrashed,
+    json_name: "hlsUploadCrashed",
+    oneof: 0,
+    deprecated: true
+
+  field :component_crashed, 5,
+    type: Fishjam.ServerMessage.ComponentCrashed,
+    json_name: "componentCrashed",
+    oneof: 0,
+    deprecated: true
 end

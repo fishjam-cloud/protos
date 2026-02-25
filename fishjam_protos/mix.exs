@@ -36,7 +36,7 @@ defmodule FishjamProtos.MixProject do
 
   defp deps do
     [
-      {:protobuf, "~> 0.15.0"},
+      {:protobuf, "~> 0.16.0"},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
