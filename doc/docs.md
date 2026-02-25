@@ -1336,14 +1336,14 @@ Defines any type of message passed between FJ and server peer
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| authenticated | [ServerMessage.Authenticated](#fishjam-ServerMessage-Authenticated) |  | Auth |
+| authenticated | [ServerMessage.Authenticated](#fishjam-ServerMessage-Authenticated) |  |  |
 | auth_request | [ServerMessage.AuthRequest](#fishjam-ServerMessage-AuthRequest) |  |  |
 | subscribe_request | [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest) |  |  |
 | subscribe_response | [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse) |  |  |
-| room_created | [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated) |  | Common |
+| room_created | [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated) |  |  |
 | room_deleted | [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted) |  |  |
 | room_crashed | [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed) |  |  |
-| peer_connected | [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected) |  | Conferencing |
+| peer_connected | [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected) |  |  |
 | peer_disconnected | [ServerMessage.PeerDisconnected](#fishjam-ServerMessage-PeerDisconnected) |  |  |
 | peer_crashed | [ServerMessage.PeerCrashed](#fishjam-ServerMessage-PeerCrashed) |  |  |
 | peer_metadata_updated | [ServerMessage.PeerMetadataUpdated](#fishjam-ServerMessage-PeerMetadataUpdated) |  |  |
@@ -1356,11 +1356,11 @@ Defines any type of message passed between FJ and server peer
 | channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
 | track_forwarding | [ServerMessage.TrackForwarding](#fishjam-ServerMessage-TrackForwarding) |  |  |
 | track_forwarding_removed | [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved) |  |  |
-| viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  | Streaming |
+| viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
-| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.** Deprecated |
+| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
 | hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  | **Deprecated.**  |
 | hls_uploaded | [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded) |  | **Deprecated.**  |

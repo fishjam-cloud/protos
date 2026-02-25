@@ -222,17 +222,20 @@ message ServerMessage {
 
   oneof content {
     // Auth
+
     Authenticated authenticated = 6;
     AuthRequest auth_request = 7;
     SubscribeRequest subscribe_request = 8;
     SubscribeResponse subscribe_response = 9;
 
     // Common
+
     RoomCreated room_created = 10;
     RoomDeleted room_deleted = 11;
     RoomCrashed room_crashed = 1;
 
     // Conferencing
+
     PeerConnected peer_connected = 2;
     PeerDisconnected peer_disconnected = 3;
     PeerCrashed peer_crashed = 4;
@@ -248,12 +251,14 @@ message ServerMessage {
     TrackForwardingRemoved track_forwarding_removed = 31;
 
     // Streaming
+
     ViewerConnected viewer_connected = 24;
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
 
     // Deprecated
+
     StreamConnected stream_connected = 22 [deprecated = true];
     StreamDisconnected stream_disconnected = 23 [deprecated = true];
     HlsPlayable hls_playable = 13 [deprecated = true];
