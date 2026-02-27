@@ -113,6 +113,8 @@
     - [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest)
     - [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse)
     - [ServerMessage.TrackAdded](#fishjam-ServerMessage-TrackAdded)
+    - [ServerMessage.TrackForwarding](#fishjam-ServerMessage-TrackForwarding)
+    - [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved)
     - [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated)
     - [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved)
     - [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected)
@@ -1334,34 +1336,36 @@ Defines any type of message passed between FJ and server peer
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| room_crashed | [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed) |  |  |
-| peer_connected | [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected) |  |  |
-| peer_disconnected | [ServerMessage.PeerDisconnected](#fishjam-ServerMessage-PeerDisconnected) |  |  |
-| peer_crashed | [ServerMessage.PeerCrashed](#fishjam-ServerMessage-PeerCrashed) |  |  |
-| component_crashed | [ServerMessage.ComponentCrashed](#fishjam-ServerMessage-ComponentCrashed) |  |  |
 | authenticated | [ServerMessage.Authenticated](#fishjam-ServerMessage-Authenticated) |  |  |
 | auth_request | [ServerMessage.AuthRequest](#fishjam-ServerMessage-AuthRequest) |  |  |
 | subscribe_request | [ServerMessage.SubscribeRequest](#fishjam-ServerMessage-SubscribeRequest) |  |  |
 | subscribe_response | [ServerMessage.SubscribeResponse](#fishjam-ServerMessage-SubscribeResponse) |  |  |
 | room_created | [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated) |  |  |
 | room_deleted | [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted) |  |  |
-| hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  |  |
-| hls_uploaded | [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded) |  |  |
-| hls_upload_crashed | [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed) |  |  |
+| room_crashed | [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed) |  |  |
+| peer_connected | [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected) |  |  |
+| peer_disconnected | [ServerMessage.PeerDisconnected](#fishjam-ServerMessage-PeerDisconnected) |  |  |
+| peer_crashed | [ServerMessage.PeerCrashed](#fishjam-ServerMessage-PeerCrashed) |  |  |
 | peer_metadata_updated | [ServerMessage.PeerMetadataUpdated](#fishjam-ServerMessage-PeerMetadataUpdated) |  |  |
 | track_added | [ServerMessage.TrackAdded](#fishjam-ServerMessage-TrackAdded) |  |  |
 | track_removed | [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved) |  |  |
 | track_metadata_updated | [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated) |  |  |
 | peer_added | [ServerMessage.PeerAdded](#fishjam-ServerMessage-PeerAdded) |  |  |
 | peer_deleted | [ServerMessage.PeerDeleted](#fishjam-ServerMessage-PeerDeleted) |  |  |
-| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
-| stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
+| channel_added | [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded) |  |  |
+| channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
+| track_forwarding | [ServerMessage.TrackForwarding](#fishjam-ServerMessage-TrackForwarding) |  |  |
+| track_forwarding_removed | [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
-| channel_added | [ServerMessage.ChannelAdded](#fishjam-ServerMessage-ChannelAdded) |  |  |
-| channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
+| stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
+| stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
+| hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  | **Deprecated.**  |
+| hls_uploaded | [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded) |  | **Deprecated.**  |
+| hls_upload_crashed | [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed) |  | **Deprecated.**  |
+| component_crashed | [ServerMessage.ComponentCrashed](#fishjam-ServerMessage-ComponentCrashed) |  | **Deprecated.**  |
 
 
 
@@ -1744,6 +1748,44 @@ Notification sent when peer or component adds new track
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
 | track | [notifications.Track](#fishjam-notifications-Track) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-TrackForwarding"></a>
+
+### ServerMessage.TrackForwarding
+Sent when there is an upsert to track forwardings from Fishjam to Foundry
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| composition_url | [string](#string) |  |  |
+| input_id | [string](#string) |  |  |
+| audio_track | [notifications.Track](#fishjam-notifications-Track) | optional | Track has id, type, and metadata |
+| video_track | [notifications.Track](#fishjam-notifications-Track) | optional |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-TrackForwardingRemoved"></a>
+
+### ServerMessage.TrackForwardingRemoved
+Sent when track forwarding is removed
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| composition_url | [string](#string) |  |  |
+| input_id | [string](#string) |  |  |
 
 
 
