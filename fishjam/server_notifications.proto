@@ -168,7 +168,7 @@ message ServerMessage {
     string channel_id = 4;
   }
 
-  // Sent when there is an upsert to track forwardings from Fishjam to Foundry
+  // Sent when there is an upsert to track forwardings from Fishjam to Composition
   message TrackForwarding {
     string room_id = 1;
     string peer_id = 2;
