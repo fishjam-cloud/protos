@@ -1757,7 +1757,7 @@ Notification sent when peer or component adds new track
 <a name="fishjam-ServerMessage-TrackForwarding"></a>
 
 ### ServerMessage.TrackForwarding
-Sent when there is an upsert to track forwardings from Fishjam to Foundry
+Sent when there is an upsert to track forwardings from Fishjam to Composition
 
 
 | Field | Type | Label | Description |
