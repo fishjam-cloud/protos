@@ -117,11 +117,13 @@
     - [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved)
     - [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated)
     - [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved)
+    - [ServerMessage.VadNotification](#fishjam-ServerMessage-VadNotification)
     - [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected)
     - [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected)
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
     - [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType)
+    - [ServerMessage.VadNotification.Status](#fishjam-ServerMessage-VadNotification-Status)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -1356,6 +1358,7 @@ Defines any type of message passed between FJ and server peer
 | channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
 | track_forwarding | [ServerMessage.TrackForwarding](#fishjam-ServerMessage-TrackForwarding) |  |  |
 | track_forwarding_removed | [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved) |  |  |
+| vad_notification | [ServerMessage.VadNotification](#fishjam-ServerMessage-VadNotification) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
@@ -1828,6 +1831,24 @@ Notification sent when a track is removed
 
 
 
+<a name="fishjam-ServerMessage-VadNotification"></a>
+
+### ServerMessage.VadNotification
+Notification sent when voice activity changes on a track
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| room_id | [string](#string) |  |  |
+| peer_id | [string](#string) |  |  |
+| track_id | [string](#string) |  |  |
+| status | [ServerMessage.VadNotification.Status](#fishjam-ServerMessage-VadNotification-Status) |  |  |
+
+
+
+
+
+
 <a name="fishjam-ServerMessage-ViewerConnected"></a>
 
 ### ServerMessage.ViewerConnected
@@ -1884,6 +1905,19 @@ Defines message groups for which peer can subscribe
 | PEER_TYPE_UNSPECIFIED | 0 |  |
 | PEER_TYPE_WEBRTC | 1 |  |
 | PEER_TYPE_AGENT | 2 |  |
+
+
+
+<a name="fishjam-ServerMessage-VadNotification-Status"></a>
+
+### ServerMessage.VadNotification.Status
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| STATUS_UNSPECIFIED | 0 |  |
+| STATUS_SILENCE | 1 |  |
+| STATUS_SPEECH | 2 |  |
 
 
  
