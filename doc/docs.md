@@ -117,13 +117,12 @@
     - [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved)
     - [ServerMessage.TrackMetadataUpdated](#fishjam-ServerMessage-TrackMetadataUpdated)
     - [ServerMessage.TrackRemoved](#fishjam-ServerMessage-TrackRemoved)
-    - [ServerMessage.VadNotification](#fishjam-ServerMessage-VadNotification)
     - [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected)
     - [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected)
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
     - [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType)
-    - [ServerMessage.VadNotification.Status](#fishjam-ServerMessage-VadNotification-Status)
+    - [ServerMessage.TrackForwarding.VadStatus](#fishjam-ServerMessage-TrackForwarding-VadStatus)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -1358,7 +1357,6 @@ Defines any type of message passed between FJ and server peer
 | channel_removed | [ServerMessage.ChannelRemoved](#fishjam-ServerMessage-ChannelRemoved) |  |  |
 | track_forwarding | [ServerMessage.TrackForwarding](#fishjam-ServerMessage-TrackForwarding) |  |  |
 | track_forwarding_removed | [ServerMessage.TrackForwardingRemoved](#fishjam-ServerMessage-TrackForwardingRemoved) |  |  |
-| vad_notification | [ServerMessage.VadNotification](#fishjam-ServerMessage-VadNotification) |  |  |
 | viewer_connected | [ServerMessage.ViewerConnected](#fishjam-ServerMessage-ViewerConnected) |  |  |
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
@@ -1771,6 +1769,7 @@ Sent when there is an upsert to track forwardings from Fishjam to Composition
 | input_id | [string](#string) |  |  |
 | audio_track | [notifications.Track](#fishjam-notifications-Track) | optional | Track has id, type, and metadata |
 | video_track | [notifications.Track](#fishjam-notifications-Track) | optional |  |
+| vad_status | [ServerMessage.TrackForwarding.VadStatus](#fishjam-ServerMessage-TrackForwarding-VadStatus) | optional | VAD status of the audio track |
 
 
 
@@ -1825,24 +1824,6 @@ Notification sent when a track is removed
 | peer_id | [string](#string) |  |  |
 | component_id | [string](#string) |  |  |
 | track | [notifications.Track](#fishjam-notifications-Track) |  |  |
-
-
-
-
-
-
-<a name="fishjam-ServerMessage-VadNotification"></a>
-
-### ServerMessage.VadNotification
-Notification sent when voice activity changes on a track
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| room_id | [string](#string) |  |  |
-| peer_id | [string](#string) |  |  |
-| track_id | [string](#string) |  |  |
-| status | [ServerMessage.VadNotification.Status](#fishjam-ServerMessage-VadNotification-Status) |  |  |
 
 
 
@@ -1908,9 +1889,9 @@ Defines message groups for which peer can subscribe
 
 
 
-<a name="fishjam-ServerMessage-VadNotification-Status"></a>
+<a name="fishjam-ServerMessage-TrackForwarding-VadStatus"></a>
 
-### ServerMessage.VadNotification.Status
+### ServerMessage.TrackForwarding.VadStatus
 
 
 | Name | Number | Description |

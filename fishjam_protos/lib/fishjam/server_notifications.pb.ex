@@ -25,12 +25,12 @@ defmodule Fishjam.ServerMessage.EventType do
   field :EVENT_TYPE_SERVER_NOTIFICATION, 1
 end
 
-defmodule Fishjam.ServerMessage.VadNotification.Status do
+defmodule Fishjam.ServerMessage.TrackForwarding.VadStatus do
   @moduledoc false
 
   use Protobuf,
     enum: true,
-    full_name: "fishjam.ServerMessage.VadNotification.Status",
+    full_name: "fishjam.ServerMessage.TrackForwarding.VadStatus",
     protoc_gen_elixir_version: "0.16.0",
     syntax: :proto3
 
@@ -342,6 +342,12 @@ defmodule Fishjam.ServerMessage.TrackForwarding do
     proto3_optional: true,
     type: Fishjam.Notifications.Track,
     json_name: "videoTrack"
+
+  field :vad_status, 7,
+    proto3_optional: true,
+    type: Fishjam.ServerMessage.TrackForwarding.VadStatus,
+    json_name: "vadStatus",
+    enum: true
 end
 
 defmodule Fishjam.ServerMessage.TrackForwardingRemoved do
@@ -356,20 +362,6 @@ defmodule Fishjam.ServerMessage.TrackForwardingRemoved do
   field :peer_id, 2, type: :string, json_name: "peerId"
   field :composition_url, 3, type: :string, json_name: "compositionUrl"
   field :input_id, 4, type: :string, json_name: "inputId"
-end
-
-defmodule Fishjam.ServerMessage.VadNotification do
-  @moduledoc false
-
-  use Protobuf,
-    full_name: "fishjam.ServerMessage.VadNotification",
-    protoc_gen_elixir_version: "0.16.0",
-    syntax: :proto3
-
-  field :room_id, 1, type: :string, json_name: "roomId"
-  field :peer_id, 2, type: :string, json_name: "peerId"
-  field :track_id, 3, type: :string, json_name: "trackId"
-  field :status, 4, type: Fishjam.ServerMessage.VadNotification.Status, enum: true
 end
 
 defmodule Fishjam.ServerMessage.StreamConnected do
@@ -544,11 +536,6 @@ defmodule Fishjam.ServerMessage do
   field :track_forwarding_removed, 31,
     type: Fishjam.ServerMessage.TrackForwardingRemoved,
     json_name: "trackForwardingRemoved",
-    oneof: 0
-
-  field :vad_notification, 32,
-    type: Fishjam.ServerMessage.VadNotification,
-    json_name: "vadNotification",
     oneof: 0
 
   field :viewer_connected, 24,
