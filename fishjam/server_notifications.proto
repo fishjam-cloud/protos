@@ -171,9 +171,9 @@ message ServerMessage {
   // Sent when there is an upsert to track forwardings from Fishjam to Composition
   message TrackForwarding {
     enum VadStatus {
-      STATUS_UNSPECIFIED = 0;
-      STATUS_SILENCE = 1;
-      STATUS_SPEECH = 2;
+      VAD_STATUS_UNSPECIFIED = 0;
+      VAD_STATUS_SILENCE = 1;
+      VAD_STATUS_SPEECH = 2;
     }
 
     string room_id = 1;

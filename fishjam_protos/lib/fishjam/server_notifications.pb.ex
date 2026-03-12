@@ -34,9 +34,9 @@ defmodule Fishjam.ServerMessage.TrackForwarding.VadStatus do
     protoc_gen_elixir_version: "0.16.0",
     syntax: :proto3
 
-  field :STATUS_UNSPECIFIED, 0
-  field :STATUS_SILENCE, 1
-  field :STATUS_SPEECH, 2
+  field :VAD_STATUS_UNSPECIFIED, 0
+  field :VAD_STATUS_SILENCE, 1
+  field :VAD_STATUS_SPEECH, 2
 end
 
 defmodule Fishjam.ServerMessage.RoomCrashed do

@@ -1896,9 +1896,9 @@ Defines message groups for which peer can subscribe
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| STATUS_UNSPECIFIED | 0 |  |
-| STATUS_SILENCE | 1 |  |
-| STATUS_SPEECH | 2 |  |
+| VAD_STATUS_UNSPECIFIED | 0 |  |
+| VAD_STATUS_SILENCE | 1 |  |
+| VAD_STATUS_SPEECH | 2 |  |
 
 
  
