@@ -1905,6 +1905,7 @@ Defines message groups for which peer can subscribe
 | PEER_TYPE_UNSPECIFIED | 0 |  |
 | PEER_TYPE_WEBRTC | 1 |  |
 | PEER_TYPE_AGENT | 2 |  |
+| PEER_TYPE_VAPI | 3 |  |
 
 
 

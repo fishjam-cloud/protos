@@ -10,6 +10,7 @@ defmodule Fishjam.ServerMessage.PeerType do
   field :PEER_TYPE_UNSPECIFIED, 0
   field :PEER_TYPE_WEBRTC, 1
   field :PEER_TYPE_AGENT, 2
+  field :PEER_TYPE_VAPI, 3
 end
 
 defmodule Fishjam.ServerMessage.EventType do
