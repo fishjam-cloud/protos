@@ -1513,9 +1513,7 @@ Constraints (documented, not schema-enforced):
     recursive batches and receivers may treat them as a protocol violation.
   - Notifications are delivered in array order; consumers must process
     them in order.
-  - The batch is wire-atomic but not semantically atomic: emitting two
-    batches vs. one batch of the same elements is equivalent.
-  - Sent only to peers that opted in
+  - Sent only for webhooks, for peers that opted in
 
 
 | Field | Type | Label | Description |
