@@ -64,13 +64,7 @@ message ServerMessage {
   message Authenticated {}
 
   // Request sent by peer, to authenticate to FJ server
-  message AuthRequest {
-    string token = 1;
-    // If true, the server may deliver NotificationBatch in addition to
-    // single-notification ServerMessages. Defaults to false for websocket and
-    // old peers.
-    bool supports_notification_batch = 2;
-  }
+  message AuthRequest { string token = 1; }
 
   // Defines message groups for which peer can subscribe
   enum EventType {
@@ -249,8 +243,7 @@ message ServerMessage {
   //     them in order.
   //   - The batch is wire-atomic but not semantically atomic: emitting two
   //     batches vs. one batch of the same elements is equivalent.
-  //   - Sent only to peers that opted in via
-  //   AuthRequest.supports_notification_batch.
+  //   - Sent only to peers that opted in
   message NotificationBatch { repeated ServerMessage notifications = 1; }
 
   reserved 12;
