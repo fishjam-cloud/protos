@@ -1,8 +1,10 @@
+#!/bin/bash
+
 set -e
 
-find fishjam -name "*.proto" | sort | xargs docker run --rm -v $(pwd)/doc:/out -v $(pwd):/protos pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
+find fishjam -name "*.proto" | sort | xargs docker run --rm -v $PWD/doc:/out -v $PWD:/protos pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
 
-buf lint
 buf format -w
+buf lint
 
 (cd ./fishjam_protos;  ./compile_proto.sh)

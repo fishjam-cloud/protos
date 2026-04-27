@@ -1513,7 +1513,7 @@ Constraints (documented, not schema-enforced):
     recursive batches and receivers may treat them as a protocol violation.
   - Notifications are delivered in array order; consumers must process
     them in order.
-  - Sent only for webhooks, for peers that opted in
+  - Sent only for webhooks, for peers that .
 
 
 | Field | Type | Label | Description |
