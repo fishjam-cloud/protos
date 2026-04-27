@@ -147,7 +147,6 @@ defmodule Fishjam.ServerMessage.AuthRequest do
     syntax: :proto3
 
   field :token, 1, type: :string
-  field :supports_notification_batch, 2, type: :bool, json_name: "supportsNotificationBatch"
 end
 
 defmodule Fishjam.ServerMessage.SubscribeRequest do
