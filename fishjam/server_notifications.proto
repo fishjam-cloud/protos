@@ -64,7 +64,9 @@ message ServerMessage {
   message Authenticated {}
 
   // Request sent by peer, to authenticate to FJ server
-  message AuthRequest { string token = 1; }
+  message AuthRequest {
+    string token = 1;
+  }
 
   // Defines message groups for which peer can subscribe
   enum EventType {
@@ -244,7 +246,9 @@ message ServerMessage {
   //   - The batch is wire-atomic but not semantically atomic: emitting two
   //     batches vs. one batch of the same elements is equivalent.
   //   - Sent only to peers that opted in
-  message NotificationBatch { repeated ServerMessage notifications = 1; }
+  message NotificationBatch {
+    repeated ServerMessage notifications = 1;
+  }
 
   reserved 12;
 
