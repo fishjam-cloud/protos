@@ -1386,7 +1386,6 @@ Request sent by peer, to authenticate to FJ server
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | token | [string](#string) |  |  |
-| supports_notification_batch | [bool](#bool) |  | If true, the server may deliver NotificationBatch in addition to single-notification ServerMessages. Defaults to false for websocket and old peers. |
 
 
 
@@ -1516,8 +1515,7 @@ Constraints (documented, not schema-enforced):
     them in order.
   - The batch is wire-atomic but not semantically atomic: emitting two
     batches vs. one batch of the same elements is equivalent.
-  - Sent only to peers that opted in via
-  AuthRequest.supports_notification_batch.
+  - Sent only to peers that opted in
 
 
 | Field | Type | Label | Description |
