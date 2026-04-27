@@ -66,6 +66,10 @@ message ServerMessage {
   // Request sent by peer, to authenticate to FJ server
   message AuthRequest {
     string token = 1;
+    // If true, the server may deliver NotificationBatch in addition to
+    // single-notification ServerMessages. Defaults to false for websocket and
+    // old peers.
+    bool supports_notification_batch = 2;
   }
 
   // Defines message groups for which peer can subscribe
@@ -233,6 +237,22 @@ message ServerMessage {
     string streamer_id = 2;
   }
 
+  // Carries multiple notifications in a single wire frame.
+  //
+  // Constraints (documented, not schema-enforced):
+  //   - Each element's `content` MUST be a notification variant — never
+  //     Authenticated, AuthRequest, SubscribeRequest, or SubscribeResponse.
+  //   - NotificationBatch MUST NOT be nested inside another NotificationBatch.
+  //     The schema technically permits this, but senders must not emit
+  //     recursive batches and receivers may treat them as a protocol violation.
+  //   - Notifications are delivered in array order; consumers must process
+  //     them in order.
+  //   - The batch is wire-atomic but not semantically atomic: emitting two
+  //     batches vs. one batch of the same elements is equivalent.
+  //   - Sent only to peers that opted in via
+  //   AuthRequest.supports_notification_batch.
+  message NotificationBatch { repeated ServerMessage notifications = 1; }
+
   reserved 12;
 
   oneof content {
@@ -272,6 +292,9 @@ message ServerMessage {
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
+
+    // Batch
+    NotificationBatch notification_batch = 33;
 
     // Deprecated
 

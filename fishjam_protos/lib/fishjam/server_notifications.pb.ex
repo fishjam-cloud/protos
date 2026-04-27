@@ -147,6 +147,7 @@ defmodule Fishjam.ServerMessage.AuthRequest do
     syntax: :proto3
 
   field :token, 1, type: :string
+  field :supports_notification_batch, 2, type: :bool, json_name: "supportsNotificationBatch"
 end
 
 defmodule Fishjam.ServerMessage.SubscribeRequest do
@@ -443,6 +444,17 @@ defmodule Fishjam.ServerMessage.StreamerDisconnected do
   field :streamer_id, 2, type: :string, json_name: "streamerId"
 end
 
+defmodule Fishjam.ServerMessage.NotificationBatch do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.ServerMessage.NotificationBatch",
+    protoc_gen_elixir_version: "0.16.0",
+    syntax: :proto3
+
+  field :notifications, 1, repeated: true, type: Fishjam.ServerMessage
+end
+
 defmodule Fishjam.ServerMessage do
   @moduledoc false
 
@@ -570,6 +582,11 @@ defmodule Fishjam.ServerMessage do
   field :streamer_disconnected, 27,
     type: Fishjam.ServerMessage.StreamerDisconnected,
     json_name: "streamerDisconnected",
+    oneof: 0
+
+  field :notification_batch, 33,
+    type: Fishjam.ServerMessage.NotificationBatch,
+    json_name: "notificationBatch",
     oneof: 0
 
   field :stream_connected, 22,
