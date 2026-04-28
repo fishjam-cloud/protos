@@ -233,6 +233,21 @@ message ServerMessage {
     string streamer_id = 2;
   }
 
+  // Carries multiple notifications in a single wire frame.
+  //
+  // Constraints (documented, not schema-enforced):
+  //   - Each element's `content` MUST be a notification variant — never
+  //     Authenticated, AuthRequest, SubscribeRequest, or SubscribeResponse.
+  //   - NotificationBatch MUST NOT be nested inside another NotificationBatch.
+  //     The schema technically permits this, but senders must not emit
+  //     recursive batches and receivers may treat them as a protocol violation.
+  //   - Notifications are delivered in array order; consumers must process
+  //     them in order.
+  //   - Sent only for webhooks, for peers that .
+  message NotificationBatch {
+    repeated ServerMessage notifications = 1;
+  }
+
   reserved 12;
 
   oneof content {
@@ -272,6 +287,9 @@ message ServerMessage {
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
+
+    // Batch
+    NotificationBatch notification_batch = 33;
 
     // Deprecated
 

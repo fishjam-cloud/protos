@@ -97,6 +97,7 @@
     - [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable)
     - [ServerMessage.HlsUploadCrashed](#fishjam-ServerMessage-HlsUploadCrashed)
     - [ServerMessage.HlsUploaded](#fishjam-ServerMessage-HlsUploaded)
+    - [ServerMessage.NotificationBatch](#fishjam-ServerMessage-NotificationBatch)
     - [ServerMessage.PeerAdded](#fishjam-ServerMessage-PeerAdded)
     - [ServerMessage.PeerConnected](#fishjam-ServerMessage-PeerConnected)
     - [ServerMessage.PeerCrashed](#fishjam-ServerMessage-PeerCrashed)
@@ -1363,6 +1364,7 @@ Defines any type of message passed between FJ and server peer
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
+| notification_batch | [ServerMessage.NotificationBatch](#fishjam-ServerMessage-NotificationBatch) |  | Batch |
 | stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
 | hls_playable | [ServerMessage.HlsPlayable](#fishjam-ServerMessage-HlsPlayable) |  | **Deprecated.**  |
@@ -1492,6 +1494,31 @@ Notification sent when the HLS recording is successfully uploaded to AWS S3
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | room_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-NotificationBatch"></a>
+
+### ServerMessage.NotificationBatch
+Carries multiple notifications in a single wire frame.
+
+Constraints (documented, not schema-enforced):
+  - Each element&#39;s `content` MUST be a notification variant — never
+    Authenticated, AuthRequest, SubscribeRequest, or SubscribeResponse.
+  - NotificationBatch MUST NOT be nested inside another NotificationBatch.
+    The schema technically permits this, but senders must not emit
+    recursive batches and receivers may treat them as a protocol violation.
+  - Notifications are delivered in array order; consumers must process
+    them in order.
+  - Sent only for webhooks, for peers that .
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| notifications | [ServerMessage](#fishjam-ServerMessage) | repeated |  |
 
 
 
