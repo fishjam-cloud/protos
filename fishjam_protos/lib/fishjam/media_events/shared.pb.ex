@@ -4,7 +4,7 @@ defmodule Fishjam.MediaEvents.Variant do
   use Protobuf,
     enum: true,
     full_name: "fishjam.media_events.Variant",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :VARIANT_UNSPECIFIED, 0
@@ -18,7 +18,7 @@ defmodule Fishjam.MediaEvents.Candidate do
 
   use Protobuf,
     full_name: "fishjam.media_events.Candidate",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :candidate, 1, type: :string
@@ -32,7 +32,7 @@ defmodule Fishjam.MediaEvents.ChannelMessageBinaryPayload do
 
   use Protobuf,
     full_name: "fishjam.media_events.ChannelMessageBinaryPayload",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :data, 1, type: :bytes
@@ -43,7 +43,7 @@ defmodule Fishjam.MediaEvents.ChannelMessage do
 
   use Protobuf,
     full_name: "fishjam.media_events.ChannelMessage",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   oneof :payload, 0
