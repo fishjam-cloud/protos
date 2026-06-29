@@ -4,7 +4,7 @@ defmodule Fishjam.Notifications.TrackType do
   use Protobuf,
     enum: true,
     full_name: "fishjam.notifications.TrackType",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :TRACK_TYPE_UNSPECIFIED, 0
@@ -18,7 +18,7 @@ defmodule Fishjam.Notifications.TrackEncoding do
   use Protobuf,
     enum: true,
     full_name: "fishjam.notifications.TrackEncoding",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :TRACK_ENCODING_UNSPECIFIED, 0
@@ -31,7 +31,7 @@ defmodule Fishjam.Notifications.Track do
 
   use Protobuf,
     full_name: "fishjam.notifications.Track",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :id, 1, type: :string

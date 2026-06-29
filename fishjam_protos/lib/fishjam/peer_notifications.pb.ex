@@ -4,7 +4,7 @@ defmodule Fishjam.PeerMessage.RoomType do
   use Protobuf,
     enum: true,
     full_name: "fishjam.PeerMessage.RoomType",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :ROOM_TYPE_UNSPECIFIED, 0
@@ -19,7 +19,7 @@ defmodule Fishjam.PeerMessage.SdkDeprecation.Status do
   use Protobuf,
     enum: true,
     full_name: "fishjam.PeerMessage.SdkDeprecation.Status",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :STATUS_UNSPECIFIED, 0
@@ -33,7 +33,7 @@ defmodule Fishjam.PeerMessage.SdkDeprecation do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage.SdkDeprecation",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :status, 1, type: Fishjam.PeerMessage.SdkDeprecation.Status, enum: true
@@ -45,7 +45,7 @@ defmodule Fishjam.PeerMessage.Authenticated do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage.Authenticated",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :room_type, 1, type: Fishjam.PeerMessage.RoomType, json_name: "roomType", enum: true
@@ -57,7 +57,7 @@ defmodule Fishjam.PeerMessage.AuthRequest do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage.AuthRequest",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :token, 1, type: :string
@@ -69,7 +69,7 @@ defmodule Fishjam.PeerMessage.RTCStatsReport do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage.RTCStatsReport",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :data, 1, type: :string
@@ -80,7 +80,7 @@ defmodule Fishjam.PeerMessage.MediaEvent do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage.MediaEvent",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :data, 1, type: :string
@@ -91,7 +91,7 @@ defmodule Fishjam.PeerMessage do
 
   use Protobuf,
     full_name: "fishjam.PeerMessage",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   oneof :content, 0

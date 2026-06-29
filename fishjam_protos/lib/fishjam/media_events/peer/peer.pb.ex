@@ -3,7 +3,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.VariantBitrate do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.VariantBitrate",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :variant, 1, type: Fishjam.MediaEvents.Variant, enum: true
@@ -15,7 +15,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.Connect do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.Connect",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :metadata_json, 1, type: :string, json_name: "metadataJson"
@@ -26,7 +26,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.Disconnect do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.Disconnect",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 end
 
@@ -35,7 +35,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.UpdateEndpointMetadata do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.UpdateEndpointMetadata",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :metadata_json, 1, type: :string, json_name: "metadataJson"
@@ -46,7 +46,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.UpdateTrackMetadata do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.UpdateTrackMetadata",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -58,7 +58,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.RenegotiateTracks do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.RenegotiateTracks",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 end
 
@@ -68,7 +68,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToMetadataJsonEntr
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.SdpOffer.TrackIdToMetadataJsonEntry",
     map: true,
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :key, 1, type: :string
@@ -81,7 +81,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry do
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.SdpOffer.TrackIdToBitratesEntry",
     map: true,
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :key, 1, type: :string
@@ -94,7 +94,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer.MidToTrackIdEntry do
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.SdpOffer.MidToTrackIdEntry",
     map: true,
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :key, 1, type: :string
@@ -106,7 +106,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SdpOffer do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.SdpOffer",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :sdp, 1, type: :string
@@ -135,7 +135,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.TrackBitrates do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.TrackBitrates",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -151,7 +151,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.DisableTrackVariant do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.DisableTrackVariant",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -163,7 +163,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.EnableTrackVariant do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.EnableTrackVariant",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -175,7 +175,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.SetTargetTrackVariant do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.SetTargetTrackVariant",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -187,7 +187,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent.UnmuteTrack do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent.UnmuteTrack",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   field :track_id, 1, type: :string, json_name: "trackId"
@@ -198,7 +198,7 @@ defmodule Fishjam.MediaEvents.Peer.MediaEvent do
 
   use Protobuf,
     full_name: "fishjam.media_events.peer.MediaEvent",
-    protoc_gen_elixir_version: "0.16.0",
+    protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
   oneof :content, 0
