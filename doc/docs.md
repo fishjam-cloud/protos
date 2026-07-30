@@ -104,6 +104,7 @@
     - [ServerMessage.PeerDeleted](#fishjam-ServerMessage-PeerDeleted)
     - [ServerMessage.PeerDisconnected](#fishjam-ServerMessage-PeerDisconnected)
     - [ServerMessage.PeerMetadataUpdated](#fishjam-ServerMessage-PeerMetadataUpdated)
+    - [ServerMessage.RecordingStatusChanged](#fishjam-ServerMessage-RecordingStatusChanged)
     - [ServerMessage.RoomCrashed](#fishjam-ServerMessage-RoomCrashed)
     - [ServerMessage.RoomCreated](#fishjam-ServerMessage-RoomCreated)
     - [ServerMessage.RoomDeleted](#fishjam-ServerMessage-RoomDeleted)
@@ -124,6 +125,7 @@
   
     - [ServerMessage.EventType](#fishjam-ServerMessage-EventType)
     - [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType)
+    - [ServerMessage.RecordingStatusChanged.Status](#fishjam-ServerMessage-RecordingStatusChanged-Status)
     - [ServerMessage.VadNotification.Status](#fishjam-ServerMessage-VadNotification-Status)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -1364,6 +1366,7 @@ Defines any type of message passed between FJ and server peer
 | viewer_disconnected | [ServerMessage.ViewerDisconnected](#fishjam-ServerMessage-ViewerDisconnected) |  |  |
 | streamer_connected | [ServerMessage.StreamerConnected](#fishjam-ServerMessage-StreamerConnected) |  |  |
 | streamer_disconnected | [ServerMessage.StreamerDisconnected](#fishjam-ServerMessage-StreamerDisconnected) |  |  |
+| recording_status_changed | [ServerMessage.RecordingStatusChanged](#fishjam-ServerMessage-RecordingStatusChanged) |  |  |
 | notification_batch | [ServerMessage.NotificationBatch](#fishjam-ServerMessage-NotificationBatch) |  | Batch |
 | stream_connected | [ServerMessage.StreamConnected](#fishjam-ServerMessage-StreamConnected) |  | **Deprecated.**  |
 | stream_disconnected | [ServerMessage.StreamDisconnected](#fishjam-ServerMessage-StreamDisconnected) |  | **Deprecated.**  |
@@ -1623,6 +1626,23 @@ Notification sent when peer updates its metadata
 | peer_id | [string](#string) |  |  |
 | metadata | [string](#string) |  |  |
 | peer_type | [ServerMessage.PeerType](#fishjam-ServerMessage-PeerType) |  |  |
+
+
+
+
+
+
+<a name="fishjam-ServerMessage-RecordingStatusChanged"></a>
+
+### ServerMessage.RecordingStatusChanged
+Notification sent when a recording changes status
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| recording_id | [string](#string) |  |  |
+| status | [ServerMessage.RecordingStatusChanged.Status](#fishjam-ServerMessage-RecordingStatusChanged-Status) |  |  |
+| metadata | [string](#string) |  | JSON-encoded, as set on recording creation |
 
 
 
@@ -1933,6 +1953,20 @@ Defines message groups for which peer can subscribe
 | PEER_TYPE_WEBRTC | 1 |  |
 | PEER_TYPE_AGENT | 2 |  |
 | PEER_TYPE_VAPI | 3 |  |
+
+
+
+<a name="fishjam-ServerMessage-RecordingStatusChanged-Status"></a>
+
+### ServerMessage.RecordingStatusChanged.Status
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| STATUS_UNSPECIFIED | 0 |  |
+| STATUS_FINISHED | 1 |  |
+| STATUS_AVAILABLE | 2 |  |
+| STATUS_FAILED | 3 |  |
 
 
 
