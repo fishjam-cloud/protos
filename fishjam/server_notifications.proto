@@ -233,6 +233,20 @@ message ServerMessage {
     string streamer_id = 2;
   }
 
+  // Notification sent when a recording changes status
+  message RecordingStatusChanged {
+    enum Status {
+      STATUS_UNSPECIFIED = 0;
+      STATUS_FINISHED = 1;
+      STATUS_AVAILABLE = 2;
+      STATUS_FAILED = 3;
+    }
+
+    string recording_id = 1;
+    Status status = 2;
+    string metadata = 3; // JSON-encoded, as set on recording creation
+  }
+
   // Carries multiple notifications in a single wire frame.
   //
   // Constraints (documented, not schema-enforced):
@@ -287,6 +301,10 @@ message ServerMessage {
     ViewerDisconnected viewer_disconnected = 25;
     StreamerConnected streamer_connected = 26;
     StreamerDisconnected streamer_disconnected = 27;
+
+    // Recordings
+
+    RecordingStatusChanged recording_status_changed = 34;
 
     // Batch
     NotificationBatch notification_batch = 33;

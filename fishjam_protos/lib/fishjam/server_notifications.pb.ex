@@ -40,6 +40,21 @@ defmodule Fishjam.ServerMessage.VadNotification.Status do
   field :STATUS_SPEECH, 2
 end
 
+defmodule Fishjam.ServerMessage.RecordingStatusChanged.Status do
+  @moduledoc false
+
+  use Protobuf,
+    enum: true,
+    full_name: "fishjam.ServerMessage.RecordingStatusChanged.Status",
+    protoc_gen_elixir_version: "0.17.0",
+    syntax: :proto3
+
+  field :STATUS_UNSPECIFIED, 0
+  field :STATUS_FINISHED, 1
+  field :STATUS_AVAILABLE, 2
+  field :STATUS_FAILED, 3
+end
+
 defmodule Fishjam.ServerMessage.RoomCrashed do
   @moduledoc false
 
@@ -443,6 +458,19 @@ defmodule Fishjam.ServerMessage.StreamerDisconnected do
   field :streamer_id, 2, type: :string, json_name: "streamerId"
 end
 
+defmodule Fishjam.ServerMessage.RecordingStatusChanged do
+  @moduledoc false
+
+  use Protobuf,
+    full_name: "fishjam.ServerMessage.RecordingStatusChanged",
+    protoc_gen_elixir_version: "0.17.0",
+    syntax: :proto3
+
+  field :recording_id, 1, type: :string, json_name: "recordingId"
+  field :status, 2, type: Fishjam.ServerMessage.RecordingStatusChanged.Status, enum: true
+  field :metadata, 3, type: :string
+end
+
 defmodule Fishjam.ServerMessage.NotificationBatch do
   @moduledoc false
 
@@ -581,6 +609,11 @@ defmodule Fishjam.ServerMessage do
   field :streamer_disconnected, 27,
     type: Fishjam.ServerMessage.StreamerDisconnected,
     json_name: "streamerDisconnected",
+    oneof: 0
+
+  field :recording_status_changed, 34,
+    type: Fishjam.ServerMessage.RecordingStatusChanged,
+    json_name: "recordingStatusChanged",
     oneof: 0
 
   field :notification_batch, 33,
