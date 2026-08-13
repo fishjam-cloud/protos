@@ -1635,7 +1635,7 @@ Notification sent when peer updates its metadata
 <a name="fishjam-ServerMessage-RecordingStatusChanged"></a>
 
 ### ServerMessage.RecordingStatusChanged
-Notification sent when a recording changes status
+
 
 
 | Field | Type | Label | Description |
@@ -1963,7 +1963,7 @@ Defines message groups for which peer can subscribe
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| STATUS_UNSPECIFIED | 0 |  |
+| STATUS_ACTIVE | 0 |  |
 | STATUS_FINISHED | 1 |  |
 | STATUS_AVAILABLE | 2 |  |
 | STATUS_FAILED | 3 |  |

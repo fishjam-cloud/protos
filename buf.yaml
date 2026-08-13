@@ -11,3 +11,5 @@ lint:
   ignore_only:
     PACKAGE_VERSION_SUFFIX:
       - fishjam
+    ENUM_ZERO_VALUE_SUFFIX:
+      - fishjam/server_notifications.proto
