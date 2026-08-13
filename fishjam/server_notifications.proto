@@ -233,10 +233,9 @@ message ServerMessage {
     string streamer_id = 2;
   }
 
-  // Notification sent when a recording changes status
   message RecordingStatusChanged {
     enum Status {
-      STATUS_UNSPECIFIED = 0;
+      STATUS_ACTIVE = 0;
       STATUS_FINISHED = 1;
       STATUS_AVAILABLE = 2;
       STATUS_FAILED = 3;
