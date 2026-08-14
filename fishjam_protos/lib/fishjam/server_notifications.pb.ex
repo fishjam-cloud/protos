@@ -49,10 +49,11 @@ defmodule Fishjam.ServerMessage.RecordingStatusChanged.Status do
     protoc_gen_elixir_version: "0.17.0",
     syntax: :proto3
 
-  field :STATUS_ACTIVE, 0
-  field :STATUS_FINISHED, 1
-  field :STATUS_AVAILABLE, 2
-  field :STATUS_FAILED, 3
+  field :STATUS_UNSPECIFIED, 0
+  field :STATUS_ACTIVE, 1
+  field :STATUS_FINISHED, 2
+  field :STATUS_AVAILABLE, 3
+  field :STATUS_FAILED, 4
 end
 
 defmodule Fishjam.ServerMessage.RoomCrashed do
