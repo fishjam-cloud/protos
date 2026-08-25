@@ -9,7 +9,7 @@ The package can be installed by adding `fishjam_protos` to your list of dependen
 ```elixir
 def deps do
   [
-    {:fishjam_protos, "~> 0.29.0"}
+    {:fishjam_protos, "~> 0.30.0"}
   ]
 end
 ```
